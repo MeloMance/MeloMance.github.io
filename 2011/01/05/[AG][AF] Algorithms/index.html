@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Algorithms(알고리즘) | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="알고리즘" />
+    
+    <meta name="description" content="DefinitionApplying a technique to a problem results in a step-by-step procedure for solving the problem. This step-by-step procedure is called an algorithm for the problem.  알고리즘이란 문제를 해결하기 위한 일련의 절차적">
+<meta name="keywords" content="알고리즘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Algorithms(알고리즘)">
+<meta property="og:url" content="http://melomance.github.io/2011/01/05/[AG][AF] Algorithms/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="DefinitionApplying a technique to a problem results in a step-by-step procedure for solving the problem. This step-by-step procedure is called an algorithm for the problem.  알고리즘이란 문제를 해결하기 위한 일련의 절차적">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/algo/algorithms.png">
+<meta property="og:updated_time" content="2018-05-27T00:14:31.907Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Algorithms(알고리즘)">
+<meta name="twitter:description" content="DefinitionApplying a technique to a problem results in a step-by-step procedure for solving the problem. This step-by-step procedure is called an algorithm for the problem.  알고리즘이란 문제를 해결하기 위한 일련의 절차적">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/algorithms.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Foundation/">Foundation</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AG][AF] Algorithms" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Algorithms(알고리즘)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2011/01/05/[AG][AF] Algorithms/" class="article-date">
+            <time datetime="2011-01-05T04:48:07.000Z" itemprop="datePublished">2011-01-05</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="Definition"><a href="#Definition" class="headerlink" title="Definition"></a><span style="color:#21955b">Definition</span></h2><p>Applying a technique to a problem results in a step-by-step procedure for solving the problem. <strong>This step-by-step procedure is called an algorithm for the problem</strong>.</p>
+<blockquote>
+<p>알고리즘이란 문제를 해결하기 위한 일련의 절차적인 과정이다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="Objectives"><a href="#Objectives" class="headerlink" title="Objectives"></a><span style="color:#21955b">Objectives</span></h2><p>The purpose of studying these techniques and their applications is so that, <strong>when confronted with a new problem, you have a repertoire of techniques to consider as possible ways to solve the problem</strong>.</p>
+<blockquote>
+<p>알고리즘을 학습하는 목적은 새로운 문제에 직면했을 때, 그 문제를 해결할 수 있는 방법으로 고려해야 할 기술의 레퍼토리를 가지기 위함이다.</p>
+</blockquote>
+<p>In addition, we will be concerned not only with determining whether a problem can be solved using a given technique but also <strong>with analyzing how efficient the resulting algorithm is in terms of time and storage</strong>.</p>
+<blockquote>
+<p>주어진 기술을 사용하여 문제해결의 가능여부를 결정해야 하며, 결과알고리즘이 시간 및 스토리지면에서 얼마나 효율적인지 분석해야 한다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="The-Importance-of-Developing-Efficient-Algorithms"><a href="#The-Importance-of-Developing-Efficient-Algorithms" class="headerlink" title="The Importance of Developing Efficient Algorithms"></a><span style="color:#21955b">The Importance of Developing Efficient Algorithms</span></h2><p><strong>Regardless of how fast computers become or how cheap memory gets, efficiency will remain an important consideration</strong>. Next we show why this is so by comparing two algorithms for the same problem.</p>
+<blockquote>
+<p>컴퓨터가 얼마나 빠른지 상관없이 알고리즘의 효율성은 중요한 고려사항이다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Array Size</th>
+<th style="text-align:right">Number of Comparisons by Sequential Search</th>
+<th style="text-align:right">Number of Comparisons by Binary Search</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">128</td>
+<td style="text-align:right">128</td>
+<td style="text-align:right">8</td>
+</tr>
+<tr>
+<td style="text-align:right">1,024</td>
+<td style="text-align:right">1,024</td>
+<td style="text-align:right">11</td>
+</tr>
+<tr>
+<td style="text-align:right">1,048,576</td>
+<td style="text-align:right">1,048,576</td>
+<td style="text-align:right">21</td>
+</tr>
+<tr>
+<td style="text-align:right">4,294,967,296</td>
+<td style="text-align:right">4,294,967,296</td>
+<td style="text-align:right">33</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Binary Search does only 33 comparisons, whereas Sequential Search compares <em>x</em> with all 4 billion items</strong>. Even if the computer was capable of completing one pass through the <code>while</code> loop in a nanosecond, Sequential Search would take 4 seconds to determination almost instantaneously. <strong>This difference would be significant in an online application or if we needed to search for many items</strong>.</p>
+<blockquote>
+<p>Binary Search는 33번의 비교연산이면 충분하지만, Sequential Search는 40억개의 배열항목과 모두 비교해야 한다. 이 차이는 온라인 응용프로그램이나 많은 항목을 검색해야 할 때 중대한 사항이다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="The-Important-Features-of-Algorithms"><a href="#The-Important-Features-of-Algorithms" class="headerlink" title="The Important Features of Algorithms "></a><span style="color:#21955b">The Important Features of Algorithms </span></h2><h3 id="Input-입력"><a href="#Input-입력" class="headerlink" title="Input(입력)"></a>Input(입력)</h3><ul>
+<li>Information or data that comes in.</li>
+</ul>
+<h3 id="Output-출력"><a href="#Output-출력" class="headerlink" title="Output(출력)"></a>Output(출력)</h3><ul>
+<li>Information or data that goes out.</li>
+</ul>
+<h3 id="Definiteness-명확성"><a href="#Definiteness-명확성" class="headerlink" title="Definiteness(명확성)"></a>Definiteness(명확성)</h3><ul>
+<li>Precisely defined.<br>각 단계는 명확하게 정의되어야 한다.</li>
+</ul>
+<h3 id="Correctness-정확성"><a href="#Correctness-정확성" class="headerlink" title="Correctness(정확성)"></a>Correctness(정확성)</h3><ul>
+<li>Outputs correctly relate to inputs.<br>입력 값의 각 집합에 대해서 정확한 출력 값을 만들어야 한다.</li>
+</ul>
+<h3 id="Finiteness-유한성"><a href="#Finiteness-유한성" class="headerlink" title="Finiteness(유한성)"></a>Finiteness(유한성)</h3><ul>
+<li>Won’t take forever to describe or run.</li>
+</ul>
+<h3 id="Effectiveness-효율성"><a href="#Effectiveness-효율성" class="headerlink" title="Effectiveness(효율성)"></a>Effectiveness(효율성)</h3><ul>
+<li>Individual steps are all do-able.<br>각 단계는 유한한 양의 시간에 수행되어야 한다.</li>
+</ul>
+<h3 id="Generality-일반성"><a href="#Generality-일반성" class="headerlink" title="Generality(일반성)"></a>Generality(일반성)</h3><ul>
+<li>Works for many possible inputs.<br>특정한 입력이 아닌 모든 가능한 입력에 대해서 동작하여야 한다.</li>
+</ul>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2011/01/05/[AG][AF] Algorithms/" data-id="cji0ciifp0000ccn7l2w3df2h" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2011/01/06/[AG][AF] Anal-of-Alg/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Analysis of Algorithms(알고리즘 분석)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/hexo-start/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/hexo-start/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장-통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장-통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/05/[FX] 수출입대금결제방식/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/foreign-exchange.jpg)" alt="수출입대금 결제방식" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/05/[FX] 수출입대금결제방식/" class="title">수출입대금 결제방식</a></p>
+                            <p class="item-date"><time datetime="2017-11-05T02:46:00.000Z" itemprop="datePublished">2017-11-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 10px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 12px;">탐욕알고리즘</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2011/01/05/[AG][AF] Algorithms/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

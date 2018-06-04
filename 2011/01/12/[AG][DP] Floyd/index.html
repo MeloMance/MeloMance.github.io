@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Floyd&#39;s Algorithm for Shortest Paths(플로이드 알고리즘) | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="알고리즘,동적계획법" />
+    
+    <meta name="description" content="A common problem encountered by air travelers is the determination of the shortest way to fly from one city to another when a direct flight does not exist. Next we develop an algorithm that solves thi">
+<meta name="keywords" content="알고리즘,동적계획법">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Floyd&#39;s Algorithm for Shortest Paths(플로이드 알고리즘)">
+<meta property="og:url" content="http://melomance.github.io/2011/01/12/[AG][DP] Floyd/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="A common problem encountered by air travelers is the determination of the shortest way to fly from one city to another when a direct flight does not exist. Next we develop an algorithm that solves thi">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/algo/floyd.png">
+<meta property="og:updated_time" content="2018-05-30T13:41:48.617Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Floyd&#39;s Algorithm for Shortest Paths(플로이드 알고리즘)">
+<meta name="twitter:description" content="A common problem encountered by air travelers is the determination of the shortest way to fly from one city to another when a direct flight does not exist. Next we develop an algorithm that solves thi">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/floyd.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AG][DP] Floyd" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Floyd&#39;s Algorithm for Shortest Paths(플로이드 알고리즘)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2011/01/12/[AG][DP] Floyd/" class="article-date">
+            <time datetime="2011-01-12T14:37:00.000Z" itemprop="datePublished">2011-01-12</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/동적계획법/">동적계획법</a>, <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>A common problem encountered by air travelers is the determination of the shortest way to fly from one city to another when a direct flight does not exist. Next we develop an algorithm that solves this and similar problems. First, let’s informally review some graph theory.</p>
+<h2 id="Graph-Theory"><a href="#Graph-Theory" class="headerlink" title="Graph Theory"></a><span style="color:#21955b">Graph Theory</span></h2><h3 id="Terminology"><a href="#Terminology" class="headerlink" title="Terminology"></a>Terminology</h3><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>vertex, node</td>
+<td>정점</td>
+</tr>
+<tr>
+<td>edge, arc</td>
+<td>이음선</td>
+</tr>
+<tr>
+<td>directed graph, digraph</td>
+<td>방향 그래프</td>
+</tr>
+<tr>
+<td>weight</td>
+<td>가중치</td>
+</tr>
+<tr>
+<td>simple path</td>
+<td>단순경로 (같은 정점을 두 번 지나지 않음)</td>
+</tr>
+<tr>
+<td>path</td>
+<td>경로 (두 정점사이에 edge가 있는 정점들의 나열)</td>
+</tr>
+<tr>
+<td>cycle</td>
+<td>순환 (한 정점에서 다시 그 정점으로 돌아오는 경로)</td>
+</tr>
+<tr>
+<td>cyclic graph</td>
+<td>순환 그래프</td>
+</tr>
+<tr>
+<td>acyclic graph</td>
+<td>비순환 그래프</td>
+</tr>
+<tr>
+<td>weighted graph</td>
+<td>가중치 포함 그래프</td>
+</tr>
+<tr>
+<td>length</td>
+<td>길이<br>(weighted graph) the sum of weights on the path<br>(unweighted graph) the number of edges on the path</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Weighted-Graph"><a href="#Weighted-Graph" class="headerlink" title="Weighted Graph"></a>Weighted Graph</h3><p>a weighted graph containing n vertices by an array W where</p>
+<p>$$<br>W[i][j] =<br>\begin{cases}<br>\text{weight on edge} &amp; \text{if there is an edge from $v_i$ to $v_j$} \\<br>\infty &amp; \text{if there is no edge from $v_i$ to $v_j$}\\<br>0 &amp; i=j<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>플로이드 알고리즘은 인풋과 아웃풋으로 그래프를 사용하기 때문에 그래프 자료구조에 대한 이해가 필요하다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="Floyd’s-Algorithm-for-Shortest-Paths-using-Dynamic-Programming"><a href="#Floyd’s-Algorithm-for-Shortest-Paths-using-Dynamic-Programming" class="headerlink" title="Floyd’s Algorithm for Shortest Paths using Dynamic Programming"></a><span style="color:#21955b">Floyd’s Algorithm for Shortest Paths using Dynamic Programming</span></h2><p><img src="/images/algo/floyd_figure.png" width="100%" align="center"></p>
+<ul>
+<li><strong>$W$</strong> represents the graph in the above figure.</li>
+<li><strong>$D$</strong> contains the lengths of the shortest paths.</li>
+<li><strong>$D^{(k)}[i][j]$</strong> = length of a shortest path from $v_i$ to $v_j$ using only vertices in the set {$v_1, v_2, \cdots, v_k$} as intermediate vertices.</li>
+</ul>
+<blockquote>
+<p>$W$는 그래프의 인접행렬을, $D$는 그래프 상 정점들 간의 최단경로 길이를 나타낸다.<br>  $D^{(k)}[i][j]$는 {$v_1, v_2 , …,  v_k$}의 정점들 만을 통해서 $v_i$에서 $v_j$로 가는 최단경로의 길이이다.</p>
+</blockquote>
+<h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><ol>
+<li>Establish a recursive property (process) with which we can compute $D^{(k)}$ from $D^{(k-1)}$.</li>
+</ol>
+<p>$$<br>\begin{align}<br>   D^{(k)}[i][j] = minimum(&amp; D^{(k-1)}[i][j], &amp;&amp; \text{Case 1} \\<br>   &amp; D^{(k-1)}[i][k] + D^{(k-1)}[k][j]) &amp;&amp; \text{Case 2}<br>\end{align}<br>$$</p>
+<p><code>Case 1</code> At least one shortest path from $v_i$ to $v_j$ using only vertices in the set {$v_1, v_2, \cdots, v_k$} as  intermediate vertices, does not use $v_k$.</p>
+<p><code>Case 2</code> All shortest paths from $v_i$ to $v_j$, using only vertices in the set {$v_1, v_2, \cdots, v_k$} as  intermediate vertices, do use $v_k$.</p>
+<p><img src="/images/algo/floyd.png" width="65%" align="center"></p>
+<ol start="2">
+<li>Solve an instance of the problem in a bottom-up fashion by repeating the process (established in Step 1) for k =1 to n.</li>
+</ol>
+<blockquote>
+<p>$D^{(0)}[2][5]$는 중간 정점으로 아무것도 지나지 않고 $v_2$에서 $v_5$로 가는 최단경로의 길이이다. 위의 인접행렬에서 확인할 수 있듯이 그 값은 $\infty$이다.<br>$D^{(1)}[2][5]$는 $v_2$에서 $v_1$을 거쳐 $v_5$로 가는 최단경로의 길이를 나타내며 그 값은 14이다. ($v_2 \rightarrow v_1 \rightarrow v_5$)</p>
+</blockquote>
+<blockquote>
+<p>그래프 상의 어떤 정점도 중간 정점으로 이용하지 않는 $D^{(0)}$은 $W$와 동일하다. 반면 그래프 상의 모든 정점을 중간 정점으로 이용하는 $D^{(n)}$이 구하고자 하는 최종해($D$)이다.($D^{(0)} = W, \ D^{(n)} = D$)<br>결국 정점들의 갯수가 n개이면 $D^{(0)}, D^{(1)}, \cdots, D^{(n)}$ 값을 계산해 나가고, $D = D^{(n)}$이 구하고자 하는 모든 정점들 사이의 최단 경로가 된다.<br><br></p>
+</blockquote>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: floyd.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floyd</span><span class="params">(<span class="keyword">const</span> <span class="keyword">size_t</span> n, <span class="keyword">const</span> graph&amp; g, <span class="keyword">int</span>** D, <span class="keyword">int</span>** P)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Compute shortest paths from each vertex in a weighted graph</span></span></span><br><span class="line"><span class="function"><span class="comment">// to each of the other vertices. The weights are nonnegative numbers.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: A weighted, directed graph and n, the number of vertices</span></span></span><br><span class="line"><span class="function"><span class="comment">// in the graph. The graph is represented by a two-dimensional array</span></span></span><br><span class="line"><span class="function"><span class="comment">// edges, which has both its rows and columns indexed from 1 to n,</span></span></span><br><span class="line"><span class="function"><span class="comment">// where edges[i][j] is the weight on the edge from the ith vertex</span></span></span><br><span class="line"><span class="function"><span class="comment">// to the jth vertex.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: A two-dimensional array d, which has both its rows and</span></span></span><br><span class="line"><span class="function"><span class="comment">// columns indexed from 1 to n, where d[i][j] is the length of a</span></span></span><br><span class="line"><span class="function"><span class="comment">// shortest path from the ith vertex to the jth vertex.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> i, j, k;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= g.get_size( ); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= g.get_size( ); ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            D[i][j] = g.get_edge(i, j);</span><br><span class="line">            P[i][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= n; ++k)</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (D[i][k] + D[k][j] &lt; D[i][j])</span><br><span class="line">                &#123;</span><br><span class="line">                    P[i][j] = k;</span><br><span class="line">                    D[i][j] = <span class="built_in">std</span>::min(D[i][j], D[i][k] + D[k][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Time-Complexity-Analysis"><a href="#Time-Complexity-Analysis" class="headerlink" title="Time Complexity Analysis"></a><span style="color:#21955b">Time Complexity Analysis</span></h2><h3 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h3><ul>
+<li>The instruction in the for-j loop.</li>
+</ul>
+<h3 id="Input-size"><a href="#Input-size" class="headerlink" title="Input size"></a>Input size</h3><ul>
+<li>n, the number of vertices in the graph. We have a loop within a loop within a loop, with n passes through each loop.</li>
+</ul>
+<h3 id="Every-Case-Time-Complexity"><a href="#Every-Case-Time-Complexity" class="headerlink" title="Every-Case Time Complexity"></a>Every-Case Time Complexity</h3><ul>
+<li>$<br>T(n) = n \times n \times n \in  \Theta (n^3)<br>$</li>
+</ul>
+<p><br></p>
+<h2 id="Optimization-Problem"><a href="#Optimization-Problem" class="headerlink" title="Optimization Problem"></a><span style="color:#21955b">Optimization Problem</span></h2><p>The Shortest Paths problem is an <strong>optimization problem</strong>. There can be more than one candidate solution to an instance of an optimization problem. Each candidate solution has a value associated with it, and a solution to the instance is any candidate solution that has an optimal value. A candidate solution is a path from one vertex to another, the value is the length of the path, and the optimal value is the minimum of these lengths.</p>
+<blockquote>
+<p>주어진 문제에 대하여 하나 이상의 많은 해답이 존재할 때, 이 가운데에서 가장 최적인 해답(optimal solution)을 찾아야 하는 문제를 최적화문제(optimization problem)라고 한다. 최단경로 찾기 문제는 최적화문제에 속한다.</p>
+</blockquote>
+<h3 id="Principle-of-Optimality"><a href="#Principle-of-Optimality" class="headerlink" title="Principle of Optimality"></a>Principle of Optimality</h3><p>In case of the Shortest Paths problem we showed that if $v_k$ is a vertex on an optial path from $v_i$ to $v_j$, then the subpaths from $v_i$ to $v_k$ and from $v_k$ to $v_j$ must also be optmimal. Therefore, the optimal solution to the instance contains optimal solutions to all subinstances, and the principle of optimality applies.</p>
+<blockquote>
+<p>최단경로를 구하는 문제에서, $v_k$를 $v_i$에서 $v_j$로 가는 최적 경로 상의 정점이라고 하면, $v_i$에서 $v_k$로 가는 부분경로와 $v_k$에서 $v_j$로 가는 부분경로도 반드시 최적이어야 한다. 이렇게 되면 최적의 원칙을 준수하게 되므로 동적계획법을 사용하여 이 문제를 풀 수 있다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="Dynamic-Programming-Exercises"><a href="#Dynamic-Programming-Exercises" class="headerlink" title="Dynamic Programming Exercises"></a><span style="color:#21955b">Dynamic Programming Exercises</span></h2><p>Use Floyd’s algorithm for Shortest Paths problem to construct the matrix D, which contains the lengths of the shortest paths, and the matrix P, which contains the highest indices of the intermediate vertices on the shortest paths, for the following graph.</p>
+<p><img src="/images/algo/floyd_exercise.png" width="100%" align="center"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* adjacency matrix for the above graph */</span></span><br><span class="line">index      <span class="number">1</span>      <span class="number">2</span>      <span class="number">3</span>      <span class="number">4</span>      <span class="number">5</span>      <span class="number">6</span>      <span class="number">7</span></span><br><span class="line">     __________________________________________________</span><br><span class="line">  <span class="number">1</span> │      <span class="number">0</span>      <span class="number">4</span>      ∞      ∞      ∞     <span class="number">10</span>      ∞</span><br><span class="line">  <span class="number">2</span> │      <span class="number">3</span>      <span class="number">0</span>      ∞     <span class="number">18</span>      ∞      ∞      ∞</span><br><span class="line">  <span class="number">3</span> │      ∞      <span class="number">6</span>      <span class="number">0</span>      ∞      ∞      ∞      ∞</span><br><span class="line">  <span class="number">4</span> │      ∞      <span class="number">5</span>     <span class="number">15</span>      <span class="number">0</span>      <span class="number">2</span>     <span class="number">19</span>      <span class="number">5</span></span><br><span class="line">  <span class="number">5</span> │      ∞      ∞     <span class="number">12</span>      <span class="number">1</span>      <span class="number">0</span>      ∞      ∞</span><br><span class="line">  <span class="number">6</span> │      ∞      ∞      ∞      ∞      ∞      <span class="number">0</span>     <span class="number">10</span></span><br><span class="line">  <span class="number">7</span> │      ∞      ∞      ∞      <span class="number">8</span>      ∞      ∞      <span class="number">0</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* matrix D, which contains the lengths of the shortest paths */</span></span><br><span class="line">index      <span class="number">1</span>      <span class="number">2</span>      <span class="number">3</span>      <span class="number">4</span>      <span class="number">5</span>      <span class="number">6</span>      <span class="number">7</span></span><br><span class="line">     __________________________________________________</span><br><span class="line">  <span class="number">1</span> │      <span class="number">0</span>      <span class="number">4</span>     <span class="number">36</span>     <span class="number">22</span>     <span class="number">24</span>     <span class="number">10</span>     <span class="number">20</span></span><br><span class="line">  <span class="number">2</span> │      <span class="number">3</span>      <span class="number">0</span>     <span class="number">32</span>     <span class="number">18</span>     <span class="number">20</span>     <span class="number">13</span>     <span class="number">23</span></span><br><span class="line">  <span class="number">3</span> │      <span class="number">9</span>      <span class="number">6</span>      <span class="number">0</span>     <span class="number">24</span>     <span class="number">26</span>     <span class="number">19</span>     <span class="number">29</span></span><br><span class="line">  <span class="number">4</span> │      <span class="number">8</span>      <span class="number">5</span>     <span class="number">14</span>      <span class="number">0</span>      <span class="number">2</span>     <span class="number">18</span>      <span class="number">5</span></span><br><span class="line">  <span class="number">5</span> │      <span class="number">9</span>      <span class="number">6</span>     <span class="number">12</span>      <span class="number">1</span>      <span class="number">0</span>     <span class="number">19</span>      <span class="number">6</span></span><br><span class="line">  <span class="number">6</span> │     <span class="number">26</span>     <span class="number">23</span>     <span class="number">32</span>     <span class="number">18</span>     <span class="number">20</span>      <span class="number">0</span>     <span class="number">10</span></span><br><span class="line">  <span class="number">7</span> │     <span class="number">16</span>     <span class="number">13</span>     <span class="number">22</span>      <span class="number">8</span>     <span class="number">10</span>     <span class="number">26</span>      <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* matrix P, which contains the highest indices of the intermediate</span></span><br><span class="line"><span class="comment">   vertices on the shortest paths */</span></span><br><span class="line">index      <span class="number">1</span>      <span class="number">2</span>      <span class="number">3</span>      <span class="number">4</span>      <span class="number">5</span>      <span class="number">6</span>      <span class="number">7</span></span><br><span class="line">     __________________________________________________</span><br><span class="line">  <span class="number">1</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">5</span>      <span class="number">2</span>      <span class="number">4</span>      <span class="number">0</span>      <span class="number">6</span></span><br><span class="line">  <span class="number">2</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">5</span>      <span class="number">0</span>      <span class="number">4</span>      <span class="number">1</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">3</span> │      <span class="number">2</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">2</span>      <span class="number">4</span>      <span class="number">2</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">4</span> │      <span class="number">2</span>      <span class="number">0</span>      <span class="number">5</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">2</span>      <span class="number">0</span></span><br><span class="line">  <span class="number">5</span> │      <span class="number">4</span>      <span class="number">4</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">4</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">6</span> │      <span class="number">7</span>      <span class="number">7</span>      <span class="number">7</span>      <span class="number">7</span>      <span class="number">7</span>      <span class="number">0</span>      <span class="number">0</span></span><br><span class="line">  <span class="number">7</span> │      <span class="number">4</span>      <span class="number">4</span>      <span class="number">5</span>      <span class="number">0</span>      <span class="number">4</span>      <span class="number">4</span>      <span class="number">0</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2011/01/12/[AG][DP] Floyd/" data-id="cji0ciigh000bccn7uubowvl4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2011/01/13/[AG][DP] Principle of Optimality/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Principle of Optimality(최적의 원칙)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2011/01/11/[AG][DP] Bincoeff/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Binomial Coefficient(이항계수)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/hexo-start/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/hexo-start/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장-통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장-통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/05/[FX] 수출입대금결제방식/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/foreign-exchange.jpg)" alt="수출입대금 결제방식" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/05/[FX] 수출입대금결제방식/" class="title">수출입대금 결제방식</a></p>
+                            <p class="item-date"><time datetime="2017-11-05T02:46:00.000Z" itemprop="datePublished">2017-11-05</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">2</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 10px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 12px;">탐욕알고리즘</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2011/01/12/[AG][DP] Floyd/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
