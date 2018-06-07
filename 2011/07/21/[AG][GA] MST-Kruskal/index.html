@@ -9,20 +9,20 @@
     
         <meta name="keywords" content="알고리즘,탐욕알고리즘,최소신장트리" />
     
-    <meta name="description" content="Blog Powered by Hexo">
+    <meta name="description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
 <meta name="keywords" content="알고리즘,탐욕알고리즘,최소신장트리">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-쿠르스칼)">
 <meta property="og:url" content="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/index.html">
 <meta property="og:site_name" content="MELOMANCE">
-<meta property="og:description" content="Blog Powered by Hexo">
+<meta property="og:description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://melomance.github.io/images/algo/">
-<meta property="og:updated_time" content="2018-06-04T14:15:01.382Z">
+<meta property="og:image" content="http://melomance.github.io/images/algo/mst-kruskal_figure1.png">
+<meta property="og:updated_time" content="2018-06-07T16:12:29.944Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-쿠르스칼)">
-<meta name="twitter:description" content="Blog Powered by Hexo">
-<meta name="twitter:image" content="http://melomance.github.io/images/algo/">
+<meta name="twitter:description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/mst-kruskal_figure1.png">
     
 
     
@@ -171,14 +171,115 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            
+            <p>We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a given greedy algorithm always yields an optimal solution. One must prove whether or not this is the case. We will prove that both Prim’s and Kruskal’s algorithms always produce minimum spanning trees.</p>
+<blockquote>
+<p>프림 알고리즘 대신 쿠르스칼 알고리즘을 이용해도 최소신장트리를 구할 수 있다.</p>
+</blockquote>
+<p><code>Example</code> Determine a minimum spanning tree.</p>
+<p><img src="/images/algo/mst-kruskal_figure1.png" width="90%" align="center"><br><img src="/images/algo/mst-kruskal_figure2.png" width="90%" align="center"></p>
+<p><code>Step 1</code> 가중치를 기준으로 전체 이음선들을 오름차순으로 정렬한다.</p>
+<p><code>Step 2</code> 5개의 정점들이 있으므로 총 5개의 서로소 집합, 즉 {$v_1$}, {$v_2$}, {$v_3$}, {$v_4$}, {$v_5$}이 만들어지게 된다.</p>
+<p><code>Step 3</code> 오름차순으로 정렬된 이음선 중 최소가중치 값인 1이 선택된다. 1은 $v_1$정점과 $v_2$정점을 연결해주는 이음선 값이다. 그리고  $v_1$과 $v_2$는 서로소 집합이므로 두 집합을 하나의 부분집합으로 합진다. 현재까지의 부분집합은 {$v_1$, $v_2$}, {$v_3$}, {$v_4$}, {$v_5$} 이렇게 4개이다.</p>
+<p><code>Step 4</code> 최소가중치를 갖는 이음선으로 $v_3$정점과 $v_5$정점을 연결해주는 2가 선택된다. $v_3$과 $v_5$역시 서로소 집합이므로 두 집합을 하나의 부분집합으로 합친다. 현재까지의 부분집합은 {$v_1$, $v_2$}, {$v_3$, $v_5$}, {$v_4$} 이렇게 3개이다.</p>
+<p><code>Step 5</code> 최소가중치를 갖는 이음선으로 $v_1$정점과 $v_3$정점을 연결해주는 3이 선택되며, 위의 과정이 똑같이 수행된다. 현재까지의 부분집합은 {$v_1$, $v_2$, $v_3$, $v_5$}과 {$v_4$} 이렇게 총 2개이다. 다음으로 $v_2$정점과 $v_3$정점을 연결해주는 이음선 3이 선택된다. 그러나 $v_2$와 $v_3$의 경우 이미 같은 집합에 포함되어 있다. 같은 집합의 정점들끼리 연결하는 경우에는 순환경로가 생기므로 $v_2$정점과 $v_3$정점을 연결하는 이음선은 버린다. 마지막으로 $v_3$정점과 $v_4$정점을 연결하는 이음선이 선택되고, 5개로 출발했던 서로소 집합들이 하나의 집합으로 합쳐졌기 때문에 최소신장트리가 완성된다.</p>
+<p><br></p>
+<h2 id="Kruskal’s-Algorithm"><a href="#Kruskal’s-Algorithm" class="headerlink" title="Kruskal’s Algorithm"></a><span style="color:#21955b">Kruskal’s Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>To write a formal version of Kruskal’s algorithm, we need a disjoint set abstract data type. The disjoint set abstract data type consists of data types index and set pointer, and routines initial, find, merge, and equal.</p>
+<blockquote>
+<p>쿠르스칼 알고리즘에서는 서로소 집합(disjoint set)의 자료구조가 사용된다.</p>
+</blockquote>
+<p>Kruskal’s algorithm for the Minimum Spanning Tree problem starts by creating disjoint subsets of V, one for each vertex and containing only that vertex. It then inspects the edges according to nondecreasing weight (ties are broken arbitrarily). If an edge connects two vertices in disjoint subsets, the edge is added and the subsets are merged into one set. This process is repeated until all the subsets are merged into one set. The following is a high-level algorithm for this procedure.</p>
+<blockquote>
+<p>정점들의 개수만큼 서로소 부분집합을 생성하고, 가중치를 기준으로 전체 이음선들을 오름차순으로 정렬한다. 그 다음 오름차순으로 정렬된 이음선들을 하나씩 조사하면서, 해당 이음선이 연결하고 있는 정점들이 서로소 부분집합이면 두 개의 부분집합을 하나로 합친다. 이 과정을 모든 서로소 부분집합들이 하나의 집합으로 합쳐질 때까지 계속 수행한다.</p>
+</blockquote>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: kruskal.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"disjointset.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"kruskal.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, set_of_edges&amp; E, set_of_edges&amp; F)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Determine a minimum spanning tree.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: integer n &gt;= 2, positive integer m, and a connected,</span></span></span><br><span class="line"><span class="function"><span class="comment">// weighted, undirected graph containing n vertices and m edges.</span></span></span><br><span class="line"><span class="function"><span class="comment">// The graph is represented b y a set E that contains the edges</span></span></span><br><span class="line"><span class="function"><span class="comment">// in the graph along with their weights.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: F, a set of edges in a minimum spanning tree.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="function">disjointset <span class="title">dset</span><span class="params">(n)</span></span>; <span class="comment">// disjoint set</span></span><br><span class="line">    disjointset::index i, j;</span><br><span class="line">    disjointset::set_pointer p, q;</span><br><span class="line">    edge e;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Initialize n disjoint subsets.</span></span><br><span class="line">    dset.initialize(n);</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Sort the m edges in E by weight in nondecreasing order</span></span><br><span class="line">    mergesort2(E, <span class="number">0</span>, m);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">int</span> k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">int</span> repeat = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (repeat &lt; n)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="comment">// edge with least weight not yet considered</span></span><br><span class="line">        e.weight = E[repeat].weight;</span><br><span class="line">        e.vertex[<span class="number">0</span>] = E[repeat].vertex[<span class="number">0</span>];</span><br><span class="line">        e.vertex[<span class="number">1</span>] = E[repeat].vertex[<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">        <span class="comment">// indices of vertices connected by e</span></span><br><span class="line">        i = atoi(e.vertex[<span class="number">0</span>].c_str( ));</span><br><span class="line">        j = atoi(e.vertex[<span class="number">1</span>].c_str( ));</span><br><span class="line">        p = dset.find(i);</span><br><span class="line">        q = dset.find(j);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (!dset.equal(p, q))</span><br><span class="line">        &#123;</span><br><span class="line">            dset.merge(p, q);</span><br><span class="line">            F[k++] = e;</span><br><span class="line">        &#125;</span><br><span class="line">        ++repeat;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">mergesort2</span><span class="params">(set_of_edges&amp; data, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> mid;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (low &lt; high)</span><br><span class="line">    &#123;</span><br><span class="line">        mid = (low + high) / <span class="number">2</span>;</span><br><span class="line">        mergesort2(data, low, mid);</span><br><span class="line">        mergesort2(data, mid+<span class="number">1</span>, high);</span><br><span class="line">        merge2(data, low, mid, high);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">merge2</span><span class="params">(set_of_edges&amp; data, <span class="keyword">int</span> low, <span class="keyword">int</span> mid, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, k;</span><br><span class="line">    <span class="comment">// A local array needed for the merging</span></span><br><span class="line">    set_of_edges temp = <span class="keyword">new</span> edge[(high-low)+<span class="number">1</span>];</span><br><span class="line"></span><br><span class="line">    i = low;</span><br><span class="line">    j = mid + <span class="number">1</span>;</span><br><span class="line">    k = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (i &lt;= mid &amp;&amp; j &lt;= high)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (data[i].weight &lt; data[j].weight)</span><br><span class="line">            temp[k] = data[i++]; <span class="comment">// Copy from first half</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            temp[k] = data[j++]; <span class="comment">// Copy from second half</span></span><br><span class="line">        k++;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy any remaining entries in the left and right subarrays.</span></span><br><span class="line">    <span class="keyword">if</span> (i &gt; mid)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (j &lt;= high)</span><br><span class="line">            temp[k++] = data[j++];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">while</span> (i &lt;= mid)</span><br><span class="line">            temp[k++] = data[i++];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Copy from temp back to the data array, and release temp's memory.</span></span><br><span class="line">    i = low;</span><br><span class="line">    <span class="keyword">for</span> (k = <span class="number">0</span>; k &lt; (high-low) + <span class="number">1</span> ; ++k)</span><br><span class="line">        data[i++] = temp[k];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> [ ] temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: kruskal.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> vertex[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">int</span> weight;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">edge</span> <span class="title">edge</span>;</span></span><br><span class="line"><span class="keyword">typedef</span> edge* set_of_edges;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, set_of_edges&amp; E, set_of_edges&amp; F)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(set_of_edges&amp; data, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">partition</span><span class="params">(set_of_edges&amp; data, <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span>&amp; pivotpoint)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Time-Complexity"><a href="#Time-Complexity" class="headerlink" title="Time Complexity"></a><span style="color:#21955b">Time Complexity</span></h2><h3 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h3><ul>
+<li>A comparison instruction.</li>
+</ul>
+<h3 id="Input-size"><a href="#Input-size" class="headerlink" title="Input size"></a>Input size</h3><ul>
+<li>n, the number of vertices, and m, the number of edges.</li>
+</ul>
+<h3 id="Worst-Case-Time-Complexity"><a href="#Worst-Case-Time-Complexity" class="headerlink" title="Worst-Case Time Complexity"></a>Worst-Case Time Complexity</h3><ul>
+<li>$<br>W(m,n) \in \Theta(n^2lgn^2) = \Theta(n^22lgn) = \Theta(n^2lgn).<br>$</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">W(m)=</td>
+<td>The time to sort the edges(Mergesort)</td>
+<td>$W(m) \in \Theta(mlgn)$</td>
+</tr>
+<tr>
+<td style="text-align:center">W(m)=</td>
+<td>The time in the while loop</td>
+<td>$W(m) \in \Theta(mlgn)$</td>
+</tr>
+<tr>
+<td style="text-align:center">T(n)=</td>
+<td>The time to initialize n disjoint sets</td>
+<td>$T(n) \in \Theta(n)$</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="Optimality-Proof"><a href="#Optimality-Proof" class="headerlink" title="Optimality Proof"></a><span style="color:#21955b">Optimality Proof</span></h2><h3 id="Lemma"><a href="#Lemma" class="headerlink" title="Lemma"></a>Lemma</h3><p><code>Lemma</code> Let G = (V,E) be a connected, weighted, undirected graph; let F be a promising subset of E; and let e be an edge of minimum weight in E - F such that F ∪ {e} has no simple cycles. Then F ∪ {e} is promising.</p>
+<p><code>Proof</code> Because F is promising, there must be some set of edges F’ such that F ⊆ F’ and (V, F’) is a minimum spanning tree.</p>
+<blockquote>
+<p>최적여부 증명은 프림 알고리즘과 비슷하다. F가 유망하기 때문에(F에 최소신장트리가 되도록 이음선 추가 가능), F ⊆ F’ 이면서 (V, F’)가 최소신장트리가 되는 이음선의 집합 F’가 반드시 존재한다.</p>
+</blockquote>
+<p><code>Proof-Case 1</code> If e ∈ F’, then F U {e} ⊆ F’, which means F U {e} is promising.</p>
+<blockquote>
+<p>만일 e ∈ F’라면, F U {e} ⊆ F’가 되고, 따라서 F U {e}도 유망하다.</p>
+</blockquote>
+<p><code>Proof-Case 2</code> Otherwise, because (V , F’) is a spanning tree, F’ ∪ {e} must contain exactly one simple cycle and e must be in the cycle. Because F ∪ {e} contains no simple cycles, there must be some edge e’ ∈ F’ that is in the cycle and that is not in F. That is, e’ ∈ E - F. The set F ∪ {e’} has no simple cycles because it is a subset of F’. Therefore, the weight of e is no greater than the weight of e’. (Recall that we assumed e is an edge of minimum weight in E - F such that F ∪ {e} has no cycles.) If we remove e’ from F’ ∪ {e}, the simple cycle in this set disappears, which means we have a spanning tree.</p>
+<blockquote>
+<p>Case 1이 아니라면, (V, F’)가 신장트리이기 때문에, F’ U {e}는 정확히 하나의 단순순환경로를 포함해야하고 e는 그 순환경로 내에 있어야 한다. F ∪ {e}는 단순순환경로를 포함하지 않으므로 순환경로상에는 있고 F에는 없는 이음선 e’ ∈ F’가 존재한다. 즉, e’ ∈ E - F이다.</p>
+</blockquote>
+<blockquote>
+<p>집합 F ∪ {e’}는 F’의 부분 집합이므로 단순순환경로를 갖지 않는다. 따라서, e의 가중치는 e’의 가중치보다 크지 않다. (e가 E - F에서 최소가중치의 이음선이라 가정하고 F ∪ {e}가 사이클을 갖지 않는다는 것을 상기하자.) F’ ∪ {e}에서 e’를 제거하면 단순순환경로가 사라지며 신장트리가 된다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">구분</th>
+<th style="text-align:center">의미</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">G = (V,F’)</td>
+<td style="text-align:center">G는 V(vertices, 정점들), F’(edges, 이음선들)로 구성된 최소신장트리</td>
+</tr>
+<tr>
+<td style="text-align:center">F U {e}</td>
+<td style="text-align:center">유망한 F에 최소신장트리가 되도록 이음선 e추가 $\rightarrow$ 순환경로 발생X</td>
+</tr>
+<tr>
+<td style="text-align:center">F’ U {e}</td>
+<td style="text-align:center">이미 신장트리인 F’에 이음선 e를 추가 $\rightarrow$ 순환경로 발생O</td>
+</tr>
+<tr>
+<td style="text-align:center">e’ ∈ F’(=E - F),<br>F U {e’}</td>
+<td style="text-align:center">유망한 F에 최소신장트리가 되도록 이음선 e’추가 $\rightarrow$ 순환경로 발생X</td>
+</tr>
+</tbody>
+</table>
+<h3 id="Theorem-Kruskal’s-algorithm-always-produces-a-minimum-spanning-tree"><a href="#Theorem-Kruskal’s-algorithm-always-produces-a-minimum-spanning-tree" class="headerlink" title="Theorem: Kruskal’s algorithm always produces a minimum spanning tree."></a>Theorem: Kruskal’s algorithm always produces a minimum spanning tree.</h3>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/" data-id="cji0ciih60015ccn7q0cqnocn" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/" data-id="cji4r4og2000ub8n7y068dule" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -456,7 +557,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -466,7 +567,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
         </div>
     </div>
 
@@ -476,7 +577,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -486,7 +587,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 10px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 12px;">탐욕알고리즘</a>
+            <a href="/tags/동적계획법/" style="font-size: 16.67px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.33px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 15px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 11.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 15px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 13.33px;">탐욕알고리즘</a>
         </div>
     </div>
 

@@ -18,7 +18,7 @@
 <meta property="og:description" content="Consider the problem of removing edges from a connected, weighted, undirected graph G to form a subgraph such that all the vertices remain connected and the sum of the weights on the remaining edges i">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/mst-prim.png">
-<meta property="og:updated_time" content="2018-06-03T15:07:45.748Z">
+<meta property="og:updated_time" content="2018-06-07T16:04:26.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Minimum Spanning Trees - Prim&#39;s Algorithm(최소신장트리-프림)">
 <meta name="twitter:description" content="Consider the problem of removing edges from a connected, weighted, undirected graph G to form a subgraph such that all the vertices remain connected and the sum of the weights on the remaining edges i">
@@ -193,7 +193,7 @@
 <p><code>Step 4</code> {$v_1$, $v_2$, $v_3$}에서 가장 가까운 정점인 $v_5$를 추가한다.</p>
 <p><code>Step 5</code> {$v_1$, $v_2$, $v_3$, $v_5$}에서 선택되지 않은 가장 작은 이음선의 값은 3이다. 하지만 이 값을 선택하면 순환경로가 생기므로 선택하지 않고, 그 다음 작은 값인 $v_3$과 $v_4$를 잇는 이음선을 선택하면서 마지막 정점인 $v_4$를 추가한다. 이렇게 모든 정점을 포함하게 되면 최소신장트리가 완성된다.  </p>
 <p><br></p>
-<h2 id="Prim-Algorithm"><a href="#Prim-Algorithm" class="headerlink" title="Prim Algorithm"></a><span style="color:#21955b">Prim Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>Prim’s algorithm starts with an empty subset of edges F and a subset of vertices Y initialized to contain an arbitrary vertex. We will initialize Y to {$v_1$}. A vertex nearest to Y is a vertex in V - Y that is connected to a vertex in Y by an edge of minimum weight.</p>
+<h2 id="Prim’s-Algorithm"><a href="#Prim’s-Algorithm" class="headerlink" title="Prim’s Algorithm"></a><span style="color:#21955b">Prim’s Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>Prim’s algorithm starts with an empty subset of edges F and a subset of vertices Y initialized to contain an arbitrary vertex. We will initialize Y to {$v_1$}. A vertex nearest to Y is a vertex in V - Y that is connected to a vertex in Y by an edge of minimum weight.</p>
 <p>Because at the start Y = {$v_1$}, nearest[i] is initialized to 1 and distance[i] is initialized to the weight on the edge between $v_1$ and $v_i$. As vertices are added to Y, these two arrays are updated to reference the new vertex in Y nearest to each vertex outside of Y. To determine which vertex to add to Y, in each iteration we compute the index for which distance[i] is the smallest. We call this index vnear. The vertex indexed by vnear is added to Y by setting distance[vnear] to −1.</p>
 <blockquote>
 <p><strong>(용어정의)</strong><br>nearest[i]란 Y에 속한 정점 중에서 $v_i$에서 가장 가까운 정점의 인덱스이다. distance[i]란 $v_i$와 nearest[i]를 잇는 이음선의 가중치이다. Y에 추가 할 정점을 결정하기 위해 distance[i] 중 가장 작은 인덱스를 계산하는데 이 인덱스를 vnear라고 부른다.</p>
@@ -281,13 +281,13 @@
 </blockquote>
 <p><code>Proof</code> Because F is promising, there must be some set of edges F’ such that F ⊆ F’ and (V, F’) is a minimum spanning tree.</p>
 <blockquote>
-<p>F가 유망하기 때문에(F에 최소신장트리가 되도록 이음선을 추가 가능), F ⊆ F’ 이면서 (V, F’)가 최소신장트리가 되는 이음선의 집합 F’가 반드시 존재한다.</p>
+<p>F가 유망하기 때문에(F에 최소신장트리가 되도록 이음선 추가 가능), F ⊆ F’ 이면서 (V, F’)가 최소신장트리가 되는 이음선의 집합 F’가 반드시 존재한다.</p>
 </blockquote>
 <p><code>Proof-Case 1</code> If e ∈ F’, then F U {e} ⊆ F’, which means F U {e} is promising.</p>
 <blockquote>
 <p>만일 e ∈ F’라면, F U {e} ⊆ F’가 되고, 따라서 F U {e}도 유망하다.</p>
 </blockquote>
-<p><code>Proof-Case 2</code> Otherwise, because (V, F’) is a spanning tree, F’ U {e} must contain exactly one simple cycle and e must be in the cycle. There must be another edge e’ ∈ F’ in the simple cycle that also connects a vertex in Y to one in V - Y. If we remove e’ from F’ U {e}, the simple cycle disappears, which means that we have a spanning tree. Because e is an edge of minimum weight that connects a vertex in Y to on in V - Y, the weight of e must be less than or equal to the weight of e’ (in fact, they must be equal.) So F’ U {e} - {e’} is a minimum spanning tree. Now F U {e} ⊆ F’ U {e} - {e’}, because e’ cannot be in F. Therefore, F U {e} is promising.</p>
+<p><code>Proof-Case 2</code> Otherwise, because (V, F’) is a spanning tree, F’ U {e} must contain exactly one simple cycle and e must be in the cycle. There must be another edge e’ ∈ F’ in the simple cycle that also connects a vertex in Y to one in V - Y. If we remove e’ from F’ U {e}, the simple cycle disappears, which means that we have a spanning tree. Because e is an edge of minimum weight that connects a vertex in Y to on in V - Y, the weight of e must be less than or equal to the weight of e’ (in fact, they must be equal.) So F’ U {e} - {e’} is a minimum spanning tree. Now F U {e} ⊆ F’ U {e} - {e’}, because e’ cannot be in F (recall that edges in F cannot only vertices in Y.) Therefore, F U {e} is promising.</p>
 <p><img src="/images/algo/mst-prim_optimality-proof.png" width="45%" align="center" alt="[A graph illustrating the proof in Lemma]"></p>
 <blockquote>
 <p>Case 1이 아니라면, (V, F’)가 신장트리이기 때문에, F’ U {e}는 정확히 하나의 단순순환경로를 포함해야하고 e는 그 순환경로 내에 있어야 한다. ($v_1 \rightarrow v_2 \rightarrow v_4 \rightarrow v_3 \rightarrow v_1$)<br>Y에 있는 한 정점에서 V - Y에 있는 한 정점을 연결하는 어떤 이음선 e’ ⊆ F’가 그 순환경로 안에 반드시 존재하게 된다.</p>
@@ -312,7 +312,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/07/20/[AG][GA] MST-Prim/" data-id="cji0ciiha001accn7gdy34y2a" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/07/20/[AG][GA] MST-Prim/" data-id="cji4r4oga0015b8n7egudaw28" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -590,7 +590,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">2</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -600,7 +600,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
         </div>
     </div>
 
@@ -610,7 +610,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
         </div>
     </div>
 
@@ -620,7 +620,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 10px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 12px;">탐욕알고리즘</a>
+            <a href="/tags/동적계획법/" style="font-size: 16.67px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.33px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 15px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 11.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 15px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 13.33px;">탐욕알고리즘</a>
         </div>
     </div>
 
