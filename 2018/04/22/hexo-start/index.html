@@ -9,18 +9,18 @@
     
         <meta name="keywords" content="" />
     
-    <meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+    <meta name="description" content="init$ hexo init [folder] 웹 사이트를 초기화합니다. folder가 준비되어 있지 않다면 Hexo는 현재 디렉토리에 웹 사이트를 세팅합니다. new$ hexo new [layout] &amp;lt;title&amp;gt; 새 글(article)을 생성합니다. layout이 준비되어 있지 않다면, Hexo는 _config.yml에 정의된 default_l">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hexo 명령어">
 <meta property="og:url" content="http://melomance.github.io/2018/04/22/hexo-start/index.html">
 <meta property="og:site_name" content="MELOMANCE">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="init$ hexo init [folder] 웹 사이트를 초기화합니다. folder가 준비되어 있지 않다면 Hexo는 현재 디렉토리에 웹 사이트를 세팅합니다. new$ hexo new [layout] &amp;lt;title&amp;gt; 새 글(article)을 생성합니다. layout이 준비되어 있지 않다면, Hexo는 _config.yml에 정의된 default_l">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/github_hexo_blog.png">
-<meta property="og:updated_time" content="2018-04-30T12:11:16.329Z">
+<meta property="og:updated_time" content="2018-06-11T12:04:36.984Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hexo 명령어">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:description" content="init$ hexo init [folder] 웹 사이트를 초기화합니다. folder가 준비되어 있지 않다면 Hexo는 현재 디렉토리에 웹 사이트를 세팅합니다. new$ hexo new [layout] &amp;lt;title&amp;gt; 새 글(article)을 생성합니다. layout이 준비되어 있지 않다면, Hexo는 _config.yml에 정의된 default_l">
 <meta name="twitter:image" content="http://melomance.github.io/images/github_hexo_blog.png">
     
 
@@ -165,23 +165,116 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-
+            <h2 id="init"><a href="#init" class="headerlink" title="init"></a>init</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo init [folder]</span><br></pre></td></tr></table></figure>
+<p>웹 사이트를 초기화합니다. folder가 준비되어 있지 않다면 Hexo는 현재 디렉토리에 웹 사이트를 세팅합니다.</p>
+<h2 id="new"><a href="#new" class="headerlink" title="new"></a>new</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new [layout] &lt;title&gt;</span><br></pre></td></tr></table></figure>
+<p>새 글(article)을 생성합니다. layout이 준비되어 있지 않다면, Hexo는 _config.yml에 정의된 default_layout을 사용합니다. 만약 title에 공백이 포함된다면 따옴표로 감싸주세요.</p>
+<h2 id="generate"><a href="#generate" class="headerlink" title="generate"></a>generate</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>정적 파일들을 생성합니다.</p>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-d, –deploy</td>
+<td>생성이 종료된 후 deploy 합니다.</td>
+</tr>
+<tr>
+<td>-w, –watch</td>
+<td>파일의 변경사항을 감시(watch)합니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="publish"><a href="#publish" class="headerlink" title="publish"></a>publish</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo publish [layout] &lt;filename&gt;</span><br></pre></td></tr></table></figure>
+<p>작성한 내용을 배포합니다.</p>
+<h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>로컬 서버를 구동시킵니다. 기본적으로 <a href="http://localhost:4000/" target="_blank" rel="noopener">http://localhost:4000/</a> 를 사용합니다.</p>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p, –port</td>
+<td>기본 포트를 덮어씁니다.</td>
+</tr>
+<tr>
+<td>-s, –static</td>
+<td>정적인 파일만 구동합니다.</td>
+</tr>
+<tr>
+<td>-l, –log</td>
+<td>Logger를 활성화 시킵니다. Logger 형식을 덮어씁니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>웹 사이트를 deploy 합니다.</p>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-g, –generate</td>
+<td>Deploy 하기 전에 generate를 수행합니다.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="render"><a href="#render" class="headerlink" title="render"></a>render</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo render &lt;file1&gt; [file2] ...</span><br></pre></td></tr></table></figure>
+<p>파일을 렌더링합니다.</p>
+<table>
+<thead>
+<tr>
+<th>옵션</th>
+<th>설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-o,</td>
+<td>–output    Output destination</td>
+</tr>
+</tbody>
+</table>
+<h2 id="migrate"><a href="#migrate" class="headerlink" title="migrate"></a>migrate</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo migrate &lt;<span class="built_in">type</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>다른 블로그 시스템의 내용을 Hexo로 마이그레이션 합니다.</p>
+<h2 id="clean"><a href="#clean" class="headerlink" title="clean"></a>clean</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo clean</span><br></pre></td></tr></table></figure>
+<p>캐시 파일 (db.json) 및 생성된 파일들 (public) 을 삭제합니다.</p>
+<h2 id="list"><a href="#list" class="headerlink" title="list"></a>list</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo list &lt;<span class="built_in">type</span>&gt;</span><br></pre></td></tr></table></figure>
+<p>경로(route) 목록을 보여줍니다.</p>
+<h2 id="version"><a href="#version" class="headerlink" title="version"></a>version</h2><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo version</span><br></pre></td></tr></table></figure>
+<p>버전 정보를 보여줍니다.</p>
+<h2 id="옵션"><a href="#옵션" class="headerlink" title="옵션"></a>옵션</h2><h3 id="안전-모드"><a href="#안전-모드" class="headerlink" title="안전 모드"></a>안전 모드</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo --safe</span><br></pre></td></tr></table></figure>
+<p>플러그인과 스크립트를 불러오지 않습니다. 새로운 플러그인을 설치한 후 문제가 생기면 이 모드를 사용해 보시기 바랍니다.</p>
+<h3 id="디버그-모드"><a href="#디버그-모드" class="headerlink" title="디버그 모드"></a>디버그 모드</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo --debug</span><br></pre></td></tr></table></figure>
+<p>터미널에 verbose 로그 메시지를 출력하고 debug.log 파일에 저장합니다. Hexo에 문제 발생 시 사용해 보시기 바랍니다. 에러 발견 시 raise a GitHub issue에 등록해 주세요.</p>
+<h3 id="Silent-모드"><a href="#Silent-모드" class="headerlink" title="Silent 모드"></a>Silent 모드</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo --silent</span><br></pre></td></tr></table></figure>
+<p>터미널에 내용을 출력하지 않습니다.</p>
+<h3 id="설정-파일의-변경-customizing"><a href="#설정-파일의-변경-customizing" class="headerlink" title="설정 파일의 변경(customizing)"></a>설정 파일의 변경(customizing)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo --config custom.yml</span><br></pre></td></tr></table></figure>
+<p>_config.yml 대신 커스터미이징한 설정 파일을 사용할 수 있습니다.</p>
+<h3 id="Draft-포스트-표시"><a href="#Draft-포스트-표시" class="headerlink" title="Draft 포스트 표시"></a>Draft 포스트 표시</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo --draft</span><br></pre></td></tr></table></figure>
+<p>Draft 포스트를 보여줍니다(source/_drafts 폴더에 저장되어 있습니다).</p>
+<h3 id="현재-작업-디렉토리의-변경-customizing"><a href="#현재-작업-디렉토리의-변경-customizing" class="headerlink" title="현재 작업 디렉토리의 변경(customizing)"></a>현재 작업 디렉토리의 변경(customizing)</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo --cwd /path/to/cwd</span><br></pre></td></tr></table></figure>
+<p>현재 작업 디렉토리의 경로를 변경할 수 있습니다.</p>
+<h2 id="※-정보출처-https-hexo-io-ko-docs-commands-html"><a href="#※-정보출처-https-hexo-io-ko-docs-commands-html" class="headerlink" title="※ 정보출처: https://hexo.io/ko/docs/commands.html"></a>※ 정보출처: <a href="https://hexo.io/ko/docs/commands.html" target="_blank" rel="noopener">https://hexo.io/ko/docs/commands.html</a></h2>
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://melomance.github.io/2018/04/22/hexo-start/" data-id="cji4r4ohw003lb8n7r9lcruem" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2018/04/22/hexo-start/" data-id="cjia8gucr003ocsn7sm8dwnbc" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
