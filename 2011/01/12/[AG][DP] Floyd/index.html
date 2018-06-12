@@ -18,7 +18,7 @@
 <meta property="og:description" content="A common problem encountered by air travelers is the determination of the shortest way to fly from one city to another when a direct flight does not exist. Next we develop an algorithm that solves thi">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/floyd.png">
-<meta property="og:updated_time" content="2018-05-30T13:41:48.617Z">
+<meta property="og:updated_time" content="2018-06-11T15:10:14.941Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Floyd&#39;s Algorithm for Shortest Paths(플로이드 알고리즘)">
 <meta name="twitter:description" content="A common problem encountered by air travelers is the determination of the shortest way to fly from one city to another when a direct flight does not exist. Next we develop an algorithm that solves thi">
@@ -255,7 +255,7 @@
 <p>$D^{(0)}[2][5]$는 중간 정점으로 아무것도 지나지 않고 $v_2$에서 $v_5$로 가는 최단경로의 길이이다. 위의 인접행렬에서 확인할 수 있듯이 그 값은 $\infty$이다.<br>$D^{(1)}[2][5]$는 $v_2$에서 $v_1$을 거쳐 $v_5$로 가는 최단경로의 길이를 나타내며 그 값은 14이다. ($v_2 \rightarrow v_1 \rightarrow v_5$)</p>
 </blockquote>
 <blockquote>
-<p>그래프 상의 어떤 정점도 중간 정점으로 이용하지 않는 $D^{(0)}$은 $W$와 동일하다. 반면 그래프 상의 모든 정점을 중간 정점으로 이용하는 $D^{(n)}$이 구하고자 하는 최종해($D$)이다.($D^{(0)} = W, \ D^{(n)} = D$)<br>결국 정점들의 갯수가 n개이면 $D^{(0)}, D^{(1)}, \cdots, D^{(n)}$ 값을 계산해 나가고, $D = D^{(n)}$이 구하고자 하는 모든 정점들 사이의 최단 경로가 된다.<br><br></p>
+<p>그래프 상의 어떤 정점도 중간 정점으로 이용하지 않는 $D^{(0)}$은 $W$와 동일하다. 반면 그래프 상의 모든 정점을 중간 정점으로 이용하는 $D^{(n)}$이 구하고자 하는 최종해($D$)이다.($D^{(0)} = W, \ D^{(n)} = D$)<br>결국 정점들의 개수가 n개이면 $D^{(0)}, D^{(1)}, \cdots, D^{(n)}$ 값을 계산해 나가고, $D = D^{(n)}$이 구하고자 하는 모든 정점들 사이의 최단 경로가 된다.<br><br></p>
 </blockquote>
 <h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: floyd.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">floyd</span><span class="params">(<span class="keyword">const</span> <span class="keyword">size_t</span> n, <span class="keyword">const</span> graph&amp; g, <span class="keyword">int</span>** D, <span class="keyword">int</span>** P)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Compute shortest paths from each vertex in a weighted graph</span></span></span><br><span class="line"><span class="function"><span class="comment">// to each of the other vertices. The weights are nonnegative numbers.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: A weighted, directed graph and n, the number of vertices</span></span></span><br><span class="line"><span class="function"><span class="comment">// in the graph. The graph is represented by a two-dimensional array</span></span></span><br><span class="line"><span class="function"><span class="comment">// edges, which has both its rows and columns indexed from 1 to n,</span></span></span><br><span class="line"><span class="function"><span class="comment">// where edges[i][j] is the weight on the edge from the ith vertex</span></span></span><br><span class="line"><span class="function"><span class="comment">// to the jth vertex.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: A two-dimensional array d, which has both its rows and</span></span></span><br><span class="line"><span class="function"><span class="comment">// columns indexed from 1 to n, where d[i][j] is the length of a</span></span></span><br><span class="line"><span class="function"><span class="comment">// shortest path from the ith vertex to the jth vertex.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">size_t</span> i, j, k;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= g.get_size( ); ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= g.get_size( ); ++j)</span><br><span class="line">        &#123;</span><br><span class="line">            D[i][j] = g.get_edge(i, j);</span><br><span class="line">            P[i][j] = <span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (k = <span class="number">1</span>; k &lt;= n; ++k)</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">            <span class="keyword">for</span> (j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> (D[i][k] + D[k][j] &lt; D[i][j])</span><br><span class="line">                &#123;</span><br><span class="line">                    P[i][j] = k;</span><br><span class="line">                    D[i][j] = <span class="built_in">std</span>::min(D[i][j], D[i][k] + D[k][j]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
@@ -289,7 +289,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/01/12/[AG][DP] Floyd/" data-id="cjia98kgt000b6gn7ceq8s9pm" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/01/12/[AG][DP] Floyd/" data-id="cjibvnwu2000n2sn7g2khfew5" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -426,11 +426,11 @@
         
 <nav id="article-nav">
     
-        <a href="/2011/01/13/[AG][DP] Chan-Mtrx-Mult/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2011/01/13/[AG][DP] Principle of Optimality/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            Chained Matrix Multiplication(연쇄행렬곱셈)
+            Principle of Optimality(최적의 원칙)
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
@@ -567,7 +567,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -577,7 +577,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
         </div>
     </div>
 
@@ -587,7 +587,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">5</span></li></ul>
         </div>
     </div>
 
@@ -597,7 +597,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16.67px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.33px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 15px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 11.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 15px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 13.33px;">탐욕알고리즘</a>
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 12px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 12px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 14px;">탐욕알고리즘</a>
         </div>
     </div>
 
@@ -686,20 +686,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>

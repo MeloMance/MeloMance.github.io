@@ -3,24 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-쿠르스칼) | MELOMANCE</title>
+    <title>Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-크러스컬) | MELOMANCE</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="알고리즘,탐욕알고리즘,최소신장트리" />
+        <meta name="keywords" content="탐욕알고리즘,알고리즘,최소신장트리" />
     
     <meta name="description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
-<meta name="keywords" content="알고리즘,탐욕알고리즘,최소신장트리">
+<meta name="keywords" content="탐욕알고리즘,알고리즘,최소신장트리">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-쿠르스칼)">
+<meta property="og:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-크러스컬)">
 <meta property="og:url" content="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/index.html">
 <meta property="og:site_name" content="MELOMANCE">
 <meta property="og:description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/mst-kruskal_figure1.png">
-<meta property="og:updated_time" content="2018-06-11T10:52:30.557Z">
+<meta property="og:updated_time" content="2018-06-12T16:00:30.117Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-쿠르스칼)">
+<meta name="twitter:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-크러스컬)">
 <meta name="twitter:description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
 <meta name="twitter:image" content="http://melomance.github.io/images/algo/mst-kruskal_figure1.png">
     
@@ -146,7 +146,7 @@
                 
     
         <h1 class="article-title" itemprop="name">
-        Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-쿠르스칼)
+        Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-크러스컬)
         </h1>
     
 
@@ -173,7 +173,7 @@
         <div class="article-entry" itemprop="articleBody">
             <p>We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a given greedy algorithm always yields an optimal solution. One must prove whether or not this is the case. We will prove that both Prim’s and Kruskal’s algorithms always produce minimum spanning trees.</p>
 <blockquote>
-<p>프림 알고리즘 대신 쿠르스칼 알고리즘을 이용해도 최소신장트리를 구할 수 있다.</p>
+<p>프림 알고리즘 대신 크러스컬 알고리즘을 이용해도 최소신장트리를 구할 수 있다.</p>
 </blockquote>
 <p><code>Example</code> Determine a minimum spanning tree.</p>
 <p><img src="/images/algo/mst-kruskal_figure1.png" width="90%" align="center"><br><img src="/images/algo/mst-kruskal_figure2.png" width="90%" align="center"></p>
@@ -185,7 +185,7 @@
 <p><br></p>
 <h2 id="Kruskal’s-Algorithm"><a href="#Kruskal’s-Algorithm" class="headerlink" title="Kruskal’s Algorithm"></a><span style="color:#21955b">Kruskal’s Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>To write a formal version of Kruskal’s algorithm, we need a disjoint set abstract data type. The disjoint set abstract data type consists of data types index and set pointer, and routines initial, find, merge, and equal.</p>
 <blockquote>
-<p>쿠르스칼 알고리즘에서는 서로소 집합(disjoint set)의 자료구조가 사용된다.</p>
+<p>크러스컬 알고리즘에서는 서로소 집합(disjoint set)의 자료구조가 사용된다.</p>
 </blockquote>
 <p>Kruskal’s algorithm for the Minimum Spanning Tree problem starts by creating disjoint subsets of V, one for each vertex and containing only that vertex. It then inspects the edges according to nondecreasing weight (ties are broken arbitrarily). If an edge connects two vertices in disjoint subsets, the edge is added and the subsets are merged into one set. This process is repeated until all the subsets are merged into one set. The following is a high-level algorithm for this procedure.</p>
 <blockquote>
@@ -230,56 +230,46 @@
 </tbody>
 </table>
 <p><br></p>
-<h2 id="Optimality-Proof"><a href="#Optimality-Proof" class="headerlink" title="Optimality Proof"></a><span style="color:#21955b">Optimality Proof</span></h2><h3 id="Lemma"><a href="#Lemma" class="headerlink" title="Lemma"></a>Lemma</h3><p><code>Lemma</code> Let G = (V,E) be a connected, weighted, undirected graph; let F be a promising subset of E; and let e be an edge of minimum weight in E - F such that F ∪ {e} has no simple cycles. Then F ∪ {e} is promising.</p>
-<p><code>Proof</code> Because F is promising, there must be some set of edges F’ such that F ⊆ F’ and (V, F’) is a minimum spanning tree.</p>
+<h2 id="Optimality-Proof"><a href="#Optimality-Proof" class="headerlink" title="Optimality Proof"></a><span style="color:#21955b">Optimality Proof</span></h2><p>We show that the following proposition P is true by induction.</p>
+<p><code>proposition P</code> If F is the set of edges chosen at any stage of the algorithm, then there is some minimum spanning tree that contains F.</p>
 <blockquote>
-<p>최적여부 증명은 프림 알고리즘과 비슷하다. F가 유망하기 때문에(F에 최소신장트리가 되도록 이음선 추가 가능), F ⊆ F’ 이면서 (V, F’)가 최소신장트리가 되는 이음선의 집합 F’가 반드시 존재한다.</p>
+<p>F가 알고리즘의 어느 단계에서 선택된 이음선의 집합이라면 F를 포함하는 최소신장트리가 존재한다.</p>
 </blockquote>
-<p><code>Proof-Case 1</code> If e ∈ F’, then F U {e} ⊆ F’, which means F U {e} is promising.</p>
+<ul>
+<li>Clearly P is true at the beginning, when F is empty: any minimum spanning tree will do, and there exists one because a weighted connected graph always has a minimum spanning tree.</li>
+</ul>
 <blockquote>
-<p>만일 e ∈ F’라면, F U {e} ⊆ F’가 되고, 따라서 F U {e}도 유망하다.</p>
+<p>처음 시작은 F가 공집합인 경우다. 연결되고, 가중치가 있는 비방향성 그래프에서는 항상 최소신장트리가 존재하므로, 공집합 F를 포함하는 최소신장트리가 존재한다. 따라서 명제 P는 참이다.</p>
 </blockquote>
-<p><code>Proof-Case 2</code> Otherwise, because (V , F’) is a spanning tree, F’ ∪ {e} must contain exactly one simple cycle and e must be in the cycle. Because F ∪ {e} contains no simple cycles, there must be some edge e’ ∈ F’ that is in the cycle and that is not in F. That is, e’ ∈ E - F. The set F ∪ {e’} has no simple cycles because it is a subset of F’. Therefore, the weight of e is no greater than the weight of e’. (Recall that we assumed e is an edge of minimum weight in E - F such that F ∪ {e} has no cycles.) If we remove e’ from F’ ∪ {e}, the simple cycle in this set disappears, which means we have a spanning tree.</p>
+<ul>
+<li>Now assume P is true for some non-final edge set F and let T be a minimum spanning tree that contains F.</li>
+</ul>
 <blockquote>
-<p>Case 1이 아니라면, (V, F’)가 신장트리이기 때문에, F’ U {e}는 정확히 하나의 단순순환경로를 포함해야하고 e는 그 순환경로 내에 있어야 한다. F ∪ {e}는 단순순환경로를 포함하지 않으므로 순환경로상에는 있고 F에는 없는 이음선 e’ ∈ F’가 존재한다. 즉, e’ ∈ E - F이다.</p>
+<p>이제 P가 공집합이 아닌 이음선 집합 F에 대해서도 참이며, T가 F를 포함하는 최소신장트리라고 가정한다.</p>
+</blockquote>
+<p>  <code>Case 1</code> If the next chosen edge e is also in T, then P is true for F U {e}.</p>
+<blockquote>
+<p>다음에 선택된 이음선 e가 e ∈ T라면, F U {e}에 대해 명제 P가 참이다.</p>
+</blockquote>
+<p>  <code>Case 2</code> Otherwise, e is not in T, and T U {e} has a cycle C and there is another edge e’ that is in C but not F. (Since if all the e’ are in the F, then the algorithm won’t choose e, otherwise it will be a cycle.) (If there was no such edge e’, then e could not have been added to F, since doing so would have created the cycle C.) Then T − {e’} U {e} is a tree, and it has the same weight as T, since T has minimum weight and the weight of e’ cannot be less than the weight of e, otherwise the algorithm would have chosen e’ instead of e. So T − {e’} U {e} is a minimum spanning tree containing F U {e} and again P holds.</p>
+<p><img src="/images/algo/mst-kruskal_optimality-proof.png" width="45%" align="center" alt="[A graph illustrating the proof]"></p>
+<blockquote>
+<p>만일 e ∉ T라면 T U {e}는 순환경로 C를 가지며 그 순환경로상에는 F에 속하지 않은 이음선 e’가 있다.<br>(모든 e’가 F에 속하게 되면 알고리즘은 e를 선택하지 않는다. e를 선택하는 순간 순환경로가 생기기 때문이다.)<br>(그런 이음선 e’가 없다면, e를 F에 추가할 수 없다. e를 추가하면 순환경로 C가 생성되기 때문이다.)</p>
 </blockquote>
 <blockquote>
-<p>집합 F ∪ {e’}는 F’의 부분 집합이므로 단순순환경로를 갖지 않는다. 따라서, e의 가중치는 e’의 가중치보다 크지 않다. (e가 E - F에서 최소가중치의 이음선이라 가정하고 F ∪ {e}가 사이클을 갖지 않는다는 것을 상기하자.) F’ ∪ {e}에서 e’를 제거하면 단순순환경로가 사라지며 신장트리가 된다.</p>
+<p>그러면 T - {e’} U {e}는 트리이고 T와 동일한 가중치를 가진다. (T는 최소가중치를 가지며 e’의 가중치는 e의 가중치보다 작을 수 없다. 그렇지 않으면 크러스컬 알고리즘은 e대신 e’를 선택하게 된다.) 따라서 T - {e’} U {e}는 F U {e}를 포함하는 최소신장트리이며 명제 P가 유지된다.</p>
 </blockquote>
-<table>
-<thead>
-<tr>
-<th style="text-align:center"></th>
-<th style="text-align:left"></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">G = (V,F’)</td>
-<td style="text-align:left">G는 V(vertices, 정점들), F’(edges, 이음선들)로 구성된 최소신장트리</td>
-</tr>
-<tr>
-<td style="text-align:center">F U {e}</td>
-<td style="text-align:left">F에 최소신장트리가 되도록 이음선 e추가 $\rightarrow$ 순환경로 발생X</td>
-</tr>
-<tr>
-<td style="text-align:center">F’ U {e}</td>
-<td style="text-align:left">이미 신장트리인 F’에 이음선 e를 추가 $\rightarrow$ 순환경로 발생O</td>
-</tr>
-<tr>
-<td style="text-align:center">e’ ∈ F’(=E - F),<br>F U {e’}</td>
-<td style="text-align:left">F에 최소신장트리가 되도록 F’에 있는 이음선 e’추가 $\rightarrow$ 순환경로 발생X</td>
-</tr>
-</tbody>
-</table>
-<h3 id="Theorem-Kruskal’s-algorithm-always-produces-a-minimum-spanning-tree"><a href="#Theorem-Kruskal’s-algorithm-always-produces-a-minimum-spanning-tree" class="headerlink" title="Theorem: Kruskal’s algorithm always produces a minimum spanning tree."></a>Theorem: Kruskal’s algorithm always produces a minimum spanning tree.</h3>
+<h3 id="Therefore-by-the-principle-of-induction-P-holds-when-F-has-become-a-spanning-tree-which-is-only-possible-if-F-is-a-minimum-spanning-tree-itself"><a href="#Therefore-by-the-principle-of-induction-P-holds-when-F-has-become-a-spanning-tree-which-is-only-possible-if-F-is-a-minimum-spanning-tree-itself" class="headerlink" title="Therefore, by the principle of induction, P holds when F has become a spanning tree, which is only possible if F is a minimum spanning tree itself."></a>Therefore, by the principle of induction, P holds when F has become a spanning tree, which is only possible if F is a minimum spanning tree itself.</h3><blockquote>
+<p>그러므로 귀납법 원리에 의해, 명제 P(F가 알고리즘의 어느 단계에서 선택된 이음선의 집합이라면 F를 포함하는 최소신장트리가 존재)는 F가 신장트리가 될 때 성립하며, 이는 F가 최소신장트리 자체인 경우에만 가능하다.</p>
+</blockquote>
+
         </div>
         <footer class="article-footer">
             
 
 
 
-    <a data-url="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/" data-id="cjia98khl00126gn7sqpikoiu" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/" data-id="cjibvnwuu001n2sn7nje4kxme" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -416,11 +406,11 @@
         
 <nav id="article-nav">
     
-        <a href="/2014/09/09/[SE] 소프트웨어 공학/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2011/07/24/[AG][GA] Prim's Algorithm vs. Kruskal's Algorithm/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            소프트웨어 공학
+            Comparing Prim&#39;s Algorithm with Kruskal&#39;s Algorithm(최소신장트리-프림 알고리즘 vs. 크러스컬 알고리즘)
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
@@ -557,7 +547,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">4</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">3</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">19</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">5</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -567,7 +557,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
         </div>
     </div>
 
@@ -577,7 +567,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">18</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">4</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">19</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">5</span></li></ul>
         </div>
     </div>
 
@@ -587,7 +577,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16.67px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.33px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 15px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 11.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 15px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 10px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 13.33px;">탐욕알고리즘</a>
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 12px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최소신장트리/" style="font-size: 12px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 14px;">탐욕알고리즘</a>
         </div>
     </div>
 
@@ -676,20 +666,5 @@
 <script src="/js/main.js"></script>
 
     </div>
-<script type="text/x-mathjax-config">
-    MathJax.Hub.Config({
-        tex2jax: {
-            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
-            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
-            processEscapes: true
-        }
-    });
-    MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax();
-        for (var i = 0; i < all.length; ++i)
-            all[i].SourceElement().parentNode.className += ' has-jax';
-    });
-</script>
-<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 </html>
