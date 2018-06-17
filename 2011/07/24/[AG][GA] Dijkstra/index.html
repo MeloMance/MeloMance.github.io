@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Dijkstra’s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘) | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="탐욕알고리즘,알고리즘,최단경로탐색" />
+    
+    <meta name="description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
+<meta name="keywords" content="탐욕알고리즘,알고리즘,최단경로탐색">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Dijkstra’s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘)">
+<meta property="og:url" content="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/algo/dijkstra.png">
+<meta property="og:updated_time" content="2018-06-17T08:01:40.272Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Dijkstra’s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘)">
+<meta name="twitter:description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/dijkstra.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AG][GA] Dijkstra" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Dijkstra’s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2011/07/24/[AG][GA] Dijkstra/" class="article-date">
+            <time datetime="2011-07-24T08:23:00.000Z" itemprop="datePublished">2011-07-24</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>, <a class="tag-link" href="/tags/최단경로탐색/">최단경로탐색</a>, <a class="tag-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>We developed a $\Theta(n^3)$ algorithm, which is <a href="https://melomance.github.io/2011/01/12/[AG][DP]%20Floyd/">Floyd Algorithm</a>, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the shortest paths from one particular vertex to all the others, that algorithm would be overkill. Therefore, we will use the greedy approach to develop a $\Theta(n^2)$ algorithm for this problem (called the Single Source Shortest Paths problem). This algorithm is due to Dijkstra (1959).</p>
+<blockquote>
+<p>앞서 동적계획법으로 살펴 본 플로이드 알고리즘 역시 최단경로 문제와 관련된 해법을 제시해준다. 플로이드 알고리즘의 경우, 그래프상의 각 정점에서 다른 모든 정점으로 가는 최단 경로를 제시해 준다.</p>
+</blockquote>
+<blockquote>
+<p>하나의 특정 정점에서 다른 정점으로 가는 최단경로를 구하기 위해 플로이드 알고리즘을 사용하는 것은 과잉이다. 이 경우 탐욕적 접근법으로 설계된 다익스트라 알고리즘을 사용하여 문제를 해결하면 된다.</p>
+</blockquote>
+<p><code>Example</code> Determine the shortest paths from $v_1$ to all other vertices in a weighted, directed graph.</p>
+<p><img src="/images/algo/dijkstra.png" width="100%" align="center"></p>
+<p><code>Init.</code> $v_1$에서 다른 정점들로 가는 최단경로를 계산하고, 시작정점인 $v_1$이 먼저 선택된다.</p>
+<p><code>Step 1</code> $v_1$에서 가장 가까운 정점인 $v_5$가 선택된다.</p>
+<p><code>Step 2</code> $v_1$으로부터 {$v_5$}를 통해서 갈 수 있는 다음의 가장 가까운 정점은 $v_4$이므로, $v_4$가 선택된다.</p>
+<p><code>Step 3</code> $v_1$으로부터 {$v_4$, $v_5$}를 통해서 갈 수 있는 다음의 가장 가까운 정점은 $v_3$이므로, $v_3$가 선택된다.</p>
+<p><code>Step 4</code> $v_1$으로부터 {$v_3$, $v_4$, $v_5$}를 통해서 갈 수 있는 다음의 가장 가까운 정점은 $v_2$이다.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">최단경로확정여부</th>
+<th style="text-align:center">$v_1 \rightarrow v_1$</th>
+<th style="text-align:center">$v_1 \rightarrow v_2$</th>
+<th style="text-align:center">$v_1 \rightarrow v_3$</th>
+<th style="text-align:center">$v_1 \rightarrow v_4$</th>
+<th style="text-align:center">$v_1 \rightarrow v_5$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Step 1</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">Step 2</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">Step 3</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">N</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+</tr>
+<tr>
+<td style="text-align:center">Step 4</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+<td style="text-align:center">Y</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="The-Dijkstra’s-Algorithm-for-Single-Source-Shortest-Paths"><a href="#The-Dijkstra’s-Algorithm-for-Single-Source-Shortest-Paths" class="headerlink" title="The Dijkstra’s Algorithm for Single-Source Shortest Paths"></a><span style="color:#21955b">The Dijkstra’s Algorithm for Single-Source Shortest Paths</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>We initialize a set Y to contain only the vertex whose shortest paths are to be determined (the vertex is $v_1$). We initialize a set F of edges to being empty. First we choose a vertex $v$ that is nearest to $v_1$, add it to Y, and add the edge &lt;$v_1$, $v$&gt; to F. That edge is clearly a shortest path from $v_1$ to $v$. Next we check the paths from $v_1$ to the vertices in V - Y that allow only vertices in Y as intermediate vertices. A shortest of these paths is a shortest path. The vertex at the end of such a path is added to Y, and the edge (on the path) that touches that vertex is added to F. This procedure is continued until Y equals V, the set of all vertices. At this point, F contains the edges in shortest paths.<br>This algorithm is very similar to Prim’s algorithm. The difference is that instead of the arrays nearest and distance, we have arrays touch and length, where for i = 2, …, n.</p>
+<ul>
+<li><p>touch[i] = index of vertex $v$ in Y such that the edge &lt;$v$, $v_i$&gt; is the last edge on the current shortest path from $v_1$ to $v_i$ using only vertices in Y as intermediates.</p>
+</li>
+<li><p>length[i] = length of the current shortest path from $v_1$ to $v_i$ using only vertices in Y as intermediates.</p>
+</li>
+</ul>
+<blockquote>
+<p><strong>[용어정의]</strong></p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th style="text-align:left"></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">G=(V,E)</td>
+<td style="text-align:left">모든 정점들의 집합 V와 모든 이음선들의 집합 E로 구성된 그래프 G.</td>
+</tr>
+<tr>
+<td style="text-align:center">Y</td>
+<td style="text-align:left">시작정점으로부터 최단경로가 이미 결정된 정점들의 집합이다.</td>
+</tr>
+<tr>
+<td style="text-align:center">F</td>
+<td style="text-align:left">Y의 정점들을 최단경로로 연결시키는 이음선들의 집합이다.</td>
+</tr>
+<tr>
+<td style="text-align:center">touch[i]</td>
+<td style="text-align:left">Y에 속한 정점 $v$의 인덱스이다.</td>
+</tr>
+<tr>
+<td style="text-align:center">length[i]</td>
+<td style="text-align:left">Y에 속한 정점만을 통해서 $v_i$로 가는 현재까지의 최단경로 길이이다.</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p><strong>[다익스트라 알고리즘 초기화 로직]</strong><br>Y는 $v_1$(시작정점)만 포함하도록, F는 어떤 이음선도 포함하지 않도록 초기화시킨다.<br>touch[i]는 시작정점인 $v_1$을 가리키는 1로 값을 초기화한다. 즉, touch[2], touch[3], …, touch[k] 값 모두 1이다. length[i] 값은 본래 시작정점에서 다른 정점으로 가는 경로의 길이로 초기화한다 (초기화 시점에서 Y에 속한 정점은 시작정점인 $v_1$하나)</p>
+</blockquote>
+<blockquote>
+<p><strong>[다익스트라 알고리즘 메인 로직]</strong><br>$v_1$에서 가장 가까운 정점 $v$를 선택하여 Y에 추가하고, $v_1$과 $v$를 연결하는 이음선은 F에 추가한다. 이 이음선은 분명 $v_1$에서 $v$까지의 최단경로이다.<br>다음으로 $v_1$에서 Y에 속해있는 정점들을 통해서 갈 수 있는 V - Y에 속한 정점들까지의 거리를 점검한다. 이 경로 중 가장 짧은 경로는 최단경로이므로, 해당 정점을 Y에 추가하고 그 정점과 연결되는 경로상의 이음선을 F에 추가한다. 이 과정을 Y가 모든 정점들의 집합 V와 같아질때까지 반복 수행한다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th style="text-align:center">min</th>
+<th style="text-align:center">vnear</th>
+<th style="text-align:center">Y추가</th>
+<th style="text-align:center">F추가</th>
+<th style="text-align:center">length<br>[2][3][4][5]</th>
+<th style="text-align:center">touch<br>[2][3][4][5]</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Init.</td>
+<td style="text-align:center">-</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$v_1$</td>
+<td style="text-align:center">∅</td>
+<td style="text-align:center">7 4 6 1</td>
+<td style="text-align:center">1 1 1 1</td>
+</tr>
+<tr>
+<td>Step 1</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$v_5$</td>
+<td style="text-align:center">&lt;$v_1$,$v_5$&gt;</td>
+<td style="text-align:center">7 4 2 -1</td>
+<td style="text-align:center">1 1 5 1</td>
+</tr>
+<tr>
+<td>Step 2</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$v_4$</td>
+<td style="text-align:center">&lt;$v_5$,$v_4$&gt;</td>
+<td style="text-align:center">5 4 -1 -1</td>
+<td style="text-align:center">4 1 5 1</td>
+</tr>
+<tr>
+<td>Step 3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$v_3$</td>
+<td style="text-align:center">&lt;$v_1$,$v_3$&gt;</td>
+<td style="text-align:center">5 -1 -1 -1</td>
+<td style="text-align:center">4 1 5 1</td>
+</tr>
+<tr>
+<td>Step 4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$v_2$</td>
+<td style="text-align:center">&lt;$v_4$,$v_2$&gt;</td>
+<td style="text-align:center">-1 -1 -1 -1</td>
+<td style="text-align:center">4 1 5 1</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>시작정점을 포함시키지 않아도 되므로 총 n-1번의 루프를 수행한다. 메인루프에는 2개의 for문이 존재하는데, 첫번째 for문은 length[i]의 값들 중에서 가장 작은 값을 찾아 기록한다 (vnear). 다른 하나의 for문은 새로 추가된 정점을 현재까지의 중간정점에 포함시켜, 이를 이용해서 갈 수 있는 경로가 현재 경로의 값보다 작다면 length[i]와 touch[i]의 값을 갱신한다.</p>
+</blockquote>
+<blockquote>
+<p>이 과정을 n-1번 반복수행하면 한 특정 정점에서 다른 정점으로 가는 최단경로를 구할 수 있다. 책에서는 시작정점을 $v_1$으로 한정짓고 있지만, 융통성 있는 프로그램을 위해 시작정점을 선택할 수 있도록 프로그램을 구현했다.</p>
+</blockquote>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: dijkstra.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"dijkstra.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> graph g, set_of_edges&amp; F, <span class="keyword">int</span> start_vertex)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Determine the shortest paths from v1 to all other vertices</span></span></span><br><span class="line"><span class="function"><span class="comment">// in a weighted, directed graph.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: integer n &gt;= 2, and a connected, weighted, directed graph</span></span></span><br><span class="line"><span class="function"><span class="comment">// containing n vertices. The graph is represented by graph class.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: set of edges F containing edges in shortest paths.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> i, vnear;</span><br><span class="line">  edge e;</span><br><span class="line">  <span class="keyword">int</span>* touch = get_vector_space&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line">  <span class="keyword">int</span>* length = get_vector_space&lt;<span class="keyword">int</span>&gt;(n);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// For all vertices, initialize start vertex to be the last vertex</span></span><br><span class="line">  <span class="comment">// on the current shortest path from start vertex, and initialize</span></span><br><span class="line">  <span class="comment">// length of that path to be the weight on the edge from start vertex.</span></span><br><span class="line">  <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; ++i)                </span><br><span class="line">  &#123;                              </span><br><span class="line">    touch[i] = start_vertex;                     </span><br><span class="line">    length[i] = g.get_edge(start_vertex, i);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">int</span> repeat = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">while</span> (repeat &lt; n) <span class="comment">// Add all n vertices to Y.</span></span><br><span class="line">  &#123;</span><br><span class="line">    <span class="comment">// Check each vertex for having shortest path</span></span><br><span class="line">    <span class="keyword">int</span> min = graph::INFINITE;</span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (length[i] &gt;= <span class="number">0</span> &amp;&amp; length[i] &lt; min)</span><br><span class="line">      &#123;</span><br><span class="line">        min = length[i];</span><br><span class="line">        vnear = i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// edge from vertex indexed by touch[vnear] to vertex indexed</span></span><br><span class="line">    <span class="comment">// by vnear</span></span><br><span class="line">    e.vertex[<span class="number">0</span>] = g[touch[vnear]];        </span><br><span class="line">    e.vertex[<span class="number">1</span>] = g[vnear];</span><br><span class="line">    e.weight = min;   </span><br><span class="line">    F[repeat++] = e; <span class="comment">// add e to F</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> ((length[vnear] + g.get_edge(vnear, i)) &lt; length[i])</span><br><span class="line">      &#123;</span><br><span class="line">        length[i] = length[vnear] + g.get_edge(vnear, i);</span><br><span class="line">        touch[i] = vnear;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    length[vnear] = <span class="number">-1</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: dijkstra.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"graph.h"</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="built_in">std</span>::<span class="built_in">string</span> vertex[<span class="number">2</span>];</span><br><span class="line">  <span class="keyword">int</span> weight;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">edge</span> <span class="title">edge</span>;</span></span><br><span class="line"><span class="keyword">typedef</span> edge* set_of_edges;</span><br><span class="line"></span><br><span class="line"><span class="keyword">template</span> &lt;<span class="keyword">typename</span> Item&gt;</span><br><span class="line"><span class="function">Item* <span class="title">get_vector_space</span><span class="params">(<span class="keyword">const</span> <span class="keyword">size_t</span> n)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Postcondition: Return the array containing n spaces</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    Item* v = <span class="keyword">new</span> Item[n];</span><br><span class="line">    <span class="keyword">return</span> (v<span class="number">-1</span>); <span class="comment">// offset the pointer</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">dijkstra</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> graph g, set_of_edges&amp; F, <span class="keyword">int</span> start_vertex)</span></span>;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Time-Complexity-Analysis"><a href="#Time-Complexity-Analysis" class="headerlink" title="Time Complexity Analysis"></a><span style="color:#21955b">Time Complexity Analysis</span></h2><h3 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h3><ul>
+<li>There are two loops, each with n-1 iterations, inside the repeat loop. Executing the instructions inside each of them can be considered to be doing the basic operation once.</li>
+</ul>
+<h3 id="Input-size"><a href="#Input-size" class="headerlink" title="Input size"></a>Input size</h3><ul>
+<li>n, the number of vertices.</li>
+</ul>
+<h3 id="Every-Case-Time-Complexity"><a href="#Every-Case-Time-Complexity" class="headerlink" title="Every-Case Time Complexity"></a>Every-Case Time Complexity</h3><ul>
+<li>$ T(n) = (n-1)2(n-1) = 2(n-1)^2 \in \Theta(n^2) $</li>
+</ul>
+<p><br></p>
+<h2 id="Optimality-Proof"><a href="#Optimality-Proof" class="headerlink" title="Optimality Proof"></a><span style="color:#21955b">Optimality Proof</span></h2><p>We use a proof by contradiction. But first, we assert the following.</p>
+<h3 id="Lemma"><a href="#Lemma" class="headerlink" title="Lemma"></a>Lemma</h3><p><code>Lemma 1</code> Shortest paths are composed of shortest paths.</p>
+<p>The proof of this is based on the notion that if there was a shorter path than any sub-path, then the shorter path should replace that sub-path to make the whole path shorter.</p>
+<blockquote>
+<p>최단경로를 구성하는 부분경로들 역시 최단경로이다.</p>
+</blockquote>
+<p><code>Lemma 2</code> If s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v is a shortest path from s to v, then after u has been added to Y and we check paths from u to vertices in V - Y that allow only vertices in Y as intermediate vertices. Therefore, length[v] = ẟ(s,v) and length[v] is not changed thereafter.</p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// check paths from u to vertices in V - Y that allow only vertices</span></span><br><span class="line"><span class="comment">// in Y as intermediate vertices.</span></span><br><span class="line"><span class="keyword">if</span> (length[u] + edge(u,v) &lt; length[v])</span><br><span class="line">  length[v] = length[u] + edge(u,v);</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>s에서 v로가는 최단경로가 s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v일 때, 정점 u가 Y에 추가되면서 edge(u,v)를 더 짧은 거리로 갱신할 수 있는지 점검하므로 결국 length[v] = ẟ(s,v)가 된다. length[v] 값은 그 이후로 변하지 않는다.</p>
+</blockquote>
+<blockquote>
+<p>보조정리1,2 내용을 기반으로 다익스트라 알고리즘의 정확성을 증명한다.</p>
+</blockquote>
+<h3 id="Proof-by-contradiction"><a href="#Proof-by-contradiction" class="headerlink" title="Proof by contradiction"></a>Proof by contradiction</h3><p><code>Proof</code> For each vertex u ∈ V, it follows from the fact that at all times length[u] $\ge$ ẟ(s,u). After running Dijkstra’s algorithm, we assert that length[u] = ẟ(s,u).</p>
+<blockquote>
+<p>다익스트라 알고리즘이 찾아낸 경로가 최단경로인지 검증한다. ẟ(s,u)는 시작정점 s에서 u까지의 최단경로를 의미하므로, 알고리즘 수행 후 모든 정점 u에 대해 length[u] = ẟ(s, u)가 성립함을 보이면 된다.</p>
+</blockquote>
+<blockquote>
+<p>증명을 위해 귀류법(proof by contradiction)을 사용한다. 귀류법이란 어떤 명제를 반대로 가정했을 때, 모순을 이끌어내어 가정이 거짓임을 증명하는 방법이다.</p>
+</blockquote>
+<p><code>hypothesis</code> Suppose that u is the first vertex added to Y for which length[u] ≠ ẟ(s,u). We note:</p>
+<ul>
+<li>u cannot be s, because length[s] = 0.</li>
+<li>There must be a path from s to u. If there were not, length[u] would be infinity.</li>
+<li>Since there is a path, there must be a shortest path.</li>
+</ul>
+<blockquote>
+<p>Y(최단경로가 결정된 정점들의 집합)에 추가되는 첫번째 정점이 u일 때, 다익스트라 알고리즘이 정점 u에 대해 최단경로를 산출하지 못한다고 가정하자. (length[u] ≠ ẟ(s,u)) 바꿔 말하면 알고리즘이 산출한 최단경로보다 더 좋은 경로가 존재함을 의미한다.</p>
+</blockquote>
+<blockquote>
+<p>우선 u는 시작정점일 수 없다. 시작정점은 length[s] = ẟ(s,s) = 0 이기 때문이다.<br>또한, s $\rightarrow$ u 까지의 경로는 반드시 존재한다. 그렇지 않으면 length[u]는 무한대 값이므로, Y에 속하는 첫번째 정점으로 u가 선택될 수 없다.</p>
+</blockquote>
+<blockquote>
+<p>정리하면 s $\rightarrow$ u 까지의 최단경로가 존재하며, length[u] ≠ ẟ(s,u)이므로 현재까지 찾은 최단경로보다 더 짧은 최단경로가 존재한다.</p>
+</blockquote>
+<p>Let s $\rightarrow$ v $\rightarrow$ w $\rightarrow$ u be the shortest path from s to u. Where v is within Y and w is the first vertex not within Y. When v was inserted into Y, length[v] = ẟ(s,v) (since we hypothesise that u was the first vertex for which this was not true). Edge (v,w) was relaxed at that time, so that</p>
+<p>$$<br>\begin{align}<br>length[w] &amp;= ẟ(s,w) \\<br>&amp;\le ẟ(s,u) \\<br>&amp;\le length[u] \tag{due to $w$ $\rightarrow$ $u$}<br>\end{align}<br>$$</p>
+<blockquote>
+<p>그 최단경로를 s $\rightarrow$ v $\rightarrow$ w $\rightarrow$ u라고 하면, v는 Y에 속한 정점 임의의 정점이고 w는 V-Y에 속한 임의의 정점이다. 그리고 보조정리에 따라 length[v] = ẟ(s,v)이며, v를 통해 w로가는 length[w] 값 역시 갱신된 상태다.</p>
+</blockquote>
+<blockquote>
+<p>사실 이 최단경로는 참일 수 없다. 첫번째로 선택된 정점이 u인데 Y에 이미 v라는 정점이 존재하기 때문이다. 하지만 length[u] = ẟ(s,u)를 보이기 위해 증명을 계속 진행한다.</p>
+</blockquote>
+<p>Now both w and u were in V-Y when u was chosen, so<br>$$<br>length[u] \le length[w]<br>$$</p>
+<blockquote>
+<p>w, u 둘다 V-Y에 속하는 정점이다. 여기서 u를 첫번째 정점으로 선택했다는 것은 시작정점에서 최단거리를 가지는 정점이 u라는 뜻이다.</p>
+</blockquote>
+<p>Thus the two inequalities must be equalities,<br>$$<br>\underbrace{length[w] = ẟ(s,w) = ẟ(s,u) = length[u]}_{\text{length[w] $\le$ length[u] &amp; length[u] $\le$ length[w]}}<br>$$</p>
+<p>So length[u] = ẟ(s,u) contradicting our hypothesis.<br>Thus when each vertex u ∈ V was inserted to Y, length[u] = ẟ(s,u).<br>Therefore, d[u] = shortest path from s to u for all u \in V.</p>
+<blockquote>
+<p>두 부등식에 의해 length[u] = ẟ(s,u)가 되므로, 다익스트라 알고리즘이 정점 u에 대해 최단경로를 산출하지 못한다는 가정에 모순이 생긴다.</p>
+</blockquote>
+<blockquote>
+<p>그러므로 각 정점 u가 Y에 추가되면 length [u] = ẟ (s, u)이다. (즉, length[u]는 s에서 u까지의 최단경로이다.)</p>
+</blockquote>
+<h3 id="Therefore-by-the-proof-of-contradiction-Dijkstra’s-algorithm-always-produces-Shortest-Paths"><a href="#Therefore-by-the-proof-of-contradiction-Dijkstra’s-algorithm-always-produces-Shortest-Paths" class="headerlink" title="Therefore, by the proof of contradiction, Dijkstra’s algorithm always produces Shortest Paths."></a>Therefore, by the proof of contradiction, Dijkstra’s algorithm always produces Shortest Paths.</h3><p><br></p>
+<h2 id="Greedy-Approach-Exercises"><a href="#Greedy-Approach-Exercises" class="headerlink" title="Greedy Approach Exercises"></a><span style="color:#21955b">Greedy Approach Exercises</span></h2><p>Use Dijkstra’s algorithm to find the shortest paths from the vertex $v_4$ to all the other vertices of the below graph.</p>
+<p><img src="/images/algo/dijkstra_exercise.png" width="70%" align="center"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">/* adjacency matrix for the above graph */</span></span><br><span class="line">index    <span class="number">1</span>    <span class="number">2</span>    <span class="number">3</span>    <span class="number">4</span>    <span class="number">5</span>    <span class="number">6</span>    <span class="number">7</span>    <span class="number">8</span>    <span class="number">9</span>   <span class="number">10</span></span><br><span class="line">    ___________________________________________________</span><br><span class="line">  <span class="number">1</span> │    <span class="number">0</span>   <span class="number">32</span>    ∞   <span class="number">17</span>    ∞    ∞    ∞    ∞    ∞    ∞</span><br><span class="line">  <span class="number">2</span> │   <span class="number">32</span>    <span class="number">0</span>    ∞    ∞   <span class="number">45</span>    ∞    ∞    ∞    ∞    ∞</span><br><span class="line">  <span class="number">3</span> │    ∞    ∞    <span class="number">0</span>   <span class="number">18</span>    ∞    ∞    <span class="number">5</span>    ∞    ∞    ∞</span><br><span class="line">  <span class="number">4</span> │   <span class="number">17</span>    ∞   <span class="number">18</span>    <span class="number">0</span>   <span class="number">10</span>    ∞    ∞    <span class="number">3</span>    ∞    ∞</span><br><span class="line">  <span class="number">5</span> │    ∞   <span class="number">45</span>    ∞   <span class="number">10</span>    <span class="number">0</span>   <span class="number">28</span>    ∞    ∞   <span class="number">25</span>    ∞</span><br><span class="line">  <span class="number">6</span> │    ∞    ∞    ∞    ∞   <span class="number">28</span>    <span class="number">0</span>    ∞    ∞    ∞    <span class="number">6</span></span><br><span class="line">  <span class="number">7</span> │    ∞    ∞    <span class="number">5</span>    ∞    ∞    ∞    <span class="number">0</span>   <span class="number">59</span>    ∞    ∞</span><br><span class="line">  <span class="number">8</span> │    ∞    ∞    ∞    <span class="number">3</span>    ∞    ∞   <span class="number">59</span>    <span class="number">0</span>    <span class="number">4</span>    ∞</span><br><span class="line">  <span class="number">9</span> │    ∞    ∞    ∞    ∞   <span class="number">25</span>    ∞    ∞    <span class="number">4</span>    <span class="number">0</span>   <span class="number">12</span></span><br><span class="line"> <span class="number">10</span> │    ∞    ∞    ∞    ∞    ∞    <span class="number">6</span>    ∞    ∞   <span class="number">12</span>    <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* the shortest paths from the vertex v4 to all the other vertices */</span></span><br><span class="line">The shortest path from v4 to  v4 is   <span class="number">0</span></span><br><span class="line">The shortest path from v4 to  v8 is   <span class="number">3</span></span><br><span class="line">The shortest path from v4 to  v9 is   <span class="number">7</span></span><br><span class="line">The shortest path from v4 to  v5 is  <span class="number">10</span></span><br><span class="line">The shortest path from v4 to  v1 is  <span class="number">17</span></span><br><span class="line">The shortest path from v4 to  v3 is  <span class="number">18</span></span><br><span class="line">The shortest path from v4 to v10 is  <span class="number">19</span></span><br><span class="line">The shortest path from v4 to  v7 is  <span class="number">23</span></span><br><span class="line">The shortest path from v4 to  v6 is  <span class="number">25</span></span><br><span class="line">The shortest path from v4 to  v2 is  <span class="number">49</span></span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/" data-id="cjiijq5nj001fikn75oeyhma4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2014/09/09/[SE] 소프트웨어 공학/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            소프트웨어 공학
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2011/07/24/[AG][GA] Prim's Algorithm vs. Kruskal's Algorithm/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Comparing Prim&#39;s Algorithm with Kruskal&#39;s Algorithm(최소신장트리-프림 알고리즘 vs. 크러스컬 알고리즘)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/23/[HX] hexo-writing/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/23/[HX] hexo-writing/" class="title">Hexo 글쓰기</a></p>
+                            <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/[HX] hexo-command/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/[HX] hexo-command/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장-통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장-통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">20</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">4</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">20</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16.67px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.33px;">민상법기초</a> <a href="/tags/분할정복법/" style="font-size: 15px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 13.33px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 15px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 10px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 11.67px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 16.67px;">탐욕알고리즘</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
