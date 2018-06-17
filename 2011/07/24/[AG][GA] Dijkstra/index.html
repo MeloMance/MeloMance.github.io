@@ -7,10 +7,10 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="탐욕알고리즘,알고리즘,최단경로탐색" />
+        <meta name="keywords" content="알고리즘,최단경로탐색,탐욕알고리즘" />
     
     <meta name="description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
-<meta name="keywords" content="탐욕알고리즘,알고리즘,최단경로탐색">
+<meta name="keywords" content="알고리즘,최단경로탐색,탐욕알고리즘">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Dijkstra’s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘)">
 <meta property="og:url" content="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/index.html">
@@ -18,7 +18,7 @@
 <meta property="og:description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/dijkstra.png">
-<meta property="og:updated_time" content="2018-06-17T08:01:40.272Z">
+<meta property="og:updated_time" content="2018-06-17T08:12:42.806Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dijkstra’s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘)">
 <meta name="twitter:description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
@@ -366,14 +366,11 @@
 <p><code>Lemma 2</code> If s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v is a shortest path from s to v, then after u has been added to Y and we check paths from u to vertices in V - Y that allow only vertices in Y as intermediate vertices. Therefore, length[v] = ẟ(s,v) and length[v] is not changed thereafter.</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// check paths from u to vertices in V - Y that allow only vertices</span></span><br><span class="line"><span class="comment">// in Y as intermediate vertices.</span></span><br><span class="line"><span class="keyword">if</span> (length[u] + edge(u,v) &lt; length[v])</span><br><span class="line">  length[v] = length[u] + edge(u,v);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>s에서 v로가는 최단경로가 s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v일 때, 정점 u가 Y에 추가되면서 edge(u,v)를 더 짧은 거리로 갱신할 수 있는지 점검하므로 결국 length[v] = ẟ(s,v)가 된다. length[v] 값은 그 이후로 변하지 않는다.</p>
-</blockquote>
-<blockquote>
-<p>보조정리1,2 내용을 기반으로 다익스트라 알고리즘의 정확성을 증명한다.</p>
+<p>s에서 v로가는 최단경로가 s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v일 때, 정점 u가 Y에 추가되면서 length[v]를 더 짧은 거리로 갱신할 수 있는지 점검하므로 결국 length[v] = ẟ(s,v)가 된다. length[v] 값은 그 이후로 변하지 않는다.</p>
 </blockquote>
 <h3 id="Proof-by-contradiction"><a href="#Proof-by-contradiction" class="headerlink" title="Proof by contradiction"></a>Proof by contradiction</h3><p><code>Proof</code> For each vertex u ∈ V, it follows from the fact that at all times length[u] $\ge$ ẟ(s,u). After running Dijkstra’s algorithm, we assert that length[u] = ẟ(s,u).</p>
 <blockquote>
-<p>다익스트라 알고리즘이 찾아낸 경로가 최단경로인지 검증한다. ẟ(s,u)는 시작정점 s에서 u까지의 최단경로를 의미하므로, 알고리즘 수행 후 모든 정점 u에 대해 length[u] = ẟ(s, u)가 성립함을 보이면 된다.</p>
+<p>다익스트라 알고리즘이 찾아낸 최단경로의 정확성을 검증한다. ẟ(s,u)는 시작정점 s에서 u까지의 최단경로를 의미하므로, 알고리즘 수행 후 모든 정점 u에 대해 length[u] = ẟ(s, u)가 성립함을 보이면 된다.</p>
 </blockquote>
 <blockquote>
 <p>증명을 위해 귀류법(proof by contradiction)을 사용한다. 귀류법이란 어떤 명제를 반대로 가정했을 때, 모순을 이끌어내어 가정이 거짓임을 증명하는 방법이다.</p>
@@ -403,10 +400,10 @@
 </blockquote>
 <p>Now both w and u were in V-Y when u was chosen, so<br>$$<br>length[u] \le length[w]<br>$$</p>
 <blockquote>
-<p>w, u 둘다 V-Y에 속하는 정점이다. 여기서 u를 첫번째 정점으로 선택했다는 것은 시작정점에서 최단거리를 가지는 정점이 u라는 뜻이다.</p>
+<p>w, u 둘다 V-Y에 속하는 정점이다. 여기서 u를 첫번째 정점으로 선택했다는 것은 시작정점으로부터 최단거리를 가지는 정점이 u라는 뜻이다.</p>
 </blockquote>
 <p>Thus the two inequalities must be equalities,<br>$$<br>\underbrace{length[w] = ẟ(s,w) = ẟ(s,u) = length[u]}_{\text{length[w] $\le$ length[u] &amp; length[u] $\le$ length[w]}}<br>$$</p>
-<p>So length[u] = ẟ(s,u) contradicting our hypothesis.<br>Thus when each vertex u ∈ V was inserted to Y, length[u] = ẟ(s,u).<br>Therefore, d[u] = shortest path from s to u for all u \in V.</p>
+<p>So length[u] = ẟ(s,u) contradicting our hypothesis.<br>Thus when each vertex u ∈ V was inserted to Y, length[u] = ẟ(s,u).</p>
 <blockquote>
 <p>두 부등식에 의해 length[u] = ẟ(s,u)가 되므로, 다익스트라 알고리즘이 정점 u에 대해 최단경로를 산출하지 못한다는 가정에 모순이 생긴다.</p>
 </blockquote>
@@ -424,7 +421,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/" data-id="cjiijq5nj001fikn75oeyhma4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/" data-id="cjiijzrhs001f1wn7jegariaz" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
