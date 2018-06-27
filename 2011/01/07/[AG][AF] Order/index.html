@@ -18,7 +18,7 @@
 <meta property="og:description" content="big OFor a given complexity function f(n), O(f(n)) is the set of complexity functions g(n) for which there exists some positive real constant c and some nonnegative integer N such that for all n ≥ N,">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/theta_figure.png">
-<meta property="og:updated_time" content="2018-05-22T14:58:20.774Z">
+<meta property="og:updated_time" content="2018-06-27T15:45:04.303Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Order(빅오, 오메가, 세타 표기법)">
 <meta name="twitter:description" content="big OFor a given complexity function f(n), O(f(n)) is the set of complexity functions g(n) for which there exists some positive real constant c and some nonnegative integer N such that for all n ≥ N,">
@@ -49,6 +49,11 @@
     
 
 
+
+
+    <link href="http://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700|Ubuntu:400,700,400italic" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">
+
 </head>
 
 <body>
@@ -76,7 +81,7 @@
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
@@ -171,13 +176,13 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <h2 id="big-O"><a href="#big-O" class="headerlink" title="big O"></a><span style="color:#21955b">big O</span></h2><p>For a given complexity function f(n), O(f(n)) is the set of complexity functions g(n) for which there exists some positive real constant c and some nonnegative integer N such that for all n ≥ N, g(n) ≤ c * f(n).</p>
+            <h2 id="big-O"><a href="#big-O" class="headerlink" title="big O"></a><span style="color:#21955b">big O</span></h2><p>For a given complexity function f(n), O(f(n)) is the set of complexity functions g(n) for which there exists some positive real constant c and some nonnegative integer N such that for all n ≥ N, g(n) ≤ c $\times$ f(n).</p>
 <blockquote>
-<p>주어진 복잡도 함수 f(n)에 대해서 g(n) ∈ O(f(n))이면, n ≥ N인 모든 정수 n에 대해서 g(n) ≤ c * f(n)이 성립하는 실수 c＞0와 음이 아닌 정수 N이 존재한다.</p>
+<p>주어진 복잡도 함수 f(n)에 대해서 g(n) ∈ O(f(n))이면, n ≥ N인 모든 정수 n에 대해서 g(n) ≤ c $\times$ f(n)이 성립하는 실수 c ＞ 0와 음이 아닌 정수 N이 존재한다.</p>
 </blockquote>
 <p><img src="/images/algo/bigo_figure.png" width="70%" align="center"></p>
 <h3 id="If-g-n-∈-O-f-n-we-say-that-g-n-is-big-O-of-f-n"><a href="#If-g-n-∈-O-f-n-we-say-that-g-n-is-big-O-of-f-n" class="headerlink" title="If g(n) ∈ O(f(n)), we say that g(n) is big O of f(n)"></a>If g(n) ∈ O(f(n)), we say that g(n) is big O of f(n)</h3><blockquote>
-<p>어떤함수 g(n)이 O(n^2)에 속한다는 말은, 그 함수는 궁극적으로 (어떤 임의의 N보다 큰 값에 대해서는) 어떤 2차함수 c<em>n^2보다는 작은 값을 가지게 된다는 것을 뜻한다. 따라서 g(n)은 어떤 2차함수 c</em>n^2보다는 궁극적으로 좋다고 말할 수 있다.</p>
+<p>어떤함수 g(n)이 $O(n^2)$에 속한다는 말은, 그 함수는 궁극적으로 (어떤 임의의 N보다 큰 값에 대해서는) 어떤 2차함수 $c \times n^2$ 보다는 작은 값을 가지게 된다는 것을 뜻한다. 따라서 g(n)은 어떤 2차함수 $c \times n^2$보다는 궁극적으로 좋다고 말할 수 있다.</p>
 </blockquote>
 <h3 id="g-n-∈-O-f-n"><a href="#g-n-∈-O-f-n" class="headerlink" title="g(n) ∈ O(f(n))"></a>g(n) ∈ O(f(n))</h3><ul>
 <li>g(n): 분석된 결과</li>
@@ -189,16 +194,16 @@
 <p>big O는 x가 증가할수록 g(x)보다 항상 스케일이 큰 f(x)를 찾는 것이다.</p>
 </blockquote>
 <blockquote>
-<p>어떤 알고리즘의 시간복잡도가 O(f(n))이라면, 입력크기 n에 대해서 이 알고리즘의 수행시간은 아무리 늦어도 f(n)은 된다. (f(n)이 상한)<br>  다시 말하면 이 알고리즘의 수행시간은 f(n)보다 절대로 더 느릴수는 없다는 말이다.</p>
+<p>어떤 알고리즘의 시간복잡도가 O(f(n))이라면, 입력크기 n에 대해서 이 알고리즘의 수행시간은 아무리 늦어도 f(n)은 된다. 다시 말하면 이 알고리즘의 수행시간은 f(n)보다 절대로 더 느릴수는 없다는 말이다. (f(n)이 상한)</p>
 </blockquote>
 <p><br></p>
-<h2 id="Omega"><a href="#Omega" class="headerlink" title="Omega"></a><span style="color:#21955b">Omega</span></h2><p>For a given complexity function f(n), Ω(f(n)) is the set of complexity functions g(n) for which there exists some positive real constant c and some nonnegative integer N such that, for all n ≥ N, g(n) ≥ c * f(n).</p>
+<h2 id="Omega"><a href="#Omega" class="headerlink" title="Omega"></a><span style="color:#21955b">Omega</span></h2><p>For a given complexity function f(n), Ω(f(n)) is the set of complexity functions g(n) for which there exists some positive real constant c and some nonnegative integer N such that, for all n ≥ N, g(n) ≥ c $\times$ f(n).</p>
 <blockquote>
-<p>주어진 복잡도 함수 f(n)에 대해서 g(n) ∈ Ω(f(n))이면, n ≥ N인 모든 정수 n에 대해서 g(n) ≥ c * f(n)이 성립하는 실수 c ＞ 0와 음이 아닌 정수 N이 존재한다.</p>
+<p>주어진 복잡도 함수 f(n)에 대해서 g(n) ∈ Ω(f(n))이면, n ≥ N인 모든 정수 n에 대해서 g(n) ≥ c $\times$ f(n)이 성립하는 실수 c ＞ 0와 음이 아닌 정수 N이 존재한다.</p>
 </blockquote>
 <p><img src="/images/algo/omegao_figure.png" width="75%" align="center"></p>
 <h3 id="If-g-n-∈-Ω-f-n-we-say-that-g-n-is-omega-of-f-n"><a href="#If-g-n-∈-Ω-f-n-we-say-that-g-n-is-omega-of-f-n" class="headerlink" title="If g(n) ∈ Ω(f(n)), we say that g(n) is omega of f(n)"></a>If g(n) ∈ Ω(f(n)), we say that g(n) is omega of f(n)</h3><blockquote>
-<p>어떤 함수 g(n)이 Ω(n^2)에 속한다는 말은, 그 함수는 궁극에 가서는 (어떤 임의의 N값보다 큰 값에 대해서는) 어떤 2차 함수 c<em>n^2의 값보다는 큰 값을 가지게 된다는 것을 뜻한다. 따라서 함수 g(n)은 어떤 2차 함수 c</em>n^2보다는 궁극적으로 나쁘다고 할 수 있다.</p>
+<p>어떤 함수 g(n)이 $\Omega(n^2)$에 속한다는 말은, 그 함수는 궁극에 가서는 (어떤 임의의 N값보다 큰 값에 대해서는) 어떤 2차 함수 $c \times n^2$의 값보다는 큰 값을 가지게 된다는 것을 뜻한다. 따라서 함수 g(n)은 어떤 2차 함수 $c \times n^2$보다는 궁극적으로 나쁘다고 할 수 있다.</p>
 </blockquote>
 <h3 id="g-n-∈-Ω-f-n"><a href="#g-n-∈-Ω-f-n" class="headerlink" title="g(n) ∈ Ω(f(n))"></a>g(n) ∈ Ω(f(n))</h3><ul>
 <li>g(n): 분석된 결과</li>
@@ -210,12 +215,12 @@
 <p>omega는 x가 증가할수록 g(x)보다 항상 스케일이 작은 f(x)를 찾는 것이다.</p>
 </blockquote>
 <blockquote>
-<p>어떤 알고리즘의 시간복잡도가 Ω(f(n))이라면, 입력의 크기 n에 대해서 이 알고리즘의 수행시간은 아무리 빨라도 f(n)밖에 되지 않는다. (f(n)이 하한)<br>  다시 말하면 이 알고리즘의 수행시간은 f(n)보다 절대로 더 빠를 수는 없다는 말이다.</p>
+<p>어떤 알고리즘의 시간복잡도가 Ω(f(n))이라면, 입력의 크기 n에 대해서 이 알고리즘의 수행시간은 아무리 빨라도 f(n)밖에 되지 않는다. 다시 말하면 이 알고리즘의 수행시간은 f(n)보다 절대로 더 빠를 수는 없다는 말이다. (f(n)이 하한)</p>
 </blockquote>
 <p><br></p>
-<h2 id="Theta"><a href="#Theta" class="headerlink" title="Theta"></a><span style="color:#21955b">Theta</span></h2><p>For a given complexity function f(n), Θ(f(n)) = O(f(n)) ∩ Ω(f(n)). This means that is the set of complexity functions g(n) for which there exists some positive real constants c and d and some nonnegative integer N such that, for all n ≥ N, c <em> f(n) ≤ g(n) ≤ d </em> f(n).</p>
+<h2 id="Theta"><a href="#Theta" class="headerlink" title="Theta"></a><span style="color:#21955b">Theta</span></h2><p>For a given complexity function f(n), Θ(f(n)) = O(f(n)) ∩ Ω(f(n)). This means that is the set of complexity functions g(n) for which there exists some positive real constants c and d and some nonnegative integer N such that, for all n ≥ N, c $\times$ f(n) ≤ g(n) ≤ d $\times$ f(n).</p>
 <blockquote>
-<p>Θ(f(n))은 다음을 만족하는 복잡도 함수 g(n)의 집합이다. n ≥ N인 모든 정수 n에 대해서 c <em> f(n) ≤ g(n) ≤ d </em> f(n)이 성립하는 실수 c ＞0와 d ＞0, 그리고 음이 아닌 정수 N이 존재한다.</p>
+<p>Θ(f(n))은 다음을 만족하는 복잡도 함수 g(n)의 집합이다. n ≥ N인 모든 정수 n에 대해서 c $\times$ f(n) ≤ g(n) ≤ d $\times$ f(n)이 성립하는 실수 c &gt; 0와 d &gt; 0, 그리고 음이 아닌 정수 N이 존재한다.</p>
 </blockquote>
 <p><img src="/images/algo/theta_figure.png" width="85%" align="center"></p>
 <h3 id="If-g-n-∈-Θ-f-n-we-say-that-g-n-is-order-of-f-n"><a href="#If-g-n-∈-Θ-f-n-we-say-that-g-n-is-order-of-f-n" class="headerlink" title="If g(n) ∈ Θ(f(n)), we say that g(n) is order of f(n)"></a>If g(n) ∈ Θ(f(n)), we say that g(n) is order of f(n)</h3><h3 id="g-n-∈-Θ-f-n"><a href="#g-n-∈-Θ-f-n" class="headerlink" title="g(n) ∈ Θ(f(n))"></a>g(n) ∈ Θ(f(n))</h3><ul>
@@ -226,13 +231,14 @@
 <li>an asymptotic tight bound (O ∩ Ω)</li>
 </ul>
 <blockquote>
-<p>big O는 상한을, omega는 반대로 하한을 찾는 것이므로 실제 수행시간과는 괴리가 있을 수 있다.<br>  (5n + 7) ∈ O(n^2)<br>  (6n^6 + n^4) ∈ Ω(n^2)</p>
+<p>big O는 상한을, omega는 반대로 하한을 찾는 것이므로 실제 수행시간과는 괴리가 있을 수 있다.</p>
 </blockquote>
+<p>$$<br>\begin{align}<br>(5n + 7) &amp;\in O(n^2) \\<br>(6n^6 + n^4) &amp;\in Ω(n^2)<br>\end{align}<br>$$</p>
 <blockquote>
 <p>Theta는 big O와 omega의 교집합으로 시간복잡도를 분석하는데 있어 가장 정확한 표기법이다.</p>
 </blockquote>
 <p><br></p>
-<h2 id="Complexity-Categories"><a href="#Complexity-Categories" class="headerlink" title="Complexity Categories"></a><span style="color:#21955b">Complexity Categories</span></h2><p><img src="/images/algo/growth-rates.png" width="65%" align="left"></p>
+<h2 id="Complexity-Categories"><a href="#Complexity-Categories" class="headerlink" title="Complexity Categories"></a><span style="color:#21955b">Complexity Categories</span></h2><p><img src="/images/algo/growth-rates.png" width="80%" align="center"></p>
 <h3 id="Θ-1-constant-time"><a href="#Θ-1-constant-time" class="headerlink" title="Θ(1): constant time"></a>Θ(1): constant time</h3><p>입력크기에 상관없이 수행횟수가 일정하다.</p>
 <h3 id="Θ-logn-logarithmic-time"><a href="#Θ-logn-logarithmic-time" class="headerlink" title="Θ(logn): logarithmic time"></a>Θ(logn): logarithmic time</h3><h3 id="Θ-n-linear-time"><a href="#Θ-n-linear-time" class="headerlink" title="Θ(n): linear time"></a>Θ(n): linear time</h3><p>수행시간이 입력 크기에 따라 선형적으로 증가함을 의미한다.</p>
 <h3 id="Θ-nlogn-loglinear-time"><a href="#Θ-nlogn-loglinear-time" class="headerlink" title="Θ(nlogn): loglinear time"></a>Θ(nlogn): loglinear time</h3><h3 id="Θ-n-2-quadratic-time"><a href="#Θ-n-2-quadratic-time" class="headerlink" title="Θ(n^2): quadratic time"></a>Θ(n^2): quadratic time</h3><h3 id="Θ-n-3-cubic-time"><a href="#Θ-n-3-cubic-time" class="headerlink" title="Θ(n^3): cubic time"></a>Θ(n^3): cubic time</h3><h3 id="Θ-2-n-exponential-time"><a href="#Θ-2-n-exponential-time" class="headerlink" title="Θ(2^n): exponential time"></a>Θ(2^n): exponential time</h3><h3 id="Θ-n-factorial-time"><a href="#Θ-n-factorial-time" class="headerlink" title="Θ(n!): factorial time"></a>Θ(n!): factorial time</h3>
@@ -242,7 +248,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/01/07/[AG][AF] Order/" data-id="cjimndva5000akgn7vy83gpgq" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/01/07/[AG][AF] Order/" data-id="cjixakbrr000lacn74n0rhwyg" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -520,7 +526,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">18</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">6</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">22</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">21</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">6</span></li></ul>
         </div>
     </div>
 
@@ -530,7 +536,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/09/">September 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
         </div>
     </div>
 
@@ -540,7 +546,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">21</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">22</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">3</span></li></ul>
         </div>
     </div>
 
@@ -550,7 +556,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/hexo/" style="font-size: 11.67px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16.67px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.33px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 10px;">백트래킹</a> <a href="/tags/분할정복법/" style="font-size: 15px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 16.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 15px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.67px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 13.33px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 16.67px;">탐욕알고리즘</a>
+            <a href="/tags/hexo/" style="font-size: 10px;">hexo</a> <a href="/tags/동적계획법/" style="font-size: 16px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 10px;">백트래킹</a> <a href="/tags/분할정복법/" style="font-size: 14px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 16px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 10px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 16px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 12px;">회계기초</a>
         </div>
     </div>
 
