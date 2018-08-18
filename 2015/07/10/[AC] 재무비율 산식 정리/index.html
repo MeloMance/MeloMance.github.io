@@ -1,0 +1,927 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>재무비율 산식 정리 | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="회계기초" />
+    
+    <meta name="description" content="수익성 지표수익성 비율(Profitability Ratio)은 기업이 비용보다 많은 수익을 창출하는 능력, 즉 화폐적 효율성(monetary efficiency)을 의미한다. 매출액이나 투하자본에 대한 이익으로 표시되는데, 기업의 이악창출능력에 관한 정보를 제공한다. 수익성을 나타내는 비율은 기업의 경영성과를 나타내는 동태적인 비율로서 기업의 총괄적인 이익">
+<meta name="keywords" content="회계기초">
+<meta property="og:type" content="article">
+<meta property="og:title" content="재무비율 산식 정리">
+<meta property="og:url" content="http://melomance.github.io/2015/07/10/[AC] 재무비율 산식 정리/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="수익성 지표수익성 비율(Profitability Ratio)은 기업이 비용보다 많은 수익을 창출하는 능력, 즉 화폐적 효율성(monetary efficiency)을 의미한다. 매출액이나 투하자본에 대한 이익으로 표시되는데, 기업의 이악창출능력에 관한 정보를 제공한다. 수익성을 나타내는 비율은 기업의 경영성과를 나타내는 동태적인 비율로서 기업의 총괄적인 이익">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/acc/accounting.png">
+<meta property="og:updated_time" content="2018-08-18T15:31:55.466Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="재무비율 산식 정리">
+<meta name="twitter:description" content="수익성 지표수익성 비율(Profitability Ratio)은 기업이 비용보다 많은 수익을 창출하는 능력, 즉 화폐적 효율성(monetary efficiency)을 의미한다. 매출액이나 투하자본에 대한 이익으로 표시되는데, 기업의 이악창출능력에 관한 정보를 제공한다. 수익성을 나타내는 비율은 기업의 경영성과를 나타내는 동태적인 비율로서 기업의 총괄적인 이익">
+<meta name="twitter:image" content="http://melomance.github.io/images/acc/accounting.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Ubuntu+Mono.css">
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Finance/Accounting/">Accounting</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AC] 재무비율 산식 정리" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        재무비율 산식 정리
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2015/07/10/[AC] 재무비율 산식 정리/" class="article-date">
+            <time datetime="2015-07-10T06:09:00.000Z" itemprop="datePublished">2015-07-10</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/회계기초/">회계기초</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <h2 id="수익성-지표"><a href="#수익성-지표" class="headerlink" title="수익성 지표"></a><span style="color:#21955b">수익성 지표</span></h2><p>수익성 비율(Profitability Ratio)은 기업이 비용보다 많은 수익을 창출하는 능력, 즉 화폐적 효율성(monetary efficiency)을 의미한다. 매출액이나 투하자본에 대한 이익으로 표시되는데, 기업의 이악창출능력에 관한 정보를 제공한다. 수익성을 나타내는 비율은 기업의 경영성과를 나타내는 동태적인 비율로서 기업의 총괄적인 이익창출능력을 표시하는 지표이기 때문에 가장 중요시되는 비율이다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>매출액총이익률</td>
+<td>(매출총이익 / 매출액) × 100</td>
+</tr>
+<tr>
+<td>매출액영업이익률</td>
+<td>(영업이익 / 매출액) × 100</td>
+</tr>
+<tr>
+<td>매출액순이익률</td>
+<td>(당기순이익 / 매출액) × 100</td>
+</tr>
+<tr>
+<td>EBITDA 대 매출액</td>
+<td>(EBITDA / 매출액) × 100</td>
+</tr>
+<tr>
+<td>총자산순이익률(ROA)</td>
+<td>(당기순이익 / 총자산) × 100<br>= 매출액순이익률 × 총자산회전율</td>
+</tr>
+<tr>
+<td>자기자본순이익률(ROE)</td>
+<td>(당기순이익 / 총자본) × 100<br>= 매출액순이익률 × 총자산회전율 × 재무레버리지</td>
+</tr>
+<tr>
+<td>총자본세후순영업이익률(ROTC)</td>
+<td>(세후순영업이익 / 총자본) × 100</td>
+</tr>
+<tr>
+<td>투하자본세후순영업이익률(ROIC)</td>
+<td>(세후순영업이익 / 투하자본) × 100</td>
+</tr>
+<tr>
+<td>경제적부가가치(EVA)</td>
+<td>(ROIC － WACC) × 투하자본</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="유동성-지표"><a href="#유동성-지표" class="headerlink" title="유동성 지표"></a><span style="color:#21955b">유동성 지표</span></h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>유동비율</td>
+<td>(유동자산 / 유동부채) × 100</td>
+</tr>
+<tr>
+<td>당좌비율</td>
+<td>(당좌자산 / 유동부채) × 100</td>
+</tr>
+<tr>
+<td>현금비율</td>
+<td>(현금 및 현금성자산 / 유동부채) × 100</td>
+</tr>
+<tr>
+<td>순운전자본 대 총자본</td>
+<td>(순운전자본 / 총자본) × 100</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="재무안정성-지표"><a href="#재무안정성-지표" class="headerlink" title="재무안정성 지표"></a><span style="color:#21955b">재무안정성 지표</span></h2><p>안전성비율(Safety Ratio)은 기업의 채무상환능력과 타인자본의 의존도를 나타내는 비율이다. 기업의 채무상환능력의 측정과 타인자본의존도를 측정하는 비율로서 기업의 지급능력에 관한 정보를 제공한다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>부채비중</td>
+<td>부채 / (부채＋자본) × 100</td>
+</tr>
+<tr>
+<td>부채비율</td>
+<td>(부채 / 자본) × 100</td>
+</tr>
+<tr>
+<td>자기자본비율</td>
+<td>자본 / (부채＋자본) × 100</td>
+</tr>
+<tr>
+<td>차입금의존도</td>
+<td>(총차입금 / 총자산) × 100</td>
+</tr>
+<tr>
+<td>금융비용부담율</td>
+<td>(금융비용 / 매출액) × 100</td>
+</tr>
+<tr>
+<td>차입금평균이자율</td>
+<td>(금융비용 / 총차입금) × 100</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="채무상환능력-지표"><a href="#채무상환능력-지표" class="headerlink" title="채무상환능력 지표"></a><span style="color:#21955b">채무상환능력 지표</span></h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>이자보상비율</td>
+<td>(영업이익 / 금융비용) × 100</td>
+</tr>
+<tr>
+<td>부채상환계수</td>
+<td>(당기순이익＋비현금비용＋이자비용)<br>/ (기초차입금×상환비율 ＋ 유동성장기부채 상환액×이자비용)</td>
+</tr>
+<tr>
+<td>금융비용보상비율</td>
+<td>(영업활동현금흐름＋금융비용) / 금융비용 × 100</td>
+</tr>
+<tr>
+<td>현금보상비율</td>
+<td>(영업활동현금흐름＋금융비용) / (단기차입금＋금융비용) × 100</td>
+</tr>
+<tr>
+<td>영업활동 현금흐름 지표</td>
+<td>영업활동현금흐름 / 유동부채<br>영업활동현금흐름 / 총부채<br>영업활동현금흐름 / 총차입금</td>
+</tr>
+<tr>
+<td>EBITDA 관련 비율</td>
+<td>EBITDA / 금융비용<br>(EBITDA－자본적지출) / 금융비용<br>총차입금 / EBITDA<br>총차입금 / (EBITDA－자본적지출)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="활동성-지표"><a href="#활동성-지표" class="headerlink" title="활동성 지표"></a><span style="color:#21955b">활동성 지표</span></h2><p>활동성비율(Activity Ratio)은 기업이 경영활동을 위하여 취득한 재무상태표상의 자산을 얼마나 활발하게 활용하였는지를 나타내주는 비율이다. 매출액을 특정 자산으로 나누어 회전율로 표시되는데, 기업의 자산활용 능력에 관한 정보를 제공한다. 수익성비율이 화폐적 효율성을 측정하는 비율인 반면에 활동성비율은 물리적 효율성을 측정하는 비율이다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>매출채권회전율</td>
+<td>매출액 / 매출채권</td>
+</tr>
+<tr>
+<td>매출채권회수기간</td>
+<td>(매출채권 / 매출액) × 365일</td>
+</tr>
+<tr>
+<td>재고자산회전율</td>
+<td>매출액(또는 매출원가) / 재고자산</td>
+</tr>
+<tr>
+<td>재고자산회전기간</td>
+<td>(재고자산 / 매출액(또는 매출원가)) × 365일</td>
+</tr>
+<tr>
+<td>매입채무회전율</td>
+<td>매출액(또는 매출원가) / 매입채무</td>
+</tr>
+<tr>
+<td>매입채무지급기간</td>
+<td>(매입채무 / 매출액(또는 매출원가)) × 365일</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="자본배분-안정성-지표"><a href="#자본배분-안정성-지표" class="headerlink" title="자본배분 안정성 지표"></a><span style="color:#21955b">자본배분 안정성 지표</span></h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>고정비율</td>
+<td>(비유동자산 / 자기자본) × 100</td>
+</tr>
+<tr>
+<td>고정장기적합률</td>
+<td>(비유동자산 / (자기자본＋비유동부채)) × 100</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="시장가치-지표"><a href="#시장가치-지표" class="headerlink" title="시장가치 지표"></a><span style="color:#21955b">시장가치 지표</span></h2><p>시장가치비율(MVR: Market Value Ratio)이란 분석대상기업의 주식이 증권시장에서 어떻게 평가되고 있는지를 나타내는 지표이다.</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>주가수익률(PER)</td>
+<td>주가 / 주당순이익(EPS)</td>
+</tr>
+<tr>
+<td>주가장부가치비율(PBR)</td>
+<td>주가 / 주당 순자산장부가치</td>
+</tr>
+<tr>
+<td>토빈Q비율</td>
+<td>주가 / 주당 순자산의 공정가치</td>
+</tr>
+<tr>
+<td>배당성향</td>
+<td>(배당금총액 / 당기순이익) × 100</td>
+</tr>
+<tr>
+<td>배당률</td>
+<td>[{(배당금 / 발행주식 총수) 또는 주당배당금} / 주당액면가] × 100</td>
+</tr>
+<tr>
+<td>배당수익률</td>
+<td>주당배당금 / 주가</td>
+</tr>
+<tr>
+<td>주당현금흐름</td>
+<td>(Operating Cash Flow－우선주배당금) / 가중평균</td>
+</tr>
+<tr>
+<td>주가현금흐름비율(PCR)</td>
+<td>평균주가 / 주당현금흐름</td>
+</tr>
+<tr>
+<td>배당지급능력배수</td>
+<td>영업활동 현금흐름 / 현금배당금</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="성장성-지표"><a href="#성장성-지표" class="headerlink" title="성장성 지표"></a><span style="color:#21955b">성장성 지표</span></h2><p>성장성비율(Growth Ratio)은 일정기간동안 기업의 재무상태나 경영성과가 얼마만큼 향상되었는지를 나타내는 비율로서 기업의 향후 수익창출능력, 성장잠재력, 시장에서의 경쟁력 등을 표시해주는 지표이다. 기업의 외형이나 수익면에서 상대적 지위가 향상되는 정도를 나타내므로 기업의 성장잠재력에 관한 정보를 제공한다.  </p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>매출액증가율</td>
+<td>(매출액증감액 / 전기 매출액) × 100</td>
+</tr>
+<tr>
+<td>유형자산증가율</td>
+<td>(유형자산증감액 / 전기말 유형자산) × 100</td>
+</tr>
+<tr>
+<td>총자산증가율</td>
+<td>(총자산증감액 / 전기말 총자산) × 100</td>
+</tr>
+<tr>
+<td>자기자본증가율</td>
+<td>자기자본증감액 / 전기말 자기자본) × 100</td>
+</tr>
+<tr>
+<td>지속가능성장률</td>
+<td>(1－배당성향) × ROE기초<br>= 매출액순이익률×총자산회전율×(총자산/기초자본)×내부유보율</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="생산성-지표"><a href="#생산성-지표" class="headerlink" title="생산성 지표"></a><span style="color:#21955b">생산성 지표</span></h2><table>
+<thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>부가가치율</td>
+<td>(부가가치 / 매출액) × 100</td>
+</tr>
+<tr>
+<td>1인당 부가가치</td>
+<td>부가가치 / 종업원수<br>= 부가가치율 × 종업원 1인당 매출액</td>
+</tr>
+<tr>
+<td>자본생산성</td>
+<td>부가가치율 × 자본회전율</td>
+</tr>
+<tr>
+<td>설비투자효율</td>
+<td>(부가가치 / (유형자산－건설중인자산)) × 100</td>
+</tr>
+<tr>
+<td>기계투자효율</td>
+<td>(부가가치 / 기계장치) × 100</td>
+</tr>
+<tr>
+<td>노동장비율</td>
+<td>(유형자산－건설중인자산) / 종업원수</td>
+</tr>
+<tr>
+<td>기계장비율</td>
+<td>기계장치 / 종업원수</td>
+</tr>
+<tr>
+<td>노동생산성</td>
+<td>자본생산성 × 자본집약도<br>설비투자효율 × 노동장비율<br>기계투자효율 × 기계장비율</td>
+</tr>
+</tbody>
+</table>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2015/07/10/[AC] 재무비율 산식 정리/" data-id="cjkzl4nhx000vfon7tqwax09t" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2015/10/18/[LW] 민상법개요/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            민·상법개요
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2015/03/19/[AC] 수익과비용의 인식 및 측정/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">수익과 비용의 인식 및 측정</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/23/[HX] hexo-writing/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/23/[HX] hexo-writing/" class="title">Hexo 글쓰기</a></p>
+                            <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/[HX] hexo-command/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/[HX] hexo-command/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장-통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장-통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15.71px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.57px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.29px;">백트래킹</a> <a href="/tags/분할정복법/" style="font-size: 14.29px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 15.71px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.29px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.43px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.86px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.71px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.14px;">회계기초</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/">GitHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2015/07/10/[AC] 재무비율 산식 정리/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
