@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Optimal Binary Search Trees(최적이진탐색트리) | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="알고리즘,동적계획법" />
+    
+    <meta name="description" content="Our goal is to organize the keys in a binary search tree so that the average time it takes to locate a key is minimized. In general, we cannot find an optimal binary search tree by considering all bin">
+<meta name="keywords" content="알고리즘,동적계획법">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Optimal Binary Search Trees(최적이진탐색트리)">
+<meta property="og:url" content="http://melomance.github.io/2011/01/14/[AG][DP] Optm Binsearch Tree/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="Our goal is to organize the keys in a binary search tree so that the average time it takes to locate a key is minimized. In general, we cannot find an optimal binary search tree by considering all bin">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/algo/optm-binsearch-tree.png">
+<meta property="og:updated_time" content="2018-06-17T12:45:18.444Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Optimal Binary Search Trees(최적이진탐색트리)">
+<meta name="twitter:description" content="Our goal is to organize the keys in a binary search tree so that the average time it takes to locate a key is minimized. In general, we cannot find an optimal binary search tree by considering all bin">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/optm-binsearch-tree.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+
+
+
+    <link rel="stylesheet" href="https://cdn.rawgit.com/innks/NanumSquareRound/master/nanumsquareround.css">
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Ubuntu+Mono.css">
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AG][DP] Optm Binsearch Tree" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Optimal Binary Search Trees(최적이진탐색트리)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2011/01/14/[AG][DP] Optm Binsearch Tree/" class="article-date">
+            <time datetime="2011-01-14T13:03:00.000Z" itemprop="datePublished">2011-01-14</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/동적계획법/">동적계획법</a>, <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p><strong>Our goal is to organize the keys in a binary search tree so that the average time it takes to locate a key is minimized</strong>. In general, we cannot find an optimal binary search tree by considering all binary search trees because the number of such tree is at least exponential in n.</p>
+<blockquote>
+<p>최적이진탐색트리 알고리즘의 목적은 Key를 찾는데 걸리는 평균시간이 최소화되도록 이진탐색트리의 Key를 구성하는 것이다.</p>
+</blockquote>
+<p><code>Example</code> Shows the five different trees when n = 3. The actual values of the keys are not important. The only requirement is that they be ordered. $p_i$ is the probability that $Key_i$ is the search key. If</p>
+<p>$p_1$ = 0.7 ($Key_1$ 찾을 확률), $p_2$ = 0.2 ($Key_2$ 찾을 확률), and $p_3$ = 0.1 ($Key_3$ 찾을 확률),</p>
+<p>the average search times for the below trees are:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">트리번호</th>
+<th style="text-align:center">평균검색시간</th>
+<th>평균검색시간 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">3(0.7) ＋ 2(0.2) ＋ 1(0.1) = 2.6</td>
+<td>Key1을 세번 비교 후 찾을 확률 ＋ <br>Key2를 두번 비교 후 찾을 확률 ＋ <br>Key3를 한번 비교 후 찾을 확률.</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2(0.7) ＋ 3(0.2) ＋ 1(0.1) = 2.1</td>
+<td>…</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">2(0.7) ＋ 1(0.2) ＋ 2(0.1) = 1.8</td>
+<td>Key1을 두번 비교 후 찾을 확률 ＋ <br>Key2를 한번 비교 후 찾을 확률 ＋ <br>Key3를 두번 비교 후 찾을 확률.</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">1(0.7) ＋ 3(0.2) ＋ 2(0.1) = 1.5</td>
+<td>…</td>
+</tr>
+<tr>
+<td style="text-align:center">5</td>
+<td style="text-align:center">1(0.7) ＋ 2(0.2) ＋ 3(0.1) = 1.4</td>
+<td>Key1을 한번 비교 후 찾을 확률 ＋ <br>Key2를 두번 비교 후 찾을 확률 ＋ <br>Key3를 세번 비교 후 찾을 확률.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/algo/optm-binsearch-tree_figure.png" width="75%" align="center" alt="[The possible binary trees when there are three keys.]"></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">The fifth tree is optimal.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>$Key_1, Key_2, Key_3$로 구성된 트리 자료구조에서 사용자가 $Key_1$ 값을 검색하러 올 확률이 70%, $Key_2$ 값은 20%, $Key_3$ 값은 10%라고 하자. (이진탐색트리 특성에 따라, $Key_1 \le Key_2 \le Key_3$)</p>
+</blockquote>
+<blockquote>
+<p>3개의 $Key$값으로 이진탐색트리를 구성하는 방법은 총 5가지이며, 이 중에서 5번 모양이 평균검색시간을 고려했을 때 최적화된 이진탐색트리이다. 트리의 균형이 깨지더라도 $Key_1$을 찾을 확률이 높으므로 $Key_1$을 루트로 둔다.</p>
+</blockquote>
+<p><code>Example</code>  Suppose we have three keys and the probabilities in this above Example. To determine A[2][3] we must consider the two trees. For those two trees we have the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">트리번호</th>
+<th style="text-align:center">평균검색시간</th>
+<th>평균검색시간 설명</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">1(p2) ＋ 2(p3) = 1(0.2) ＋ 2(0.1) = 0.4</td>
+<td>Key2를 한번 비교 후 찾을 확률 ＋ <br>Key3를 두번 비교 후 찾을 확률.</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">2(p2) ＋ 1(p3) = 2(0.2) ＋ 1(0.1) = 0.5</td>
+<td>Key2를 두번 비교 후 찾을 확률 ＋ <br>Key3를 한번 비교 후 찾을 확률.</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/algo/optm-binsearch-tree_figure1.png" width="30%" align="center" alt="[The binary search trees composed of Key2 and Key3.]"></p>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">The first tree is optimal, <span class="keyword">and</span> A[<span class="number">2</span>][<span class="number">3</span>] = <span class="number">0.4</span>.</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>A[2][3]이란 $Key_2$와 $Key_3$으로 구성된 이진탐색트리의 최적화된 평균검색시간이다. 최적화된 평균검색시간을 갖는 트리 구성을 하려면 위의 1번 트리처럼 $Key_2$를 루트에 놓아야 한다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="Optimal-Binary-Search-Tree-Algorithm"><a href="#Optimal-Binary-Search-Tree-Algorithm" class="headerlink" title="Optimal Binary Search Tree Algorithm "></a><span style="color:#21955b">Optimal Binary Search Tree Algorithm </span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>The average search time for tree k is given by,</p>
+<p><img src="/images/algo/optm-binsearch-tree.png" width="85%" align="center" alt="[Optimal binary search tree given that $Key_k$ is at the root.]"></p>
+<p>$$<br>\underbrace{A[1][k-1]} + \underbrace{p_1 + \cdots + p_{k-1}} + \underbrace{p_k} + \underbrace{A[k+1][n]} + \underbrace{p_{k+1} + \cdots + p_n}<br>$$</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center"></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">$A[1][k-1]$</td>
+<td>Average time in left subtree</td>
+</tr>
+<tr>
+<td style="text-align:center">$p_1 + \cdots + p_{k-1}$</td>
+<td>Additional time comparing at root</td>
+</tr>
+<tr>
+<td style="text-align:center">$p_k$</td>
+<td>Average time searching for root</td>
+</tr>
+<tr>
+<td style="text-align:center">$A[k+1][n]$</td>
+<td>Average time in right subtree</td>
+</tr>
+<tr>
+<td style="text-align:center">$p_{k+1} + \cdots + p_n$</td>
+<td>Additional time comparing at root</td>
+</tr>
+</tbody>
+</table>
+<p>which equals<br>$$<br>A[1][k-1] + A[k+1][n] + \sum_{m=1}^np_m<br>$$</p>
+<p>Because one of the k trees must be optimal, the average search time for optimal tree is given by</p>
+<p>$$<br>A[1][n] = minimum_{1 \le k \le n}(A[1][k-1] + A[k+1][n]) + \sum_{m=1}^np_m,<br>$$</p>
+<p>$$<br>\begin{cases}<br>A[i][j] = minimum_{i \le k \le j}(A[i][k-1] + A[k+1][j]) + \sum_{m=i}^jp_m \quad i &lt; j \\<br>A[i][i] = p_i \\<br>A[i][i-1] \ \text{and} \ A[j+1][j] \ \text{are defined to be 0}.<br>\end{cases}<br>$$</p>
+<blockquote>
+<p>A[1][k-1]은 $Key_1, \cdots, Key_{k-1}$로 구성된 왼쪽 부분트리의 최적화된 평균검색시간이다. A[k+1][n] 역시 마찬가지로 $Key_{k+1}, \cdots, Key_n$으로 구성된 오른쪽 부분트리의 최적화된 평균검색시간을 뜻한다.</p>
+</blockquote>
+<blockquote>
+<p>식이 복잡해 보일수도 있지만 사실 그렇지 않다. (왼쪽 부분트리에서의 평균검색시간) + (루트에서의 검색시간) + (오른쪽 부분트리에서의 평균검색시간)으로 이루어진 직관적인 수식이다.</p>
+</blockquote>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: optbintree.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">optsearchtree</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">float</span> p[ ], <span class="keyword">float</span>&amp; minavg, <span class="keyword">int</span>** R)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Determine an optimal binary search tree for a set of keys,</span></span></span><br><span class="line"><span class="function"><span class="comment">// each with a given pr of being the search key.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: n, the number of keys, and an array of real numbers p indexed</span></span></span><br><span class="line"><span class="function"><span class="comment">// from 1 to n, where p[i] is the pr of searching for the ith key.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: A variable minavg, whose value is the average search time</span></span></span><br><span class="line"><span class="function"><span class="comment">// for an optimal binary search tree; and a two-dimensional array R from</span></span></span><br><span class="line"><span class="function"><span class="comment">// which an optimal tree can be constructed. R has its rows indexed from</span></span></span><br><span class="line"><span class="function"><span class="comment">// 1 to n+1 and its columns indexed from 0 to n. R[i][j] is the index of</span></span></span><br><span class="line"><span class="function"><span class="comment">// the key in the root of an optimal tree containing the ith through</span></span></span><br><span class="line"><span class="function"><span class="comment">// the jth keys.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j, k, diagonal;</span><br><span class="line">    <span class="comment">// Make sure that we have to allocate n+1 instead of n</span></span><br><span class="line">    <span class="keyword">float</span>** A = get_matrix_space&lt;<span class="keyword">float</span>&gt;(n+<span class="number">1</span>, n+<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        A[i][i<span class="number">-1</span>] = <span class="number">0</span>;</span><br><span class="line">        A[i][i] = p[i];</span><br><span class="line">        R[i][i] = i;</span><br><span class="line">        R[i][i<span class="number">-1</span>] = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    A[n+<span class="number">1</span>][n] = <span class="number">0</span>;</span><br><span class="line">    R[n+<span class="number">1</span>][n] = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (diagonal = <span class="number">1</span>; diagonal &lt;= n - <span class="number">1</span>; ++diagonal)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (i = <span class="number">1</span>; i &lt;= n - diagonal; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">            j = i + diagonal;</span><br><span class="line">            <span class="keyword">float</span> min = <span class="keyword">static_cast</span>&lt;<span class="keyword">float</span>&gt;(INT_MAX); <span class="comment">// casting</span></span><br><span class="line">            <span class="keyword">for</span> (k = i; k &lt;= j ; ++k)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span> ((A[i][k<span class="number">-1</span>] + A[k+<span class="number">1</span>][j]) &lt; min)</span><br><span class="line">                &#123;</span><br><span class="line">                    A[i][j] = A[i][k<span class="number">-1</span>] + A[k+<span class="number">1</span>][j] + prsum(p, i, j);</span><br><span class="line">                    R[i][j] = k; <span class="comment">// A value of k that gave the minimum</span></span><br><span class="line">                    min = A[i][k<span class="number">-1</span>] + A[k+<span class="number">1</span>][j]; <span class="comment">// Update min value</span></span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    minavg = A[<span class="number">1</span>][n];</span><br><span class="line">    print_matrix(A, n+<span class="number">1</span>, n); <span class="comment">// Print matrix A</span></span><br><span class="line">    print_matrix(R, n+<span class="number">1</span>, n); <span class="comment">// Print matrix R</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">prsum</span><span class="params">(<span class="keyword">const</span> <span class="keyword">float</span> p[ ], <span class="keyword">const</span> <span class="keyword">size_t</span> i,  <span class="keyword">const</span> <span class="keyword">size_t</span> j)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">float</span> answer = <span class="keyword">float</span>( );</span><br><span class="line">    <span class="comment">// Calculate the sum of pm from i to j</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">size_t</span> m = i; m &lt;= j; ++m)</span><br><span class="line">        answer += p[m];</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Time-Complexity-Analysis"><a href="#Time-Complexity-Analysis" class="headerlink" title="Time Complexity Analysis"></a><span style="color:#21955b">Time Complexity Analysis</span></h2><h3 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h3><ul>
+<li>The instructions executed for each value of k.</li>
+</ul>
+<h3 id="Input-size"><a href="#Input-size" class="headerlink" title="Input size"></a>Input size</h3><ul>
+<li>n, the number of keys.</li>
+</ul>
+<h3 id="Every-Case-Time-Complexity"><a href="#Every-Case-Time-Complexity" class="headerlink" title="Every-Case Time Complexity"></a>Every-Case Time Complexity</h3><ul>
+<li>$T(n) =  \sum_{diagonal=1}^{n-1}[(n-diagonal) \times (diagonal+1)] = \frac{n(n-1)(n+4)}{6} \in \Theta(n^3)$</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>루프구분</th>
+<th>루프조건</th>
+<th>수행 횟수</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>diagonal-loop 수행 횟수:</td>
+<td>1 to n-1</td>
+<td>n-1</td>
+</tr>
+<tr>
+<td>i－loop 수행 횟수:</td>
+<td>1 to n-diagonal</td>
+<td>n－diagonal</td>
+</tr>
+<tr>
+<td>k－loop 수행 횟수:</td>
+<td>i to j</td>
+<td>j － i ＋ 1 <br> = (i ＋ diagonal) - i + 1 = diagonal + 1</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td>※ j = i ＋ diagonal</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<h2 id="Optimization-Problem"><a href="#Optimization-Problem" class="headerlink" title="Optimization Problem"></a><span style="color:#21955b">Optimization Problem</span></h2><blockquote>
+<p>주어진 문제에 대하여 하나 이상의 많은 해답이 존재할 때, 이 가운데에서 가장 최적인 해답(optimal solution)을 찾아야 하는 문제를 최적화문제(optimization problem)라고 한다. 최적이진탐색트리 문제는 최적화문제에 속한다.</p>
+</blockquote>
+<h3 id="Principle-of-Optimality"><a href="#Principle-of-Optimality" class="headerlink" title="Principle of Optimality"></a>Principle of Optimality</h3><blockquote>
+<p>플로이드, 연쇄행렬곱셈과 마찬가지로 최적이진탐색트리의 부분 해는 최적 해를 구성하는 일부임을 알 수 있다. 따라서 최적이진탐색트리 역시 최적의 원칙을 만족하게 되며, 동적계획법을 사용하여 문제를 풀 수 있다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="Dynamic-Programming-Exercises"><a href="#Dynamic-Programming-Exercises" class="headerlink" title="Dynamic Programming Exercises"></a><span style="color:#21955b">Dynamic Programming Exercises</span></h2><p>Create the optimal binary search tree for the following items, where the probability occurrence of each word is given in parentheses:</p>
+<p>CASE (0.05), ELSE (0.15), END (0.05), IF (0.35), OF (0.05), THEN (0.35).</p>
+<blockquote>
+<p>다음은 책에 있는 연습문제를 알고리즘에 적용한 결과이다. 생성된 이진탐색트리를 출력할 때 재귀를 이용해서 출력했다. IF가 루트 ELSE는 IF의 왼쪽자식, TEHN이 IF의 오른쪽 자식이다.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">index      <span class="number">1</span>      <span class="number">2</span>      <span class="number">3</span>      <span class="number">4</span>      <span class="number">5</span>      <span class="number">6</span></span><br><span class="line">     ___________________________________________</span><br><span class="line">  <span class="number">1</span> │   <span class="number">0.05</span>   <span class="number">0.25</span>   <span class="number">0.35</span>   <span class="number">0.95</span>   <span class="number">1.05</span>    <span class="number">1.8</span></span><br><span class="line">  <span class="number">2</span> │      <span class="number">0</span>   <span class="number">0.15</span>   <span class="number">0.25</span>    <span class="number">0.8</span>    <span class="number">0.9</span>   <span class="number">1.65</span></span><br><span class="line">  <span class="number">3</span> │      <span class="number">0</span>      <span class="number">0</span>   <span class="number">0.05</span>   <span class="number">0.45</span>   <span class="number">0.55</span>    <span class="number">1.3</span></span><br><span class="line">  <span class="number">4</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>   <span class="number">0.35</span>   <span class="number">0.45</span>    <span class="number">1.2</span></span><br><span class="line">  <span class="number">5</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>   <span class="number">0.05</span>   <span class="number">0.45</span></span><br><span class="line">  <span class="number">6</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>   <span class="number">0.35</span></span><br><span class="line">  <span class="number">7</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span></span><br><span class="line"></span><br><span class="line">index      <span class="number">1</span>      <span class="number">2</span>      <span class="number">3</span>      <span class="number">4</span>      <span class="number">5</span>      <span class="number">6</span></span><br><span class="line">     ___________________________________________</span><br><span class="line">  <span class="number">1</span> │      <span class="number">1</span>      <span class="number">2</span>      <span class="number">2</span>      <span class="number">4</span>      <span class="number">4</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">2</span> │      <span class="number">0</span>      <span class="number">2</span>      <span class="number">2</span>      <span class="number">4</span>      <span class="number">4</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">3</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">3</span>      <span class="number">4</span>      <span class="number">4</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">4</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">4</span>      <span class="number">4</span>      <span class="number">4</span></span><br><span class="line">  <span class="number">5</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">5</span>      <span class="number">6</span></span><br><span class="line">  <span class="number">6</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">6</span></span><br><span class="line">  <span class="number">7</span> │      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span>      <span class="number">0</span></span><br><span class="line"></span><br><span class="line">The Optimal Binary Tree is..</span><br><span class="line"></span><br><span class="line">            THEN</span><br><span class="line">                OF</span><br><span class="line">        IF</span><br><span class="line">                END</span><br><span class="line">            ELSE</span><br><span class="line">                CASE</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2011/01/14/[AG][DP] Optm Binsearch Tree/" data-id="cjljck96a0023a8n761jqe7be" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2011/01/23/[AG][GA] Greedy Approach/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            Greedy Approach(탐욕 알고리즘)
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2011/01/13/[AG][DP] Chained Mtrx Mult/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Chained Matrix Multiplication(연쇄행렬곱셈)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/23/[HX] hexo writing/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/23/[HX] hexo writing/" class="title">Hexo 글쓰기</a></p>
+                            <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/[HX] hexo command/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/[HX] hexo command/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장 통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장 통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">25</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engineering/">S/W Engineering</a><span class="category-list-count">6</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0-1-배낭-문제/" style="font-size: 10px;">0-1 배낭 문제</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15.71px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.57px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.29px;">백트래킹</a> <a href="/tags/분할정복법/" style="font-size: 14.29px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 15.71px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.29px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.43px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.86px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.71px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.14px;">회계기초</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/">GitHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2011/01/14/[AG][DP] Optm Binsearch Tree/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>

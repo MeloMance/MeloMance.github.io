@@ -18,7 +18,7 @@
 <meta property="og:description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/dijkstra.png">
-<meta property="og:updated_time" content="2018-08-05T13:41:55.962Z">
+<meta property="og:updated_time" content="2018-08-30T15:48:28.285Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dijkstra&#39;s Algorithm for Single-Source Shortest Paths(다익스트라 알고리즘)">
 <meta name="twitter:description" content="We developed a $\Theta(n^3)$ algorithm, which is Floyd Algorithm, for determining the shortest paths from each vertex to all other vertices in a weighted, directed graph. If we wanted to know only the">
@@ -195,11 +195,11 @@
 <thead>
 <tr>
 <th style="text-align:center">최단경로확정여부</th>
-<th style="text-align:center">$v_1$ → $v_1$</th>
-<th style="text-align:center">$v_1$ → $v_2$</th>
-<th style="text-align:center">$v_1$ → $v_3$</th>
-<th style="text-align:center">$v_1$ → $v_4$</th>
-<th style="text-align:center">$v_1$ → $v_5$</th>
+<th style="text-align:center">$v_1$ $\rightarrow$ $v_1$</th>
+<th style="text-align:center">$v_1$ $\rightarrow$ $v_2$</th>
+<th style="text-align:center">$v_1$ $\rightarrow$ $v_3$</th>
+<th style="text-align:center">$v_1$ $\rightarrow$ $v_4$</th>
+<th style="text-align:center">$v_1$ $\rightarrow$ $v_5$</th>
 </tr>
 </thead>
 <tbody>
@@ -369,10 +369,10 @@
 <blockquote>
 <p>최단경로를 구성하는 부분경로들 역시 최단경로이다.</p>
 </blockquote>
-<p><code>Lemma 2</code> If s → … → u → v is a shortest path from s to v, then after u has been added to Y and we check paths from u to vertices in V - Y that allow only vertices in Y as intermediate vertices. Therefore, length[v] = δ(s,v) and length[v] is not changed thereafter.</p>
+<p><code>Lemma 2</code> If s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v is a shortest path from s to v, then after u has been added to Y and we check paths from u to vertices in V - Y that allow only vertices in Y as intermediate vertices. Therefore, length[v] = δ(s,v) and length[v] is not changed thereafter.</p>
 <figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// check paths from u to vertices in V - Y that allow only vertices</span></span><br><span class="line"><span class="comment">// in Y as intermediate vertices.</span></span><br><span class="line"><span class="keyword">if</span> (length[u] + edge(u,v) &lt; length[v])</span><br><span class="line">  length[v] = length[u] + edge(u,v);</span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>s에서 v로가는 최단경로가 s → … → u → v일 때, 정점 u가 Y에 추가되면서 length[v]를 더 짧은 거리로 갱신할 수 있는지 점검하므로 결국 length[v] = δ(s,v)가 된다. length[v] 값은 그 이후로 변하지 않는다.</p>
+<p>s에서 v로가는 최단경로가 s $\rightarrow$ … $\rightarrow$ u $\rightarrow$ v일 때, 정점 u가 Y에 추가되면서 length[v]를 더 짧은 거리로 갱신할 수 있는지 점검하므로 결국 length[v] = δ(s,v)가 된다. length[v] 값은 그 이후로 변하지 않는다.</p>
 </blockquote>
 <h3 id="Proof-by-contradiction"><a href="#Proof-by-contradiction" class="headerlink" title="Proof by contradiction"></a>Proof by contradiction</h3><p><code>Proof</code> For each vertex u ∈ V, it follows from the fact that at all times length[u] $\ge$ δ(s,u). After running Dijkstra’s algorithm, we assert that length[u] = δ(s,u).</p>
 <blockquote>
@@ -391,15 +391,15 @@
 <p>Y(최단경로가 결정된 정점들의 집합)에 추가되는 첫번째 정점이 u일 때, 다익스트라 알고리즘이 정점 u에 대해 최단경로를 산출하지 못한다고 가정하자. (length[u] ≠ δ(s,u)) 바꿔 말하면 알고리즘이 산출한 최단경로보다 더 좋은 경로가 존재함을 의미한다.</p>
 </blockquote>
 <blockquote>
-<p>우선 u는 시작정점일 수 없다. 시작정점은 length[s] = δ(s,s) = 0 이기 때문이다.<br>또한, s → u 까지의 경로는 반드시 존재한다. 그렇지 않으면 length[u]는 무한대 값이므로, Y에 속하는 첫번째 정점으로 u가 선택될 수 없다.</p>
+<p>우선 u는 시작정점일 수 없다. 시작정점은 length[s] = δ(s,s) = 0 이기 때문이다.<br>또한, s $\rightarrow$ u 까지의 경로는 반드시 존재한다. 그렇지 않으면 length[u]는 무한대 값이므로, Y에 속하는 첫번째 정점으로 u가 선택될 수 없다.</p>
 </blockquote>
 <blockquote>
-<p>정리하면 s → u 까지의 최단경로가 존재하며, length[u] ≠ δ(s,u)이므로 현재까지 찾은 최단경로보다 더 짧은 최단경로가 존재한다.</p>
+<p>정리하면 s $\rightarrow$ u 까지의 최단경로가 존재하며, length[u] ≠ δ(s,u)이므로 현재까지 찾은 최단경로보다 더 짧은 최단경로가 존재한다.</p>
 </blockquote>
-<p>Let s → v → w → u be the shortest path from s to u. Where v is within Y and w is the first vertex not within Y. When v was inserted into Y, length[v] = δ(s,v) (since we hypothesise that u was the first vertex for which this was not true). Edge (v,w) was relaxed at that time, so that</p>
-<p>$$<br>\begin{align}<br>length[w] &amp;= δ(s,w) \\<br>&amp;\le δ(s,u) \\<br>&amp;\le length[u] \tag{due to $w$ → $u$}<br>\end{align}<br>$$</p>
+<p>Let s $\rightarrow$ v $\rightarrow$ w $\rightarrow$ u be the shortest path from s to u. Where v is within Y and w is the first vertex not within Y. When v was inserted into Y, length[v] = δ(s,v) (since we hypothesise that u was the first vertex for which this was not true). Edge (v,w) was relaxed at that time, so that</p>
+<p>$$<br>\begin{align}<br>length[w] &amp;= δ(s,w) \\<br>&amp;\le δ(s,u) \\<br>&amp;\le length[u] \tag{due to $w$ $\rightarrow$ $u$}<br>\end{align}<br>$$</p>
 <blockquote>
-<p>그 최단경로를 s → v → w → u라고 하면, v는 Y에 속한 임의의 정점이고 w는 V-Y에 속한 임의의 정점이다. 그리고 보조정리에 따라 length[v] = δ(s,v)이며, v를 통해 w로가는 length[w] 값 역시 갱신된 상태다.</p>
+<p>그 최단경로를 s $\rightarrow$ v $\rightarrow$ w $\rightarrow$ u라고 하면, v는 Y에 속한 임의의 정점이고 w는 V-Y에 속한 임의의 정점이다. 그리고 보조정리에 따라 length[v] = δ(s,v)이며, v를 통해 w로가는 length[w] 값 역시 갱신된 상태다.</p>
 </blockquote>
 <blockquote>
 <p>사실 이 최단경로는 참일 수 없다. 첫번째로 선택된 정점이 u인데 Y에 이미 v라는 정점이 존재하기 때문이다. 하지만 length[u] = δ(s,u)를 보이기 위해 증명을 계속 진행한다.</p>
@@ -427,7 +427,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/" data-id="cjkzl4nk20032fon73fq91uv0" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/07/24/[AG][GA] Dijkstra/" data-id="cjljck96x002za8n7yeqs2ljt" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -564,7 +564,7 @@
         
 <nav id="article-nav">
     
-        <a href="/2011/08/06/[AG][BT] Back-Tracking/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2011/08/06/[AG][BT] Backtracking/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
@@ -599,7 +599,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/04/23/[HX] hexo-writing/" class="thumbnail">
+                            <a href="/2018/04/23/[HX] hexo writing/" class="thumbnail">
     
     
         <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
@@ -611,7 +611,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/04/23/[HX] hexo-writing/" class="title">Hexo 글쓰기</a></p>
+                            <p class="item-title"><a href="/2018/04/23/[HX] hexo writing/" class="title">Hexo 글쓰기</a></p>
                             <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
                         </div>
                     </li>
@@ -619,7 +619,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/04/22/[HX] hexo-command/" class="thumbnail">
+                            <a href="/2018/04/22/[HX] hexo command/" class="thumbnail">
     
     
         <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
@@ -631,7 +631,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/04/22/[HX] hexo-command/" class="title">Hexo 명령어</a></p>
+                            <p class="item-title"><a href="/2018/04/22/[HX] hexo command/" class="title">Hexo 명령어</a></p>
                             <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
                         </div>
                     </li>
@@ -679,7 +679,7 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/15/[FX] 신용장-통일규칙/" class="thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장 통일규칙/" class="thumbnail">
     
     
         <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
@@ -691,7 +691,7 @@
                         
                         <div class="item-inner">
                             <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
-                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장-통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장 통일규칙/" class="title">신용장 통일규칙</a></p>
                             <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
                         </div>
                     </li>
@@ -725,7 +725,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">25</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -735,7 +735,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15.71px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.57px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.29px;">백트래킹</a> <a href="/tags/분할정복법/" style="font-size: 14.29px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 15.71px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.29px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.43px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.86px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.71px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.14px;">회계기초</a>
+            <a href="/tags/0-1-배낭-문제/" style="font-size: 10px;">0-1 배낭 문제</a> <a href="/tags/hexo/" style="font-size: 11.43px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15.71px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.57px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.29px;">백트래킹</a> <a href="/tags/분할정복법/" style="font-size: 14.29px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 15.71px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.29px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.43px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.86px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.71px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.14px;">회계기초</a>
         </div>
     </div>
 
