@@ -3,26 +3,26 @@
 <head>
     <meta charset="utf-8">
     
-    <title>Quicksort(퀵정렬) | MELOMANCE</title>
+    <title>Branch-and-Bound with the 0-1 Knapsack problem(Breadth-First Search)(0-1 배낭 문제) | MELOMANCE</title>
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-        <meta name="keywords" content="알고리즘,분할정복법" />
+        <meta name="keywords" content="알고리즘,분기한정법,0-1 배낭 문제" />
     
-    <meta name="description" content="Quicksort is similar to Mergesort in that the sort is accomplished by dividing the array into two partitions and then sorting each partition recursively. However, in quicksort, the array is partitione">
-<meta name="keywords" content="알고리즘,분할정복법">
+    <meta name="description" content="We show how to use the branch-and-bound design strategy by applying it to the 0-1 Knapsack problem. First we discuss a simple version called breadth-first search with branch-and-bound pruning. After t">
+<meta name="keywords" content="알고리즘,분기한정법,0-1 배낭 문제">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Quicksort(퀵정렬)">
-<meta property="og:url" content="http://melomance.github.io/2011/01/08/[AG][DQ] Quicksort/index.html">
+<meta property="og:title" content="Branch-and-Bound with the 0-1 Knapsack problem(Breadth-First Search)(0-1 배낭 문제)">
+<meta property="og:url" content="http://melomance.github.io/2011/12/27/[AG][BB] 0-1 Knapsack Problem2/index.html">
 <meta property="og:site_name" content="MELOMANCE">
-<meta property="og:description" content="Quicksort is similar to Mergesort in that the sort is accomplished by dividing the array into two partitions and then sorting each partition recursively. However, in quicksort, the array is partitione">
+<meta property="og:description" content="We show how to use the branch-and-bound design strategy by applying it to the 0-1 Knapsack problem. First we discuss a simple version called breadth-first search with branch-and-bound pruning. After t">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://melomance.github.io/images/algo/qsort.png">
-<meta property="og:updated_time" content="2018-06-17T12:46:10.490Z">
+<meta property="og:image" content="http://melomance.github.io/images/algo/0-1_knapsack_bfs.png">
+<meta property="og:updated_time" content="2018-09-09T16:26:15.405Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Quicksort(퀵정렬)">
-<meta name="twitter:description" content="Quicksort is similar to Mergesort in that the sort is accomplished by dividing the array into two partitions and then sorting each partition recursively. However, in quicksort, the array is partitione">
-<meta name="twitter:image" content="http://melomance.github.io/images/algo/qsort.png">
+<meta name="twitter:title" content="Branch-and-Bound with the 0-1 Knapsack problem(Breadth-First Search)(0-1 배낭 문제)">
+<meta name="twitter:description" content="We show how to use the branch-and-bound design strategy by applying it to the 0-1 Knapsack problem. First we discuss a simple version called breadth-first search with branch-and-bound pruning. After t">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/0-1_knapsack_bfs.png">
     
 
     
@@ -141,18 +141,18 @@
                         <div class="main-body-header">
     <h1 class="header">
     
-    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a>
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a>
     </h1>
 </div>
                         <div class="main-body-content">
-                            <article id="post-[AG][DQ] Quicksort" class="article article-single article-type-post" itemscope itemprop="blogPost">
+                            <article id="post-[AG][BB] 0-1 Knapsack Problem2" class="article article-single article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
             <header class="article-header">
                 
     
         <h1 class="article-title" itemprop="name">
-        Quicksort(퀵정렬)
+        Branch-and-Bound with the 0-1 Knapsack problem(Breadth-First Search)(0-1 배낭 문제)
         </h1>
     
 
@@ -162,57 +162,132 @@
             <div class="article-meta">
                 
     <div class="article-date">
-        <a href="/2011/01/08/[AG][DQ] Quicksort/" class="article-date">
-            <time datetime="2011-01-08T14:06:00.000Z" itemprop="datePublished">2011-01-08</time>
+        <a href="/2011/12/27/[AG][BB] 0-1 Knapsack Problem2/" class="article-date">
+            <time datetime="2011-12-27T02:49:00.000Z" itemprop="datePublished">2011-12-27</time>
         </a>
     </div>
 
                 
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/분할정복법/">분할정복법</a>, <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
+        <a class="tag-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a>, <a class="tag-link" href="/tags/분기한정법/">분기한정법</a>, <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
     </div>
 
             </div>
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>Quicksort is similar to Mergesort in that the sort is accomplished by dividing the array into two partitions and then sorting each partition recursively. However, in quicksort, the array is partitioned by placing all items smaller than some pivot item before that item and all items larger than the pivot item after it. The pivot item can be any item, and for convenience we will simply make it the first one.  </p>
+            <p>We show how to use the branch-and-bound design strategy by applying it to the 0-1 Knapsack problem. First we discuss a simple version called breadth-first search with branch-and-bound pruning. After that, we show an improvement on the simple version called best-first search with branch-and-bound pruning.</p>
 <blockquote>
-<p>퀵정렬은 선택된 피벗값을 기준으로 배열을 두 개의 파티션으로 나누고 재귀를 이용하여 각 파티션을 정렬한다는 점에서 합병정렬과 비슷하나, 정렬과정에서 추가적인 작업공간을 필요로 하지 않는다. 즉, 퀵정렬은 in-place sort이다.</p>
+<p>0-1 배낭 문제에 너비우선탐색을 적용해봄으로써 분기한정기법을 어떻게 사용하는지 살펴볼 것이다. 그 후 동 문제에 최고우선탐색까지 적용할 것이다(너비우선탐색을 조금 변형하면 최고우선탐색이 되기 때문).</p>
 </blockquote>
-<p><code>Example</code> The steps done by a human when sorting with Quicksort.</p>
-<p><img src="/images/algo/qsort.png" width="65%" align="center"></p>
+<p><code>Example</code> Suppose that n = 4, W = 16, and we have the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">i</th>
+<th style="text-align:center">$p_i$</th>
+<th style="text-align:center">$w_i$</th>
+<th style="text-align:center">$p_i / w_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$40</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$20</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$30</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$6</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$50</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">$5</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$10</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/algo/0-1_knapsack_bfs.png" width="90%" align="center" alt="[The pruned state space tree produced using breadth-first search in above Example. Stored at each node from top to bottom are the total profit of the items stolen up to the node, their total weight, and the bound on the total profit that could be obtained by expanding beyond the node. The node shaded in color is the one at which an optimal solution is found.]"></p>
+<blockquote>
+<p>각 노드에는 3가지 값들이 들어가 있는데 제일 위부터 profit, weight, bound 값이다. 하늘색으로 칠해진 노드가 최적의 해답을 보유한 노드이다. 백트래킹에서 본 것과 비슷하지만 상태공간트리를 방문하는 순서가 너비우선탐색이다. 예를 들어 백트래킹기법에서는 노드(1, 2)가 유망하지 않음을 알았고 그 아래로 확장하지 않았다. 하지만 너비우선탐색을 통한 분기한정법에서는 노드(1,2)아래로 확장한다.</p>
+</blockquote>
 <p><br></p>
-<h2 id="Quicksort-Algorithm"><a href="#Quicksort-Algorithm" class="headerlink" title="Quicksort Algorithm"></a><span style="color:#21955b">Quicksort Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><ol>
-<li>Partition the array so that all items smaller than the pivot item are to the left of it and all items larger are to the right.</li>
-<li>Sort the subarrays.</li>
-</ol>
+<h2 id="The-Breadth-First-Search-with-Branch-and-Bound-Pruning-Algorithm-for-the-0-1-Knapsack-Problem"><a href="#The-Breadth-First-Search-with-Branch-and-Bound-Pruning-Algorithm-for-the-0-1-Knapsack-Problem" class="headerlink" title="The Breadth-First Search with Branch-and-Bound Pruning Algorithm for the 0-1 Knapsack Problem"></a><span style="color:#21955b">The Breadth-First Search with Branch-and-Bound Pruning Algorithm for the 0-1 Knapsack Problem</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>Using breadth-first search with branch-and-bound pruning, we proceed exactly as we did using backtracking, except that we do a breadth-first search instead of a depth-first search. That is, we let weightand profit be the total weight and total profit of the items that have been included up to a node.</p>
+<p>Unlike depth-first search, there is no simple recursive algorithm for breadth-first search. However, we can implement it using a queue. The algorithm that follows does this. The algorithm is written specifically for trees because presently we are interested only in trees. We insert an item at the end of the queue with a procedure called enqueue, and we remove an item from the front with a procedure called dequeue.</p>
+<p>Notice that nodes (3, 1) and (4, 3) have bounds of 0. A branch-and-bound algorithm decides whether to expand beyond a node by checking whether its bound is better than the value of the best solution found so far. Therefore, when a node is nonpromising because its weight is not less than W, we set its bound to 0. In this way, we ensure that its bound cannot be better than the value of the best solution found so far.</p>
 <blockquote>
-<p>선택된 피벗 값을 기준으로 피벗보다 작은 값들은 왼쪽에, 큰 값들은 오른쪽에 오도록 배열을 분할하고 각 부분배열을 정렬한다.</p>
+<p>분기한정 가지치기 너비우선탐색은 깊이우선탐색 대신 너비우선탐색을 하는 것을 제외하고, 백트래킹에서 봤던 방법과 똑같은 방법으로 진행된다. 단, 깊이우선탐색과 달리 너비우선탐색은 재귀 알고리즘을 사용하지 않으며, 그 대신 큐(queue) 자료구조를 사용하여 알고리즘을 구현한다.</p>
 </blockquote>
-<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: quicksort.cpp</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quicksort</span><span class="params">(<span class="keyword">int</span> data[ ], <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Sort n keys in nondecreasing order.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: positive integer n, array of keys S indexed from 1 to n.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: the array S containing the keys in nondecreasing order.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pivotpoint;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (high &gt; low)</span><br><span class="line">    &#123;</span><br><span class="line">        partition(data, low, high, pivotpoint);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// before the pivotpoint</span></span><br><span class="line">        quicksort(data, low, pivotpoint<span class="number">-1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">// after the pivotpoint</span></span><br><span class="line">        quicksort(data, pivotpoint+<span class="number">1</span>, high);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> data[ ], <span class="keyword">int</span> low, <span class="keyword">int</span> high, <span class="keyword">int</span>&amp; pivotpoint)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Partition the array S for Quicksort.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: two indices, low and high, and the subarray of S indexed</span></span></span><br><span class="line"><span class="function"><span class="comment">// from low to high.</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: pivotpoint, the pivot point for the subarray indexed</span></span></span><br><span class="line"><span class="function"><span class="comment">// from low to high.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i, j;</span><br><span class="line">    <span class="keyword">int</span> pivotitem;</span><br><span class="line">    pivotitem = data[low]; <span class="comment">// Choose first item for pivotitem.</span></span><br><span class="line">    j = low;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i = low+<span class="number">1</span>; i &lt;= high; ++i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">if</span> (data[i] &lt; pivotitem)</span><br><span class="line">        &#123;</span><br><span class="line">            ++j;</span><br><span class="line">            <span class="built_in">std</span>::swap(data[i], data[j]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Put pivotitem at pivotpoint.</span></span><br><span class="line">    pivotpoint = j;</span><br><span class="line">    <span class="built_in">std</span>::swap(data[low], data[pivotpoint]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>분기한정 알고리즘은 노드의 확장 여부를 결정할 때, 자식노드로 확장했을 때의 bound 값이 현재까지 구한 가장 좋은 답보다 더 큰지 검사한다. 여기서 weight가 W를 초과하여 해당 노드가 유망하지 않게 되면 노드(3, 1), (4, 3) 처럼 bound를 $0으로 설정한다.</p>
+</blockquote>
+<p>Last of all, in a simple breadth-first search with branch-and-bound pruning, the decision of whether or not to visit a node’s children is made at the time the node is visited. That is, if the branches to the children are pruned, they are pruned when the node is visited. Therefore, when we visit node (2, 3), we decide to visit its children because the value of maxprofit at that time is only $70, whereas the bound for the node is $82. Unlike a depth-first search, in a breadth-first search the value of maxprofit can change by the time we actually visit the children. In this case, maxprofit has a value of $90 by the time we visit the children of node (2, 3). We then waste our time checking these children. We avoid this in our best-first search, which is described in the next subsection.</p>
+<blockquote>
+<p>마지막으로 분기한정 가지치기 너비우선탐색은 어떤 노드의 자식노드를 방문해야 할지는 그 노드를 방문할 때 결정한다. 깊이우선탐색과는 달리 너비우선탐색에서는 maxprofit의 값이 자식노드를 실제 방문하는 때에 변할 수 있다.</p>
+</blockquote>
+<p>To determine whether the node is promising, we initialize totweight and bound to weight and profit, respectively, and then greedily grab items, adding their weights and profits to totweight and bound, until we reach an item whose weight would bring totweight above W . We grab the fraction of that item allowed by the available weight, and add the profit of that fraction to bound. In this way, bound becomes an upper bound on the amount of profit we could obtain by expanding beyond the node. If the node is at level i, and the node at level k is the one whose weight would bring the weight above W , then</p>
+<p>$$<br>\begin{align}<br>totweight &amp;= weight + \sum_{j=i+1}^{k-1}w_j \\<br>bound &amp;= \left(profit + \sum_{j=i+1}^{k-1}p_j\right) + (W - totweight) \times \frac{w_k}{p_k}<br>\end{align}<br>$$</p>
+<ul>
+<li><strong>profit</strong>: the sum of the profits of the items included up to the node.</li>
+<li><strong>weight</strong>: the sum of the weights of those items.</li>
+<li><strong>totweight</strong>: the sum of the weights could be obtained by expanding beyond that node (W를 초과할 수 없다.)</li>
+<li><strong>bound</strong>: the upper bound on the profit that could be obtained by expanding beyond that node.</li>
+</ul>
+<p>Recall that a node is also nonpromising if</p>
+<p>$$<br>weight &lt;= W<br>$$</p>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt; // Provides assert</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;queue&gt; // Provides queue</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"knapsack_bfs.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">knapsack2</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W,</span></span></span><br><span class="line"><span class="function"><span class="params">               <span class="keyword">int</span>&amp; maxprofit)</span></span></span><br><span class="line"><span class="function"><span class="comment">// Problem: Let n items be given, where each item has a weight and</span></span></span><br><span class="line"><span class="function"><span class="comment">// a profit. The weights and profits are positive integers. Furthermore,</span></span></span><br><span class="line"><span class="function"><span class="comment">// let a positive integer W be given. Determine a set of items with</span></span></span><br><span class="line"><span class="function"><span class="comment">// maximum total profit, under the constraint that the sum of their</span></span></span><br><span class="line"><span class="function"><span class="comment">// weights cannot exceed W .</span></span></span><br><span class="line"><span class="function"><span class="comment">// Inputs: positive integers n and W , arrays of positive integers</span></span></span><br><span class="line"><span class="function"><span class="comment">// w and p, each indexed from 1 to n, and each of which is sorted in</span></span></span><br><span class="line"><span class="function"><span class="comment">// nonincreasing order according to the values of p[i] / w [i].</span></span></span><br><span class="line"><span class="function"><span class="comment">// Outputs: an integer maxprofit that is the sum of the profits in an</span></span></span><br><span class="line"><span class="function"><span class="comment">// optimal set.</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="built_in">queue</span>&lt;node&gt; Q;</span><br><span class="line">  node u, v;</span><br><span class="line">  <span class="keyword">int</span> depth = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">int</span> prm_node_cnt = <span class="number">0</span>; <span class="comment">// The number of promising nodes</span></span><br><span class="line">  <span class="keyword">int</span> nprm_node_cnt = <span class="number">0</span>; <span class="comment">// The number of non-promising nodes</span></span><br><span class="line"></span><br><span class="line">  assert(Q.empty( )); <span class="comment">// Initialize Q to be empty.</span></span><br><span class="line">  <span class="comment">// Initialize v to be the root.</span></span><br><span class="line">  v.level = <span class="number">0</span>;</span><br><span class="line">  v.profit = <span class="number">0</span>;</span><br><span class="line">  v.weight = <span class="number">0</span>;</span><br><span class="line">  maxprofit = <span class="number">0</span>;</span><br><span class="line">  Q.push(v); <span class="comment">// enqueue(Q, v)</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span>(!Q.empty( ))</span><br><span class="line">  &#123;</span><br><span class="line">    v = Q.front( );</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"level: "</span> &lt;&lt; setw(<span class="number">2</span>) &lt;&lt; v.level;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"  profit: "</span> &lt;&lt; setw(<span class="number">2</span>) &lt;&lt; v.profit;</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"  weight: "</span> &lt;&lt; setw(<span class="number">2</span>) &lt;&lt; v.weight &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    Q.pop( ); <span class="comment">// dequeue(Q, v)</span></span><br><span class="line">    u.level = v.level + <span class="number">1</span>; <span class="comment">// Set u to a child of v.</span></span><br><span class="line">    u.profit = v.profit + p[u.level]; <span class="comment">// Set u to the child that</span></span><br><span class="line">    u.weight = v.weight + w[u.level]; <span class="comment">// includes the next item.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (u.weight &lt;= W &amp;&amp; u.profit &gt; maxprofit)</span><br><span class="line">      maxprofit = u.profit;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bound(u, n, p, w, W) &gt; maxprofit)</span><br><span class="line">    &#123;</span><br><span class="line">      Q.push(u); <span class="comment">// enqueue(Q, u)</span></span><br><span class="line">      ++prm_node_cnt; <span class="comment">// Count the number of promising nodes</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Count the number of non-promising nodes</span></span><br><span class="line">      ++nprm_node_cnt;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    u.profit = v.profit; <span class="comment">// Set u to the child that does</span></span><br><span class="line">    u.weight = v.weight; <span class="comment">// not include the next item.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (bound(u, n, p, w, W) &gt; maxprofit)</span><br><span class="line">    &#123;</span><br><span class="line">      Q.push(u); <span class="comment">// enqueue(Q, u)</span></span><br><span class="line">      ++prm_node_cnt; <span class="comment">// Count the number of promising nodes</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Count the number of non-promising nodes</span></span><br><span class="line">      ++nprm_node_cnt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The num of promising nodes: "</span> &lt;&lt; prm_node_cnt+<span class="number">1</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The num of non-promising nodes: "</span> &lt;&lt; nprm_node_cnt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">bound</span><span class="params">(node u, <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j, k;</span><br><span class="line">  <span class="keyword">int</span> totweight;</span><br><span class="line">  <span class="keyword">float</span> result;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (u.weight &gt;= W)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    result = (<span class="keyword">float</span>)u.profit;</span><br><span class="line">    j = u.level + <span class="number">1</span>;</span><br><span class="line">    totweight = u.weight;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (j &lt;= n &amp;&amp; totweight + w[j] &lt;= W)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Grab as many items as possible.</span></span><br><span class="line">      totweight = totweight + w[j];</span><br><span class="line">      result = result + p[j];</span><br><span class="line">      ++j;</span><br><span class="line">    &#125;  </span><br><span class="line">    k = j; <span class="comment">// Use k for consistency with formula in text.</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (k &lt;= n) <span class="comment">// Grab fraction of kth item.</span></span><br><span class="line">      result = result + (W - totweight) * (p[k] / w[k]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: knapsack_bfs.h</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> level; <span class="comment">// the node's level in the tree</span></span><br><span class="line">  <span class="keyword">int</span> profit;</span><br><span class="line">  <span class="keyword">int</span> weight;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">node</span> <span class="title">node</span>;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">knapsack2</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W,</span></span></span><br><span class="line"><span class="function"><span class="params">               <span class="keyword">int</span>&amp; maxprofit)</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">bound</span><span class="params">(node u, <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W)</span></span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"knapsack_bfs.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// CONSTANT and VARIANCES</span></span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line">  <span class="keyword">const</span> <span class="keyword">int</span> W = <span class="number">16</span>;</span><br><span class="line">  <span class="keyword">int</span> w[n+<span class="number">1</span>] = &#123;<span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">5</span>&#125;; <span class="comment">// w[0] is meaningless</span></span><br><span class="line">  <span class="keyword">int</span> p[n+<span class="number">1</span>] = &#123;<span class="number">0</span>, <span class="number">40</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">10</span>&#125;; <span class="comment">// p[0] is meaningless</span></span><br><span class="line">  <span class="keyword">int</span> maxprofit = <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">clock_t</span> start, end;</span><br><span class="line"></span><br><span class="line">  start = clock( );</span><br><span class="line">  knapsack2(n, p, w, W, maxprofit);</span><br><span class="line">  end = clock( );</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The answer: $"</span> &lt;&lt; maxprofit &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">double</span> result = (<span class="keyword">double</span>)(end-start) / CLOCKS_PER_SEC;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Elpased time is: "</span>&lt;&lt; result &lt;&lt; <span class="string">" sec."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><br></p>
-<h2 id="Time-Complexity-Analysis"><a href="#Time-Complexity-Analysis" class="headerlink" title="Time Complexity Analysis"></a><span style="color:#21955b">Time Complexity Analysis</span></h2><h3 id="Basic-operation"><a href="#Basic-operation" class="headerlink" title="Basic operation"></a>Basic operation</h3><ul>
-<li>the comparison of S[i] with pivotitem in partition.</li>
-</ul>
-<h3 id="Input-size"><a href="#Input-size" class="headerlink" title="Input size"></a>Input size</h3><ul>
-<li>n, the number of items in the array S.</li>
-</ul>
-<h3 id="Worst-Case-Time-Complexity"><a href="#Worst-Case-Time-Complexity" class="headerlink" title="Worst-Case Time Complexity"></a>Worst-Case Time Complexity</h3><ul>
-<li>$W(n) = \frac{n(n-1)}{2} \in  \Theta (n^2)$</li>
-</ul>
-<h3 id="Average-Case-Time-Complexity"><a href="#Average-Case-Time-Complexity" class="headerlink" title="Average-Case Time Complexity"></a>Average-Case Time Complexity</h3><ul>
-<li>$A(n) \approx  1.38(n+1)logn \in  \Theta (nlogn)$</li>
+<h2 id="Time-Complexity-Analysis"><a href="#Time-Complexity-Analysis" class="headerlink" title="Time Complexity Analysis"></a><span style="color:#21955b">Time Complexity Analysis</span></h2><h4 id="Worst-Case-Time-Complexity"><a href="#Worst-Case-Time-Complexity" class="headerlink" title="Worst-Case Time Complexity"></a>Worst-Case Time Complexity</h4><ul>
+<li>$O(n) =  1 + 2 + 2^2 + 2^3 + … + 2^n = 2^{(n+1)} - 1 \in \Theta(2^n)$</li>
 </ul>
 <blockquote>
-<p>시간복잡도가 최악인 경우, 퀵정렬의 비교횟수는 n^2(quadratic time)을 요구한다. 하지만 정렬하고자 하는 키값들이 무작위로 분산되어 있다면, 평균적으로 퀵정렬이 수행하는 비교횟수는 nlogn에 비례한다.</p>
+<p>$w_i$를 포함시키느냐 그렇지 않느냐의 두 가지 선택이므로 상태공간트리 내 전체 노드의 수는 최대 $2^{n+1} - 1$개가 된다. 최악의 경우 방문하는 노드의 수가 지수이지만, 가지치기를 통해 상태노드의 수를 줄일 수 있기 때문에 백트래킹 알고리즘의 효율은 더 좋을 수 있다.</p>
+</blockquote>
+<h3 id="Comparing-the-Algorithm-Techniques-for-the-0-1-Knapsack-Problem"><a href="#Comparing-the-Algorithm-Techniques-for-the-0-1-Knapsack-Problem" class="headerlink" title="Comparing the Algorithm Techniques for the 0-1 Knapsack Problem"></a>Comparing the Algorithm Techniques for the 0-1 Knapsack Problem</h3><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Algoritm Technique</th>
+<th style="text-align:right">Worst-Case Time Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td>Dynamic Programming</td>
+<td style="text-align:right">$O(min(2^n, nW))$</td>
+</tr>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td>Backtracking(depth-first search)</td>
+<td style="text-align:right">$\Theta(2^n)$</td>
+</tr>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td>Branch-and-Bound(breadth-first search)</td>
+<td style="text-align:right">$\Theta(2^n)$</td>
+</tr>
+</tbody>
+</table>
+<p>Owing to the additional bound of nW , it may appear that the dynamic programming algorithm is superior. However, in backtracking algorithms the worst case gives little insight into how much checking is usually saved by backtracking. In general, the breadth-first search strategy has no advantage over a depth-first search(backtracking).</p>
+<blockquote>
+<p>nW 덕분에 동적계획 알고리즘으로 문제를 해결하는게 더 좋은 것처럼 보일 수 있다. 그러나 백트래킹 알고리즘에서 최악의 경우를 따지면 실제 백트래킹으로 방문하는 노드의 수를 얼마나 절약했는지 반영이 안되므로, 두 알고리즘의 상대적인 효율을 이론적으로 분석하기는 어렵다.</p>
 </blockquote>
 <blockquote>
-<p>퀵정렬의 성능향상을 위해서는 중간값에 가까운 피벗을 선택해야 한다. 선택된 피벗이 중간값에 가까울수록 좌우 파티션이 균등하게 이루어져 더 빨리 정렬할 수 있다.</p>
-</blockquote>
-<blockquote>
-<p>위의 예시처럼 첫번째 항목을 피벗으로 잡는건 효율적이라고 할 수 없다. 피벗값 선택시 랜덤하게 3~5개의 원소를 선택 한 후, 그 중에서 중간값을 취하는 방법도 있다.</p>
+<p>일반적으로 0-1 배낭 문제에 대해 너비우선탐색의 효율이 깊이우선탐색(백트래킹)보다 더 좋다고 단정지을 순 없다. 깊이우선탐색과 너비우선탐색 중 무엇이 더 효율적이냐에 대한 답은 문제마다 다르기 때문이다.</p>
 </blockquote>
 
         </div>
@@ -221,7 +296,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/01/08/[AG][DQ] Quicksort/" data-id="cjnbvijqj002ytswojgrvlog1" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/12/27/[AG][BB] 0-1 Knapsack Problem2/" data-id="cjnbvijqg002qtswoysszjfdk" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -358,20 +433,20 @@
         
 <nav id="article-nav">
     
-        <a href="/2011/01/10/[AG][DQ] When Not To Use Divd and Conqr/" id="article-nav-newer" class="article-nav-link-wrap">
+        <a href="/2013/08/24/[AC] 기업과 회계/" id="article-nav-newer" class="article-nav-link-wrap">
         <strong class="article-nav-caption">newer</strong>
         <p class="article-nav-title">
         
-            When Not to Use Divide-and-Conquer(분할정복법 사용을 피해야 하는 경우)
+            기업과 회계
         
         </p>
         <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
     </a>
     
     
-        <a href="/2011/01/08/[AG][DQ] Mergesort/" id="article-nav-older" class="article-nav-link-wrap">
+        <a href="/2011/12/26/[AG][BB] Branch and Bound/" id="article-nav-older" class="article-nav-link-wrap">
         <strong class="article-nav-caption">older</strong>
-        <p class="article-nav-title">Mergesort(합병정렬)</p>
+        <p class="article-nav-title">Branch and Bound(분기한정법)</p>
         <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
         </a>
     
@@ -581,7 +656,7 @@
     var disqus_shortname = 'hexo-theme-hueman';
     
     
-    var disqus_url = 'http://melomance.github.io/2011/01/08/[AG][DQ] Quicksort/';
+    var disqus_url = 'http://melomance.github.io/2011/12/27/[AG][BB] 0-1 Knapsack Problem2/';
     
     (function() {
     var dsq = document.createElement('script');
