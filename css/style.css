@@ -231,7 +231,7 @@ body,
 }
 body {
   background: #eaeaea;
-  font: 14px "Titillium Web", NanumSquareRound, sans-serif;
+  font: 14px "Noto Sans KR", NanumSquareRound, Titillium Web, sans-serif;
   -webkit-text-size-adjust: 100%;
 }
 code {
@@ -534,7 +534,7 @@ code {
   -moz-transition: 0.2s ease-in;
   -ms-transition: 0.2s ease-in;
   transition: 0.2s ease-in;
-  font: 16px "Titillium Web", NanumSquareRound, sans-serif;
+  font: 16px "Noto Sans KR", NanumSquareRound, Titillium Web, sans-serif;
   color: rgba(255,255,255,0.7);
 }
 .search-form-input:focus,
@@ -1052,7 +1052,7 @@ code {
 }
 .article-title {
   text-decoration: none;
-  font-size: 38px;
+  font-size: 35px /* default size is 38px */;
   letter-spacing: -1px;
   color: #555;
   line-height: 1.3em;
@@ -1112,7 +1112,7 @@ a.article-title:hover {
 }
 .article-entry {
   color: #555;
-  font-size: 18px;
+  font-size: 16px /* default size is 18px */;
   font-weight: 300;
   line-height: 1.6em;
 }
@@ -1180,7 +1180,7 @@ a.article-title:hover {
   border-collapse: collapse;
   border-spacing: 0;
   text-align: left;
-  font-size: 17px;
+  font-size: 15px /* default size is 17px */;
 }
 .article-entry th {
   font-weight: 600;
@@ -1203,7 +1203,7 @@ a.article-title:hover {
   top: 0;
   left: 0;
   color: #ccc;
-  font-size: 32px;
+  font-size: 30px /* default size is 32px */;
   content: "\f10d";
   position: absolute;
   text-align: center;
@@ -1213,7 +1213,7 @@ a.article-title:hover {
 .article-entry blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
-  font-family: "Titillium Web", NanumSquareRound, sans-serif;
+  font-family: "Noto Sans KR", NanumSquareRound, Titillium Web, sans-serif;
 }
 .article-entry blockquote footer cite:before {
   content: "—";
@@ -1325,7 +1325,7 @@ a.article-title:hover {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box;
-  font: 14px "Titillium Web", NanumSquareRound, sans-serif;
+  font: 14px "Noto Sans KR", NanumSquareRound, Titillium Web, sans-serif;
   padding: 0 15px;
   color: #555;
   outline: none;
