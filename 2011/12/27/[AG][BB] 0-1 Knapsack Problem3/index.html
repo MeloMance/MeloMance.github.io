@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Branch-and-Bound with the 0-1 Knapsack problem(Best-First Search)(0-1 배낭 문제-최고우선탐색) | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="알고리즘,분기한정법,0-1 배낭 문제" />
+    
+    <meta name="description" content="In general, the breadth-first search strategy has no advantage over a depth-first search (backtracking). However, we can improve our search by using our bound to do more than just determine whether a">
+<meta name="keywords" content="알고리즘,분기한정법,0-1 배낭 문제">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Branch-and-Bound with the 0-1 Knapsack problem(Best-First Search)(0-1 배낭 문제-최고우선탐색)">
+<meta property="og:url" content="http://melomance.github.io/2011/12/27/[AG][BB] 0-1 Knapsack Problem3/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="In general, the breadth-first search strategy has no advantage over a depth-first search (backtracking). However, we can improve our search by using our bound to do more than just determine whether a">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/algo/0-1_knapsack_bestfs.png">
+<meta property="og:updated_time" content="2018-11-03T15:23:32.053Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Branch-and-Bound with the 0-1 Knapsack problem(Best-First Search)(0-1 배낭 문제-최고우선탐색)">
+<meta name="twitter:description" content="In general, the breadth-first search strategy has no advantage over a depth-first search (backtracking). However, we can improve our search by using our bound to do more than just determine whether a">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/0-1_knapsack_bestfs.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+
+
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Ubuntu+Mono.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif">
+
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engr/">S/W Engr.</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AG][BB] 0-1 Knapsack Problem3" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        Branch-and-Bound with the 0-1 Knapsack problem(Best-First Search)(0-1 배낭 문제-최고우선탐색)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2011/12/27/[AG][BB] 0-1 Knapsack Problem3/" class="article-date">
+            <time datetime="2011-12-27T02:50:00.000Z" itemprop="datePublished">2011-12-27</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a>, <a class="tag-link" href="/tags/분기한정법/">분기한정법</a>, <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>In general, the breadth-first search strategy has no advantage over a depth-first search (backtracking). However, we can improve our search by using our bound to do more than just determine whether a node is promising. After visiting all the children of a given node, we can look at all the promising, unexpanded nodes and expand beyond the one with the best bound. Recall that a node is promising if its bound is better than the value of the best solution found so far. In this way, we often arrive at an optimal solution more quickly than if we simply proceeded blindly in a predetermined order. The example that follows illustrates this method.</p>
+<blockquote>
+<p>0-1 배낭 문제에 최고우선탐색을 적용하기에 앞서 깊이우선탐색(백트래킹)과 너비우선탐색으로 해결하는 법을 살펴봤다. 일반적으로 너비우선탐색은 깊이우선탐색보다 좋은 점이 없었다. 하지만 최고우선탐색에서는 bound 값을 노드의 유망성 여부를 판단하는 것 외에 추가적으로 사용하여 알고리즘의 효율을 향상시킨다.</p>
+</blockquote>
+<blockquote>
+<p>최고우선탐색은 어떤 노드의 모든 자식노드를 방문한 후 유망하면서 미확장된 노드 모두를 살펴보고 그 중 bound 값이 가장 좋은 노드를 우선으로 확장한다. 지금까지 찾은 최고의 해답보다 그 bound 값이 더 좋다면 그 노드는 유망하다. 이렇게 하면 미리 결정된 순서(깊이우선탐색, 너비우선탐색)대로 탐색을 진행하는 것보다 더 빨리 최적 해를 찾게된다.</p>
+</blockquote>
+<p><code>Example</code> Suppose that n = 4, W = 16, and we have the following:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">i</th>
+<th style="text-align:center">$p_i$</th>
+<th style="text-align:center">$w_i$</th>
+<th style="text-align:center">$p_i / w_i$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">$40</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$20</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">$30</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$6</td>
+</tr>
+<tr>
+<td style="text-align:center">3</td>
+<td style="text-align:center">$50</td>
+<td style="text-align:center">10</td>
+<td style="text-align:center">$5</td>
+</tr>
+<tr>
+<td style="text-align:center">4</td>
+<td style="text-align:center">$10</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">$2</td>
+</tr>
+</tbody>
+</table>
+<p><img src="/images/algo/0-1_knapsack_bestfs.png" width="90%" align="center" alt="[The pruned state space tree produced using best-first search in above Example. Stored at each node from top to bottom are the total profit of the items stolen up to that node, their total weight, and the bound on the total profit that could be obtained by expanding beyond the node. The node shaded in color is the one at which an optimal solution is found.]"></p>
+<p><code>Step 1</code> 루트노드(0,0)를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">0</span>], [weight = <span class="number">0</span>], [bound = <span class="number">115</span>(= <span class="number">40</span> + <span class="number">30</span> + (<span class="number">16</span> - <span class="number">7</span>) x <span class="number">50</span>/<span class="number">10</span>)]</span><br><span class="line">maxprofit = <span class="number">0</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 2</code> 노드(1,1)을 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">40</span>], [weight = <span class="number">2</span>], [bound = <span class="number">115</span>]</span><br><span class="line">(<span class="number">2</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">40</span> &gt; <span class="number">0</span>(current maxprofit)) → maxprofit = <span class="number">40</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 3</code> 노드(1,2)를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">0</span>], [weight = <span class="number">0</span>], [bound = <span class="number">82</span>(= <span class="number">30</span> + <span class="number">50</span> + (<span class="number">16</span> - <span class="number">15</span>) x <span class="number">10</span>/<span class="number">5</span>)]</span><br><span class="line">(<span class="number">0</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">0</span> &gt; <span class="number">40</span>(current maxprofit)) → <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 4</code> 아직 확장하지 않은 노드 중에서 가장 큰 bound를 가진 유망한 노드를 찾는다. 노드(1,1) bound = 115 &gt; 노드(1,2) bound = 82 이므로, 노드(1,1)이 bound가 가장 크면서 유망하고 확장하지 않은 노드이다. 따라서 그 노드의 자식노드(2,1)를 다음으로 방문한다.</p>
+<p><code>Step 5</code> 노드(2,1)을 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">70</span>], [weight = <span class="number">7</span>], [bound = <span class="number">115</span>]</span><br><span class="line">(<span class="number">7</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">70</span> &gt; <span class="number">40</span>(current maxprofit)) → maxprofit = <span class="number">70</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 6</code> 노드(2,2)를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">40</span>], [weight = <span class="number">2</span>], [bound = <span class="number">98</span>(= <span class="number">40</span> + <span class="number">50</span> + (<span class="number">16</span> - <span class="number">12</span>) x <span class="number">10</span>/<span class="number">5</span>)]</span><br><span class="line">(<span class="number">2</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">40</span> &gt; <span class="number">70</span>(current maxprofit)) → <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 7</code> 아직 확장하지 않은 노드 중에서 가장 큰 bound를 가진 유망한 노드를 찾는다. 노드(2,1) bound = 115 &gt; 노드(2,2) bound = 98 &gt; 노드(1,2) bound = 82 이므로 노드(2,1)의 자식노드인 (3,1)를 다음으로 방문한다.</p>
+<p><code>Step 8</code> 노드(3,1)을 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">120</span>], [weight = <span class="number">17</span>], [bound = <span class="number">0</span>]</span><br><span class="line">(<span class="number">17</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">120</span> &gt; <span class="number">70</span>(current maxprofit)) → <span class="literal">false</span></span><br><span class="line">weight가 W를 초과했으므로 bound 값을 <span class="number">0</span>으로 놓아 유망하지 않다고 표시한다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step 9</code> 노드(3,2)를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">70</span>], [weight = <span class="number">7</span>], [bound = <span class="number">80</span>(= <span class="number">40</span> + <span class="number">30</span> + <span class="number">10</span>]</span><br><span class="line">(<span class="number">7</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">70</span> &gt; <span class="number">70</span>(current maxprofit)) → <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step10</code> 아직 확장하지 않은 노드 중에서 가장 큰 bound를 가진 유망한 노드를 찾는다. 노드(2,2) bound = 98 &gt; 노드(1,2) bound = 82 &gt; 노드(3,2) bound = 80 이므로 노드(2,2)의 자식노드인 (3,3)을 다음으로 방문한다.</p>
+<p><code>Step11</code> 노드 (3,3)을 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">90</span>], [weight = <span class="number">12</span>], [bound = <span class="number">98</span>(= <span class="number">40</span> + <span class="number">50</span> + (<span class="number">16</span> - <span class="number">12</span>) x <span class="number">10</span>/<span class="number">5</span>)]</span><br><span class="line">(<span class="number">12</span> &lt;= <span class="number">16</span>(w)) &amp;&amp; (<span class="number">90</span> &gt; <span class="number">70</span>(current maxprofit)) → maxprofit = <span class="number">90</span></span><br><span class="line"><span class="number">82</span>(=노드(<span class="number">1</span>,<span class="number">2</span>) bound) &lt;= <span class="number">90</span> → 이 시점에서 노드(<span class="number">1</span>,<span class="number">2</span>)는 유망하지 않다고 결정한다.</span><br><span class="line"><span class="number">80</span>(=노드(<span class="number">3</span>,<span class="number">2</span>) bound) &lt;= <span class="number">90</span> → 이 시점에서 노드(<span class="number">3</span>,<span class="number">2</span>)는 유망하지 않다고 결정한다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step12</code> 노드(3,4)를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">40</span>], [weight = <span class="number">2</span>], [bound = <span class="number">50</span>(= <span class="number">40</span> + <span class="number">10</span>)]</span><br><span class="line">(<span class="number">2</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">40</span> &gt; <span class="number">90</span>(current maxprofit)) → <span class="literal">false</span></span><br><span class="line"><span class="number">50</span>(=노드(<span class="number">3</span>,<span class="number">4</span>) bound) &lt;= <span class="number">90</span> → 노드(<span class="number">3</span>,<span class="number">4</span>)는 유망하지 않다고 결정한다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step13</code> 아직 확장하지 않은 노드 중에서 가장 큰 bound를 가진 유망한 노드를 찾는다. 유일하게 확장되지 않고 남은 유망한 노드는 (3,3)이다. 그 노드의 자식노드인 (4,1)을 다음으로 방문한다.</p>
+<p><code>Step14</code> 노드(4,1)을 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">100</span>], [weight = <span class="number">17</span>], [bound = <span class="number">0</span>]</span><br><span class="line">(<span class="number">17</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">100</span> &gt; <span class="number">90</span>(current maxprofit)) → <span class="literal">false</span></span><br><span class="line">weight가 W를 초과했으므로 bound 값을 <span class="number">0</span>으로 놓아 유망하지 않다고 표시한다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step15</code> 노드(4,2)를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[profit = <span class="number">90</span>], [weight = <span class="number">12</span>], [bound = <span class="number">90</span>(= <span class="number">40</span> + <span class="number">50</span>)]</span><br><span class="line">(<span class="number">12</span> &lt;= <span class="number">16</span>(W)) &amp;&amp; (<span class="number">90</span> &gt; <span class="number">90</span>(current maxprofit)) → <span class="literal">false</span></span><br><span class="line"><span class="number">90</span>(=노드(<span class="number">4</span>,<span class="number">2</span>) bound) &lt;= <span class="number">90</span> → 노드(<span class="number">4</span>,<span class="number">2</span>)는 유망하지 않다고 결정한다.</span><br></pre></td></tr></table></figure></p>
+<p><code>End</code> Because there are now no promising, unexpanded nodes, we are done.</p>
+<blockquote>
+<p>상태공간트리에서 잎노드들은 그 bound 값이 maxprofit을 넘을 수 없으므로 자동으로 유망하지 않게 된다. 유망하면서 미확장된 노드가 없으므로 알고리즘이 종료된다.</p>
+</blockquote>
+<p>It must be stressed, however, that there is no guarantee that the node that appears to be best will actually lead to an optimal solution. In Example, node (2,1) appears to be better than node (2,2), but node (2,2) leads to the optimal solution. In general, best-first search can still end up creating most or all of the state space tree for some instances.</p>
+<blockquote>
+<p>위의 예제에서 노드(2,1)이 노드(2,2)보다 더 좋아보였지만 노드(2,2)가 해답을 이끌어낸다. 즉, 최고라고 여겨지는 노드에서 최적의 해가 나온다는 보장은 없다.</p>
+</blockquote>
+<p><br></p>
+<h2 id="The-Best-First-Search-with-Branch-and-Bound-Pruning-Algorithm-for-the-0-1-Knapsack-Problem"><a href="#The-Best-First-Search-with-Branch-and-Bound-Pruning-Algorithm-for-the-0-1-Knapsack-Problem" class="headerlink" title="The Best-First Search with Branch-and-Bound Pruning Algorithm for the 0-1 Knapsack Problem"></a><span style="color:#21955b">The Best-First Search with Branch-and-Bound Pruning Algorithm for the 0-1 Knapsack Problem</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>$$<br>\begin{align}<br>totweight &amp;= weight + \sum_{j=i+1}^{k-1}w_j \\<br>bound &amp;= \left(profit + \sum_{j=i+1}^{k-1}p_j\right) + (W - totweight) \times \frac{w_k}{p_k}<br>\end{align}<br>$$</p>
+<ul>
+<li><strong>profit</strong>: the sum of the profits of the items included up to the node.</li>
+<li><strong>weight</strong>: the sum of the weights of those items.</li>
+<li><strong>totweight</strong>: the sum of the weights could be obtained by expanding beyond that node (W를 초과할 수 없다.)</li>
+<li><strong>bound</strong>: the upper bound on the profit that could be obtained by expanding beyond that node.</li>
+</ul>
+<p>Recall that a node is also nonpromising if</p>
+<p>$$<br>weight &lt;= W<br>$$</p>
+<p>The implementation of best-first search consists of a simple modification to breadth-first search. Instead of using a queue, we use a priority queue.</p>
+<blockquote>
+<p>너비우선탐색을 조금 변형하면 최고우선탐색을 구현할 수 있다. 최고의 bound 값을 가진 노드를 우선적으로 선택하기 위해 단순 큐 대신 우선순위 큐(Priority Queue)가 사용된다.</p>
+</blockquote>
+<p>Besides using a priority queue instead of a queue, we have added a check following the removal of a node from the priority queue. The check determines if the bound for the node is still better than best. This is how we determine that a node has become nonpromising after visiting the node. For example, node (1, 2) is promising at the time we visit it. In our implementation, this is when we insert it in PQ. However, it becomes nonpromising when maxprofit takes the value 90. In our implementation, this is before we remove it from PQ. We learn this by comparing its bound with maxprofit after removing it from PQ. In this way, we avoid visiting children of a node that becomes nonpromising after it is visited.</p>
+<blockquote>
+<p>우선순위 큐에서 노드를 제거한 후 노드의 bound 값이 maxprofit 보다 아직 좋은지를 결정하는 검사를 추가했다. 예를 들어 노드 (1,2)는 방문 당시에는 유망하지만, 노드(3,3)을 방문하면서 maxprofit 값이 90이 될 때 유망하지 않게 된다. 이런식으로 더 이상 유망하지 않은 노드의 자식노드를 방문하지 못하게 한다.</p>
+</blockquote>
+<h3 id="Pseudo-Code"><a href="#Pseudo-Code" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">best_first_branch_and_bound</span> <span class="params">(state_space_tree T, number&amp; best)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  priority_queue_of_node PQ;</span><br><span class="line">  node u, v;</span><br><span class="line">  initialize(PQ); <span class="comment">// Initialize PQ to empty</span></span><br><span class="line">  v = root of T;</span><br><span class="line">  best = value(v);</span><br><span class="line">  insert(PQ,v);</span><br><span class="line">  <span class="keyword">while</span>(!empty(PQ)) <span class="comment">// Remove node with best bound</span></span><br><span class="line">  &#123;</span><br><span class="line">    remove(PQ,v);</span><br><span class="line">    <span class="keyword">if</span> (bound(v) is better than best) <span class="comment">// Check if node is still promising</span></span><br><span class="line">    &#123;   </span><br><span class="line">      <span class="keyword">for</span> (each child u of v)</span><br><span class="line">      &#123;   </span><br><span class="line">        <span class="keyword">if</span> (value(u) is better than best)</span><br><span class="line">          best = value(u);</span><br><span class="line">        <span class="keyword">if</span> (bound(u) is better than best)</span><br><span class="line">          insert(PQ,u);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: knapsack_bestfs.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> KNAPSACK_BESTFS_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> KNAPSACK_BESTFS_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pqueue.h"</span>  <span class="comment">// Provides priority_queue</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">knapsack3</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W, <span class="keyword">int</span>&amp; maxprofit)</span></span>;</span><br><span class="line"><span class="comment">// Problem: Let n items be given, where each item has a weight and</span></span><br><span class="line"><span class="comment">// a profit. The weights and profits are positive integers. Furthermore,</span></span><br><span class="line"><span class="comment">// let a positive integer W be given. Determine a set of items with</span></span><br><span class="line"><span class="comment">// maximum total profit, under the constraint that the sum of their</span></span><br><span class="line"><span class="comment">// weights cannot exceed W .</span></span><br><span class="line"><span class="comment">// Inputs: positive integers n and W , arrays of positive integers</span></span><br><span class="line"><span class="comment">// w and p, each indexed from 1 to n, and each of which is sorted in</span></span><br><span class="line"><span class="comment">// nonincreasing order according to the values of p[i] / w [i].</span></span><br><span class="line"><span class="comment">// Outputs: an integer maxprofit that is the sum of the profits in an</span></span><br><span class="line"><span class="comment">// optimal set.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">bound</span><span class="params">(node u, <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: knapsack_bestfs.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt; // Provides assert</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt; // Provides cout and endl</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"knapsack_bestfs.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">knapsack3</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W, <span class="keyword">int</span>&amp; maxprofit)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> prm_node_cnt = <span class="number">0</span>; <span class="comment">// The number of promising nodes</span></span><br><span class="line">  <span class="keyword">int</span> nprm_node_cnt = <span class="number">0</span>; <span class="comment">// The number of non-promising nodes</span></span><br><span class="line">  priority_queue PQ;</span><br><span class="line">  node u, v;</span><br><span class="line"></span><br><span class="line">  assert(PQ.is_empty( )); <span class="comment">// Initialize PQ to be empty.</span></span><br><span class="line">  v.level = <span class="number">0</span>; v.profit = <span class="number">0</span>; v.weight = <span class="number">0</span>; <span class="comment">// Initialize v to be the root.</span></span><br><span class="line">  maxprofit = <span class="number">0</span>;</span><br><span class="line">  v.bound = bound(v, n, p, w, W);</span><br><span class="line">  PQ.insert(v);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!PQ.is_empty( ))</span><br><span class="line">  &#123;</span><br><span class="line">    v = PQ.get_front( ); <span class="comment">// Remove node with best bound.</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; <span class="string">"level: "</span>  &lt;&lt; setw(<span class="number">1</span>) &lt;&lt; v.level  &lt;&lt; setw(<span class="number">10</span>)</span><br><span class="line">         &lt;&lt; <span class="string">"profit: "</span> &lt;&lt; setw(<span class="number">2</span>) &lt;&lt; v.profit &lt;&lt; setw(<span class="number">10</span>)</span><br><span class="line">         &lt;&lt; <span class="string">"weight: "</span> &lt;&lt; setw(<span class="number">2</span>) &lt;&lt; v.weight &lt;&lt; setw(<span class="number">10</span>)</span><br><span class="line">         &lt;&lt; <span class="string">"bound: "</span>  &lt;&lt; setw(<span class="number">2</span>) &lt;&lt; v.bound  &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (v.bound &gt; maxprofit) <span class="comment">// Check if node is still promising.</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Set u to the child that includes the next item.</span></span><br><span class="line">      u.level = v.level + <span class="number">1</span>;</span><br><span class="line">      u.weight = v.weight + w[u.level];</span><br><span class="line">      u.profit = v.profit + p[u.level];</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (u.weight &lt;= W &amp;&amp; u.profit &gt; maxprofit)</span><br><span class="line">        maxprofit = u.profit;</span><br><span class="line"></span><br><span class="line">      u.bound = bound(u, n, p, w, W);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (u.bound &gt; maxprofit)</span><br><span class="line">        PQ.insert(u);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">// Count the number of non-promising nodes</span></span><br><span class="line">        ++nprm_node_cnt;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Set u to the child that does not include the next item.</span></span><br><span class="line">      u.weight = v.weight;          </span><br><span class="line">      u.profit = v.profit;            </span><br><span class="line">      u.bound = bound(u, n, p, w, W);</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (u.bound &gt; maxprofit)</span><br><span class="line">        PQ.insert(u);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">// Count the number of non-promising nodes</span></span><br><span class="line">        ++nprm_node_cnt;</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Count the number of promising nodes</span></span><br><span class="line">      ++prm_node_cnt;   </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Count the number of non-promising nodes</span></span><br><span class="line">      ++nprm_node_cnt;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="built_in">endl</span> &lt;&lt; <span class="string">"The number of promising node: "</span> &lt;&lt; prm_node_cnt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The number of non-promising node: "</span> &lt;&lt; nprm_node_cnt &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">float</span> <span class="title">bound</span><span class="params">(node u, <span class="keyword">int</span> n, <span class="keyword">const</span> <span class="keyword">int</span> p[ ], <span class="keyword">const</span> <span class="keyword">int</span> w[ ], <span class="keyword">int</span> W)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">int</span> j, k;</span><br><span class="line">  <span class="keyword">int</span> totweight;</span><br><span class="line">  <span class="keyword">float</span> result;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">if</span> (u.weight &gt;= W)</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">  <span class="keyword">else</span></span><br><span class="line">  &#123;</span><br><span class="line">    result = (<span class="keyword">float</span>)u.profit;</span><br><span class="line">    j = u.level + <span class="number">1</span>;</span><br><span class="line">    totweight = u.weight;</span><br><span class="line">    <span class="keyword">while</span> (j &lt;= n &amp;&amp; totweight + w[j] &lt;= W)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="comment">// Grab as many items as possible.</span></span><br><span class="line">      totweight = totweight + w[j];</span><br><span class="line">      result = result + p[j];</span><br><span class="line">      ++j;</span><br><span class="line">    &#125;</span><br><span class="line">    k = j; <span class="comment">// Use k for consistency with formula in text.</span></span><br><span class="line">    <span class="keyword">if</span> (k &lt;= n) <span class="comment">// Grab fraction of kth item.</span></span><br><span class="line">      result = result + (W - totweight) * (p[k] / w[k]);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> result;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: maxtotprofit.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;ctime&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"knapsack_bestfs.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> n = <span class="number">4</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> W = <span class="number">16</span>;</span><br><span class="line"><span class="keyword">int</span> w[n+<span class="number">1</span>] = &#123;<span class="number">0</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">5</span>&#125;; <span class="comment">// w[0] is meaningless</span></span><br><span class="line"><span class="keyword">int</span> p[n+<span class="number">1</span>] = &#123;<span class="number">0</span>, <span class="number">40</span>, <span class="number">30</span>, <span class="number">50</span>, <span class="number">10</span>&#125;; <span class="comment">// p[0] is meaningless</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="keyword">clock_t</span> start, end;</span><br><span class="line">  <span class="keyword">int</span> maxprofit = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">  start = clock( );</span><br><span class="line">  knapsack3(n, p, w, W, maxprofit);</span><br><span class="line">  end = clock( );</span><br><span class="line"></span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"The answer: "</span> &lt;&lt; maxprofit &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="keyword">double</span> result = (<span class="keyword">double</span>)(end-start) / CLOCKS_PER_SEC;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"Elpased time is: "</span>&lt;&lt; result &lt;&lt; <span class="string">" sec."</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><br></p>
+<h2 id="Time-Complexity-Analysis"><a href="#Time-Complexity-Analysis" class="headerlink" title="Time Complexity Analysis"></a><span style="color:#21955b">Time Complexity Analysis</span></h2><h4 id="Worst-Case-Time-Complexity"><a href="#Worst-Case-Time-Complexity" class="headerlink" title="Worst-Case Time Complexity"></a>Worst-Case Time Complexity</h4><ul>
+<li>$O(n) =  1 + 2 + 2^2 + 2^3 + … + 2^n = 2^{(n+1)} - 1 \in \Theta(2^n)$</li>
+</ul>
+<blockquote>
+<p>$w_i$를 포함시키느냐 그렇지 않느냐의 두 가지 선택이므로 상태공간트리 내 전체 노드의 수는 최대 $2^{n+1} - 1$개가 된다. 최악의 경우 방문하는 노드의 수가 지수이지만, 가지치기를 통해 상태노드의 수를 줄일 수 있기 때문에 알고리즘의 효율은 더 좋을 수 있다.</p>
+</blockquote>
+<h3 id="Comparing-the-Algorithm-Techniques-for-the-0-1-Knapsack-Problem"><a href="#Comparing-the-Algorithm-Techniques-for-the-0-1-Knapsack-Problem" class="headerlink" title="Comparing the Algorithm Techniques for the 0-1 Knapsack Problem"></a>Comparing the Algorithm Techniques for the 0-1 Knapsack Problem</h3><table>
+<thead>
+<tr>
+<th>Problem</th>
+<th>Algoritm Technique</th>
+<th style="text-align:right">Worst-Case Time Complexity</th>
+<th style="text-align:right">Checking Nodes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td>Dynamic Programming</td>
+<td style="text-align:right">$O(min(2^n, nW))$</td>
+<td style="text-align:right"></td>
+</tr>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td><a href="https://melomance.github.io/2011/12/24/[AG][BT]%200-1%20Knapsack%20Problem/">Backtracking(depth-first search)</a></td>
+<td style="text-align:right">$\Theta(2^n)$</td>
+<td style="text-align:right">13</td>
+</tr>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td><a href="https://melomance.github.io/2011/12/27/[AG][BB]%200-1%20Knapsack%20Problem2/">Branch-and-Bound(breadth-first search)</a></td>
+<td style="text-align:right">$\Theta(2^n)$</td>
+<td style="text-align:right">17</td>
+</tr>
+<tr>
+<td>0-1 Knapsack Problem</td>
+<td>Branch-and-Bound(best-first search)</td>
+<td style="text-align:right">$\Theta(2^n)$</td>
+<td style="text-align:right">11</td>
+</tr>
+</tbody>
+</table>
+<p>Using best-first search, we have checked only 11 nodes, which is 6 less than the number checked using breadth-first search and 2 less than the number checked using depth-first search. A savings of 2 is not very impressive; however, in a large state space tree, the savings can be very significant when the best-first search quickly hones in on an optimal solution.</p>
+<blockquote>
+<p>같은 예제에서 너비우선탐색은 17개, 깊이우선탐색은 13개의 노드 수를 검사하는 반면 최고우선탐색은 총 11개의 노드를 검사한다. 2개 노드를 절약한 건 인상적이지 않지만 큰 상태공간트리에서 최고우선탐색으로 최적해를 빨리 찾는 경우 이 차이는 매우 중요하다.</p>
+</blockquote>
+<blockquote>
+<p>일반적으로 0-1 배낭 문제에 대해 너비우선탐색(13개 노드 검사)의 효율이 깊이우선탐색(17개 노드 검사)보다 더 좋다고 단정지을 순 없다. 깊이우선탐색과 너비우선탐색 중 무엇이 더 효율적이냐에 대한 답은 문제마다 다르기 때문이다.</p>
+</blockquote>
+<blockquote>
+<p>nW 덕분에 동적계획 알고리즘으로 문제를 해결하는게 더 좋은 것처럼 보일 수 있다. 그러나 깊이우선탐색, 너비우선탐색, 최고우선탐색 알고리즘에서 최악의 경우를 따지면 실제 방문하는 노드의 수를 얼마나 절약했는지 반영이 안되므로, 알고리즘의 상대적인 효율을 이론적으로 분석하기는 어렵다.</p>
+</blockquote>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2011/12/27/[AG][BB] 0-1 Knapsack Problem3/" data-id="cjo1mlz7z001428wo0jrp434q" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2013/08/24/[AC] 기업과 회계/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            기업과 회계
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2011/12/27/[AG][BB] 0-1 Knapsack Problem2/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Branch-and-Bound with the 0-1 Knapsack problem(Breadth-First Search)(0-1 배낭 문제-너비우선탐색)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/23/[HX] hexo writing/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/23/[HX] hexo writing/" class="title">Hexo 글쓰기</a></p>
+                            <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/[HX] hexo command/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/[HX] hexo command/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장 통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장 통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">28</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engr/">S/W Engr.</a><span class="category-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분기한정법/">분기한정법</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">28</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0-1-배낭-문제/" style="font-size: 12.5px;">0-1 배낭 문제</a> <a href="/tags/hexo/" style="font-size: 11.25px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.75px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 13.75px;">백트래킹</a> <a href="/tags/분기한정법/" style="font-size: 12.5px;">분기한정법</a> <a href="/tags/분할정복법/" style="font-size: 13.75px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 16.25px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 13.75px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.25px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.5px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.5px;">회계기초</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/">GitHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2018 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2011/12/27/[AG][BB] 0-1 Knapsack Problem3/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+</body>
+</html>
