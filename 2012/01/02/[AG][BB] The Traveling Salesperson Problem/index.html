@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    
+    <title>The Traveling Salesperson Problem(외판원 문제) | MELOMANCE</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+        <meta name="keywords" content="알고리즘,분기한정법" />
+    
+    <meta name="description" content="Suppose a salesperson is planning a sales trip that includes 20 cities. Each city is connected to some of the other cities by a road. To minimize travel time, we want to determine a shortest route tha">
+<meta name="keywords" content="알고리즘,분기한정법">
+<meta property="og:type" content="article">
+<meta property="og:title" content="The Traveling Salesperson Problem(외판원 문제)">
+<meta property="og:url" content="http://melomance.github.io/2012/01/02/[AG][BB] The Traveling Salesperson Problem/index.html">
+<meta property="og:site_name" content="MELOMANCE">
+<meta property="og:description" content="Suppose a salesperson is planning a sales trip that includes 20 cities. Each city is connected to some of the other cities by a road. To minimize travel time, we want to determine a shortest route tha">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://melomance.github.io/images/algo/tsp_figure1.png">
+<meta property="og:updated_time" content="2019-05-11T05:26:44.082Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="The Traveling Salesperson Problem(외판원 문제)">
+<meta name="twitter:description" content="Suppose a salesperson is planning a sales trip that includes 20 cities. Each city is connected to some of the other cities by a road. To minimize travel time, we want to determine a shortest route tha">
+<meta name="twitter:image" content="http://melomance.github.io/images/algo/tsp_figure1.png">
+    
+
+    
+        <link rel="alternate" href="/" title="MELOMANCE" type="application/atom+xml" />
+    
+
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/titillium-web/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+
+    <script src="/libs/jquery/2.0.3/jquery.min.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+
+
+
+
+    <link rel="stylesheet" href="https://fonts.google.com/specimen/Ubuntu+Mono.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Sans+KR">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Noto+Serif">
+
+
+
+</head>
+
+<body>
+    <div id="wrap">
+        <header id="header">
+    <div id="header-outer" class="outer">
+        <div class="container">
+            <div class="container-inner">
+                <div id="header-title">
+                    <h1 class="logo-wrap">
+                        <a href="/" class="logo"></a>
+                    </h1>
+                    
+                        <h2 class="subtitle-wrap">
+                            <p class="subtitle">Blog Powered by Hexo</p>
+                        </h2>
+                    
+                </div>
+                <div id="header-inner" class="nav-container">
+                    <a id="main-nav-toggle" class="nav-icon fa fa-bars"></a>
+                    <div class="nav-container-inner">
+                        <ul id="main-nav">
+                            
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/">Home</a>
+                                </li>
+                            
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engr/">S/W Engr.</a></li></ul>
+                                    
+                                <li class="main-nav-list-item" >
+                                    <a class="main-nav-list-link" href="/about/index.html">About</a>
+                                </li>
+                            
+                        </ul>
+                        <nav id="sub-nav">
+                            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="Search" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: 'Posts',
+            PAGES: 'Pages',
+            CATEGORIES: 'Categories',
+            TAGS: 'Tags',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+        <div class="container">
+            <div class="main-body container-inner">
+                <div class="main-body-inner">
+                    <section id="main">
+                        <div class="main-body-header">
+    <h1 class="header">
+    
+    <a class="page-title-link" href="/categories/Algorithms/">Algorithms</a><i class="icon fa fa-angle-right"></i><a class="page-title-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a>
+    </h1>
+</div>
+                        <div class="main-body-content">
+                            <article id="post-[AG][BB] The Traveling Salesperson Problem" class="article article-single article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+            <header class="article-header">
+                
+    
+        <h1 class="article-title" itemprop="name">
+        The Traveling Salesperson Problem(외판원 문제)
+        </h1>
+    
+
+            </header>
+        
+        
+            <div class="article-meta">
+                
+    <div class="article-date">
+        <a href="/2012/01/02/[AG][BB] The Traveling Salesperson Problem/" class="article-date">
+            <time datetime="2012-01-02T11:11:00.000Z" itemprop="datePublished">2012-01-02</time>
+        </a>
+    </div>
+
+                
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/분기한정법/">분기한정법</a>, <a class="tag-link" href="/tags/알고리즘/">알고리즘</a>
+    </div>
+
+            </div>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+            <p>Suppose a salesperson is planning a sales trip that includes 20 cities. Each city is connected to some of the other cities by a road. To minimize travel time, we want to determine a shortest route that starts at the salesperson’s home city, visits each of the cities once, and ends up at the home city. This problem of determining a shortest route is called the Traveling Salesperson problem.   </p>
+<p>Recall that the goal in this problem is to find the shortest path in a directed graph that starts at a given vertex, visits each vertex in the graph exactly once, and ends up back at the starting vertex. Such a path is called an <strong>optimal tour</strong>. Because it does not matter where we start, the starting vertex can simply be the first vertex.</p>
+<blockquote>
+<p>외판원 문제는 여러 도시들이 있고 한 도시에서 다른 도시로 이동하는 비용이 모두 주어졌을 때, 모든 도시들을 단 한번씩만 방문하고 원래 시작점으로 돌아오는 최적여행경로(최소비용의 이동 순서)를 구하는 것이다.</p>
+</blockquote>
+<blockquote>
+<p>외판원 문제는 0-1 Knapsack 문제와 함께 NP-Complete에 속한다.</p>
+</blockquote>
+<p><code>Example</code> Shows the adjacency matrix representation of a graph containing five vertices, in which there is an edge from every vertex to every other vertex, and an optimal tour for that graph.</p>
+<p><img src="/images/algo/tsp_figure.png" width="75%" align="center" alt="[Adjacency matrix representation of a graph that has an edge from every vertex to every other vertex(left), and the nodes in the graph and the edges in an optimal tour(right)]"></p>
+<p><code>Step 1</code> [1]을 포함하는 노드를 방문한다. (일주여행경로의 첫번째 정점으로 $v_1$을 선택)<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">v1 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">20</span>)</span> </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">7</span>)</span>   </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">4</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">16</span>)</span>   </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v4 <span class="title">minimum</span><span class="params">(<span class="number">11</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>)</span>   </span>= <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v5 <span class="title">minimum</span><span class="params">(<span class="number">18</span>, <span class="number">7</span>, <span class="number">17</span>, <span class="number">4</span>)</span>  </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>]을 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">21</span></span><br><span class="line">minlength = ∞</span><br></pre></td></tr></table></figure></p>
+<p><code>Step 2</code> [1, 2]를 포함하는 노드를 방문한다. (일주여행경로의 두 번째 정점으로 $v_2$ 선택)<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                     <span class="number">14</span> <span class="comment">// v1 -&gt; v2는 확정이므로 14</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">7</span>, <span class="number">8</span>, <span class="number">7</span>)</span>   </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 v1제외(사이클 방지)</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">4</span>, <span class="number">7</span>, <span class="number">16</span>)</span>  </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2 제외</span></span><br><span class="line"><span class="function">v4 <span class="title">minimum</span><span class="params">(<span class="number">11</span>, <span class="number">9</span>, <span class="number">2</span>)</span>  </span>= <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2 제외</span></span><br><span class="line"><span class="function">v5 <span class="title">minimum</span><span class="params">(<span class="number">18</span>, <span class="number">17</span>, <span class="number">4</span>)</span> </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">31</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 3</code> [1, 3]을 포함하는 노드를 방문한다. (일주여행경로의 두 번째 정점으로 $v_3$ 선택)<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                      <span class="number">4</span> <span class="comment">// v1 -&gt; v3는 확정이므로 4</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">8</span>, <span class="number">7</span>)</span>  </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3 제외</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">5</span>, <span class="number">7</span>, <span class="number">16</span>)</span>  </span>= <span class="number">5</span> <span class="comment">// 최소값 계산시 자기자신과 시작점 v1 제외(사이클 방지)</span></span><br><span class="line"><span class="function">v4 <span class="title">minimum</span><span class="params">(<span class="number">11</span>, <span class="number">7</span>, <span class="number">2</span>)</span>  </span>= <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3 제외</span></span><br><span class="line"><span class="function">v5 <span class="title">minimum</span><span class="params">(<span class="number">18</span>, <span class="number">7</span>, <span class="number">4</span>)</span>  </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">22</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 4~5</code> [1, 4], [1, 5] 방문은 <code>Step2~3</code>과 비슷하므로 생략</p>
+<p><code>Step 6</code> bound 값이 가장 작으면서 유망하고 확장하지 않은 노드를 결정한다. 그 노드는 [1, 3]을 포함하는 노드이다. 그 노드의 자식노드부터 방문한다.</p>
+<p><code>Step 7</code> [1, 3, 2]를 포함하는 노드를 방문한다. (일주여행경로의 세 번째 정점으로 $v_2$ 선택)<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                   <span class="number">4</span> <span class="comment">// v1 -&gt; v3는 확정이므로 4</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">8</span>, <span class="number">7</span>)</span>   </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3, 시작점 v1 제외</span></span><br><span class="line">v3                   <span class="number">5</span> <span class="comment">// v3 -&gt; v2는 확정이므로 5</span></span><br><span class="line"><span class="function">v4 <span class="title">minimum</span><span class="params">(<span class="number">11</span>, <span class="number">2</span>)</span>  </span>= <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3, v2는 제외</span></span><br><span class="line"><span class="function">v5 <span class="title">minimum</span><span class="params">(<span class="number">18</span>, <span class="number">4</span>)</span>  </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3, v2는 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">22</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 8</code> [1, 3, 4]를 포함하는 노드를 방문한다. (일주여행경로의 세 번째 정점으로 $v_4$ 선택)<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                   <span class="number">4</span> <span class="comment">// v1 -&gt; v3는 확정이므로 4</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">7</span>)</span>  </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3, v4 제외</span></span><br><span class="line">v3                   <span class="number">7</span> <span class="comment">// v3 -&gt; v4는 확정이므로 7</span></span><br><span class="line"><span class="function">v4 <span class="title">minimum</span><span class="params">(<span class="number">7</span>, <span class="number">2</span>)</span>   </span>= <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3, 시작점 v1 제외</span></span><br><span class="line"><span class="function">v5 <span class="title">minimum</span><span class="params">(<span class="number">18</span>, <span class="number">7</span>)</span>  </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v3, v4 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">27</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step 9</code> [1, 3, 5] 방문은 <code>Step 7~8</code>과 비슷하므로 생략</p>
+<p><code>Step10</code> bound 값이 가장 작으면서 유망하고 확장하지 않은 노드를 결정한다. 그 노드는 [1, 3, 2]를 포함하는 노드이다. 그 노드의 자식노드부터 방문한다.</p>
+<p><code>Step11</code> [1, 3, 2, 4]를 포함하는 노드를 방문한다. (일주여행경로의 네 번째 정점으로 $v_4$ 선택) 이때 남은 정점은 $v_5$하나이므로 [1, 3, 2, 4, 5, 1]이라는 일주여행경로가 확정된다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">1</span>] 일주여행경로의 길이를 계산하면 <span class="number">37</span>(=<span class="number">4</span>+<span class="number">5</span>+<span class="number">8</span>+<span class="number">2</span>+<span class="number">18</span>)이 된다.</span><br><span class="line"><span class="number">37</span> &lt; minlength = ∞ →  minlength = <span class="number">37</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">5</span>] bound = <span class="number">42</span> &gt;= minlength = <span class="number">37</span> <span class="comment">// [1, 5]는 이 시점에서 유망하지 않다.</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">5</span>] bound = <span class="number">39</span> &gt;= minlength = <span class="number">37</span> <span class="comment">// [1, 3, 5]는 이 시점에서 유망하지 않다.</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step12</code> [1, 3, 2, 5]를 포함하는 노드를 방문한다. (일주여행경로의 네 번째 정점으로 $v_5$ 선택) 이때 남은 정점은 $v_4$하나이므로 [1, 3, 2, 5, 4, 1]이라는 일주여행경로가 확정된다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">4</span>, <span class="number">1</span>] 일주여행경로의 길이를 계산하면 <span class="number">31</span>(=<span class="number">4</span>+<span class="number">5</span>+<span class="number">7</span>+<span class="number">4</span>+<span class="number">11</span>)이 된다.</span><br><span class="line"><span class="number">31</span> &lt; minlength = <span class="number">37</span> →  minlength = <span class="number">31</span></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>] bound = <span class="number">31</span> &gt;= minlength = <span class="number">31</span> <span class="comment">// [1, 2]는 이 시점에서 유망하지 않다.</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step13</code> bound 값이 가장 작으면서 유망하고 확장하지 않은 노드를 결정한다. 그 노드는 [1, 3, 4]를 포함하는 노드이다. 그 노드의 자식노드부터 방문한다.</p>
+<p><code>Step14</code> [1, 3, 4, 2]를 포함하는 노드를 방문한다. 이때 남은 정점은 $v_5$하나이므로 [1, 3, 4, 2, 5, 1]이라는 일주여행경로가 확정된다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">1</span>] 일주여행경로의 길이를 계산하면 <span class="number">43</span>(=<span class="number">4</span>+<span class="number">7</span>+<span class="number">7</span>+<span class="number">7</span>+<span class="number">18</span>)이 된다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step15</code> [1, 3, 4, 5]를 포함하는 노드를 방문한다. 이때 남은 정점은 $v_2$하나이므로 [1, 3, 4, 5, 2, 1]이라는 일주여행경로가 확정된다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">1</span>] 일주여행경로의 길이를 계산하면 <span class="number">34</span>(=<span class="number">4</span>+<span class="number">7</span>+<span class="number">2</span>+<span class="number">7</span>+<span class="number">14</span>)가 된다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step16</code> bound 값이 가장 작으면서 유망하고 확장하지 않은 노드를 결정한다. [1, 4]를 포함하는 노드가 유일하다. 그 노드의 자식노드부터 방문한다.</p>
+<p><code>Step17</code> [1, 4, 2]를 포함하는 노드를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                   <span class="number">10</span> <span class="comment">// v1 -&gt; v4는 확정이므로 10</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">7</span>, <span class="number">7</span>)</span>   </span>=  <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, 시작점 v1 제외</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">4</span>, <span class="number">16</span>)</span>  </span>=  <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, v2 제외</span></span><br><span class="line">v4                 =  <span class="number">7</span> <span class="comment">// v4 -&gt; v2는 확정이므로 7</span></span><br><span class="line">v5 minimum(<span class="number">18</span>, <span class="number">17</span>) = <span class="number">17</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, v2 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">2</span>] bound = <span class="number">45</span> &gt;= minlength = <span class="number">31</span> <span class="comment">// [1, 4, 2]는 유망하지 않다.</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step18</code> [1, 4, 3]를 포함하는 노드를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                   <span class="number">10</span> <span class="comment">// v1 -&gt; v4는 확정이므로 10</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">7</span>)</span>  </span>=  <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, v3 제외</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">5</span>, <span class="number">16</span>)</span>  </span>=  <span class="number">5</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, 시작점 v1 제외</span></span><br><span class="line">v4                 =  <span class="number">9</span> <span class="comment">// v4 -&gt; v3는 확정이므로 9</span></span><br><span class="line">v5 minimum(<span class="number">18</span>, <span class="number">7</span>)  =  <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, v3 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">3</span>] bound = <span class="number">38</span> &gt;= minlength = <span class="number">31</span> <span class="comment">// [1, 4, 3]은 유망하지 않다.</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step19</code> [1, 4, 5]를 포함하는 노드를 방문한다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">v1                   <span class="number">10</span> <span class="comment">// v1 -&gt; v4는 확정이므로 10</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">7</span>)</span>  </span>=  <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, v5 제외</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">4</span>, <span class="number">5</span>)</span>   </span>=  <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, v5 제외</span></span><br><span class="line">v4                 =  <span class="number">2</span> <span class="comment">// v4 -&gt; v5는 확정이므로 2</span></span><br><span class="line">v5 minimum(<span class="number">7</span>, <span class="number">17</span>)  =  <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v4, 시작점 v1 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">30</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step20</code> bound 값이 가장 작으면서 유망하고 확장하지 않은 노드를 결정한다. [1, 4, 5]를 포함하는 노드가 유일하다. 그 노드의 자식노드부터 방문한다.</p>
+<p><code>Step21</code> [1, 4, 5, 2]를 포함하는 노드를 방문한다. 이때 남은 정점은 $v_3$하나이므로 [1, 4, 5, 2, 3, 1]이라는 일주여행경로가 확정된다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">1</span>] 일주여행경로의 길이를 계산하면 <span class="number">30</span>(=<span class="number">10</span>+<span class="number">2</span>+<span class="number">7</span>+<span class="number">7</span>+<span class="number">4</span>)이 된다.</span><br><span class="line"><span class="number">30</span> &lt; minlength = <span class="number">31</span> →  minlength = <span class="number">30</span></span><br></pre></td></tr></table></figure></p>
+<p><code>Step22</code> [1, 4, 5, 3]을 포함하는 노드를 방문한다. 이때 남은 정점은 $v_2$하나이므로 [1, 4, 5, 3, 2, 1]이라는 일주여행경로가 확정된다.<br><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">4</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>] 일주여행경로의 길이를 계산하면 <span class="number">48</span>(=<span class="number">10</span>+<span class="number">2</span>+<span class="number">17</span>+<span class="number">5</span>+<span class="number">14</span>)이 된다.</span><br></pre></td></tr></table></figure></p>
+<p><code>Step23</code> bound 값이 가장 작으면서 유망하고 확장하지 않은 노드를 결정한다. 해당하는 노드가 없으므로 알고리즘은 종료된다. 일주여행경로 [1, 4, 5, 2]를 포함하는 노드가 최적 일주여행경로([1, 4, 5, 2, 3, 1])이고, 그 길이는 30이다.</p>
+<p><img src="/images/algo/tsp_figure1.png" width="75%" align="center" alt="[The pruned state space tree produced using best-first search with branch-and-bound pruning in this Example. At each node that is not a leaf in the state space tree, the partial tour is at the top and the bound on the length of any tour that could be obtained by expanding beyond the node is at the bottom. At each leaf in the state space tree, the tour is at the top and its length is at the bottom. The node shaded in color is the one at which an optimal tour is found.]"></p>
+<p><br></p>
+<h2 id="The-Best-First-Search-with-Branch-and-Bound-Pruning-Algorithm-for-the-Traveling-Salesperson-Problem"><a href="#The-Best-First-Search-with-Branch-and-Bound-Pruning-Algorithm-for-the-Traveling-Salesperson-Problem" class="headerlink" title="The Best-First Search with Branch-and-Bound Pruning Algorithm for the Traveling Salesperson Problem"></a><span style="color:#21955b">The Best-First Search with Branch-and-Bound Pruning Algorithm for the Traveling Salesperson Problem</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>An obvious state space tree for this problem is one in which each vertex other than the starting one is tried as the first vertex (after the starting one) at level 1, each vertex other than the starting one and the one chosen at level 1 is tried as the second vertex at level 2, and so on. A portion of this state space tree, in which there are five vertices and in which there is an edge from every vertex to every other vertex, is shown in the below Figure. In what follows, the term “node” means a node in the state space tree, and the term “vertex” means a vertex in the graph. At each node in the below Figure, we have included the path chosen up to that node.</p>
+<p>For simplicity, we have denoted a vertex in the graph simply by its index. A node that is not a leaf represents all those tours that start with the path stored at that node. For example, the node containing [1, 2, 3] represents all those tours that start with the path [1, 2, 3]. That is, it represents the tours [1, 2, 3, 4, 5, 1] and [1, 2, 3, 5, 4, 1]. Each leaf represents a tour. We need to find a leaf that contains an optimal tour. We stop expanding the tree when there are four vertices in the path stored at a node because, at that time, the fifth one is uniquely determined. For example, the far-left leaf represents the tour [1, 2, 3, 4, 5, 1] because once we have specified the path [1, 2, 3, 4], the next vertex must be the fifth one.</p>
+<blockquote>
+<p>외판원 문제에 대한 상태공간 트리를 만드는 방법은 다음과 같다. 각 노드는 출발 노드로부터의 일주 여행 경로를 나타내게 된다. 예를 들어 루트노드의 여행 경로는 [1]이 되고, 루트노드에서 뻗어 나가는 레벨 1의 여행 경로는 각각 [1, 2], [1, 3], …, [1, 5]가 된다. 노드 [1, 2]에서 뻗어 나가는 레벨 2에 있는 노드들의 여행 경로는 각각 [1, 2, 3], …, [1, 2, 5]가 되며, 같은 방식으로 한 단계씩 레벨을 확장해 나가면서 잎노드에 도달하면 완전한 일주여행경로를 가지게 된다.</p>
+</blockquote>
+<blockquote>
+<p>최적화된 일주여행경로를 구하기 위해서는 잎 노드에 있는 일주여행경로를 모두 검사하여 그 중에서 길이가 가장 짧은 값을 찾으면 된다.</p>
+</blockquote>
+<p><img src="/images/algo/tsp_state-space-tree.png" width="75%" align="center"></p>
+<p>To use best-first search, we need to be able to determine a bound for each node. we need to determine a lower bound on the length of any tour that can be obtained by expanding beyond a given node, and we call the node promising only if its bound is less than the current minimum tour length. We can obtain a bound as follows. In any tour, the length of the edge taken when leaving a vertex must be at least as great as the length of the shortest edge emanating from that vertex. Therefore, a lower bound on the cost (length of the edge taken) of leaving vertex $v_1$ is given by the minimum of all the nonzero entries in row 1 of the adjacency matrix, a lower bound on the cost of leaving vertex $v_2$ is given by the minimum of all the nonzero entries in row 2, and so on.</p>
+<p>In the same way, we can obtain a lower bound on the length of a tour that can be obtained by expanding beyond any node in the state space tree, and we use these lower bounds in our best-first search.</p>
+<blockquote>
+<p>bound 값을 계산하는 방법은 다음과 같다. 어떤 일주여행경로라도 한 정점을 떠날 때 선택한 이음선의 길이는 그 정점에서 나오는 가장 짧은 이음선의 길이만큼은 최소한 길다. 그러므로 정점 $v_1$을 떠나는 비용의 하한은 인접행렬의 첫 번째 행에서 0이 아닌 모든 값 중에서 최소값이 되고, $v_2$를 떠나는 비용의 하한은 인접행렬의 2번째 행에서 0이 아닌 모든 값 중에서 최소값이 되고, …, 이런 식으로 각 정점들에 대해 최소값을 계산한다. 각 일주여행경로는 정점을 정확히 각각 한 번씩 떠나야 하기 때문에, 일주여행경로 길이의 bound는 이 최소값들의 합이다.</p>
+</blockquote>
+<blockquote>
+<p>같은 방법으로 상태공간트리에서 주어진 노드 이후로부터 확장하여 구할 수 있는 일주여행경로길이의 bound 값을 계산할 수 있고, 이 bound 값을 최고우선탐색에 사용할 수 있다.</p>
+</blockquote>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function">v1 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">4</span>, <span class="number">10</span>, <span class="number">20</span>)</span> </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v2 <span class="title">minimum</span><span class="params">(<span class="number">14</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">7</span>)</span>   </span>= <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v3 <span class="title">minimum</span><span class="params">(<span class="number">4</span>, <span class="number">5</span>, <span class="number">7</span>, <span class="number">16</span>)</span>   </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v4 <span class="title">minimum</span><span class="params">(<span class="number">11</span>, <span class="number">7</span>, <span class="number">9</span>, <span class="number">2</span>)</span>   </span>= <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"><span class="function">v5 <span class="title">minimum</span><span class="params">(<span class="number">18</span>, <span class="number">7</span>, <span class="number">17</span>, <span class="number">4</span>)</span>  </span>= <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>]을 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">21</span></span><br><span class="line"></span><br><span class="line">v1                     <span class="number">14</span> <span class="comment">// v1 -&gt; v2는 확정이므로 14</span></span><br><span class="line">v2 minimum(<span class="number">7</span>, <span class="number">8</span>, <span class="number">7</span>)   = <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 시작점 v1제외(사이클 방지)</span></span><br><span class="line">v3 minimum(<span class="number">4</span>, <span class="number">7</span>, <span class="number">16</span>)  = <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2 제외</span></span><br><span class="line">v4 minimum(<span class="number">11</span>, <span class="number">9</span>, <span class="number">2</span>)  = <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2 제외</span></span><br><span class="line">v5 minimum(<span class="number">18</span>, <span class="number">17</span>, <span class="number">4</span>) = <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">31</span></span><br><span class="line"></span><br><span class="line">v1                 <span class="number">14</span> <span class="comment">// v1 -&gt; v2는 확정이므로 14</span></span><br><span class="line">v2                = <span class="number">7</span> <span class="comment">// v2 -&gt; v3는 확정이므로 7</span></span><br><span class="line">v3 minimum(<span class="number">7</span>, <span class="number">16</span>) = <span class="number">7</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2, 시작점 v1 제외</span></span><br><span class="line">v4 minimum(<span class="number">11</span>, <span class="number">2</span>) = <span class="number">2</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2, v3 제외</span></span><br><span class="line">v5 minimum(<span class="number">18</span>, <span class="number">4</span>) = <span class="number">4</span> <span class="comment">// 최소값 계산시 자기자신과 이미 방문한 v2, v3 제외</span></span><br><span class="line"></span><br><span class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]를 포함한 노드에서 확장하여 구한 일주여행경로길이의 bound = <span class="number">34</span></span><br></pre></td></tr></table></figure>
+<h3 id="Pseudo-Code"><a href="#Pseudo-Code" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// We will use the following data type in the algorithm.</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">node</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">  <span class="keyword">int</span> level;</span><br><span class="line">  ordered_set path;</span><br><span class="line">  number bound;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">travel2</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">const</span> number W[][], ordered_set &amp;opttour, number &amp;minlength)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  priority_queue_of_node PQ;</span><br><span class="line">  node u, v;</span><br><span class="line"></span><br><span class="line">  initialize(PQ); <span class="comment">// Initialize PQ to be empty.</span></span><br><span class="line">  v.level =<span class="number">0</span>;</span><br><span class="line">  v.path = [<span class="number">1</span>]; <span class="comment">// Make first vertex the starting one.</span></span><br><span class="line">  v.bound = bound(v);</span><br><span class="line">  minlength = INFINITE;</span><br><span class="line">  insert(PQ, v);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (!empty(PQ))</span><br><span class="line">  &#123;</span><br><span class="line">    remove(PQ, v); <span class="comment">// Remove node with best bound.</span></span><br><span class="line">    <span class="keyword">if</span> (v.bound &lt; minlength)</span><br><span class="line">    &#123;</span><br><span class="line">      u.level = v.level + <span class="number">1</span>;</span><br><span class="line">      <span class="keyword">for</span> ((all i such that <span class="number">2</span> &lt; i &lt; n) &amp;&amp; (i is <span class="keyword">not</span> in v.path))</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="comment">// e.g. first copy [1 3] to make paths [1 3 2], [1 3 4], [1 3 5]</span></span><br><span class="line">        u.path = v.path;    </span><br><span class="line">        put i at the end of u.path;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (u.level == n<span class="number">-2</span>)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">// Check if next vertex completes a tour.</span></span><br><span class="line">          put index of only vertex <span class="keyword">not</span> in u.path at the end of u.path;</span><br><span class="line">          put <span class="number">1</span> at the end of u.path; <span class="comment">// Make first vertex last one.</span></span><br><span class="line"></span><br><span class="line">          <span class="comment">// Function length computes the length of the tour.</span></span><br><span class="line">          <span class="keyword">if</span> (length(u) &lt; minlength)  </span><br><span class="line">          &#123;</span><br><span class="line">            minlength = length(u);</span><br><span class="line">            opttour = u.path;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          u.bound = bound(u);</span><br><span class="line">          <span class="keyword">if</span> (u.bound &lt; minlength)</span><br><span class="line">            insert(PQ, u);</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: travel2.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> TRAVELING_SALESPERSON_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> TRAVELING_SALESPERSON_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"pqueue.h"</span> <span class="comment">// Provides priority_queue and node</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"graph.h"</span>  <span class="comment">// Provides graph</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">travel2</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n, graph&amp; W, <span class="built_in">std</span>::<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; opttour, <span class="keyword">int</span>&amp; minlength)</span></span>;</span><br><span class="line"><span class="comment">// Problem: Determine an optimal tour in a weighted, directed graph. The weights</span></span><br><span class="line"><span class="comment">// are nonnegative numbers.</span></span><br><span class="line"><span class="comment">// Inputs: a weighted, directed graph, and n, the number of vertices in the graph.</span></span><br><span class="line"><span class="comment">// The graph is represented by a graph class, which has both its rows and</span></span><br><span class="line"><span class="comment">// columns indexed from 1 to n, where W.get_edge(i, j) is the weight on the edge</span></span><br><span class="line"><span class="comment">// from the ith vertex to the jth vertex.</span></span><br><span class="line"><span class="comment">// Outputs: variable minlength, whose value is the length of an optimal tour, and</span></span><br><span class="line"><span class="comment">// variable optour, whose value is an optimal tour.</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">(node u, graph&amp; W)</span></span>;</span><br><span class="line"><span class="comment">// Inputs: a weighted, directed graph, and node.</span></span><br><span class="line"><span class="comment">// Outputs: Returns the length of the tour u.path</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">bound</span><span class="params">(node u, graph&amp; W, <span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">int</span> ptah_strt_vertex)</span></span>;</span><br><span class="line"><span class="comment">// Inputs: a weighted, directed graph, node, and n, the number of vertices in</span></span><br><span class="line"><span class="comment">// the graph.</span></span><br><span class="line"><span class="comment">// Outputs: Returns the bound for a node.</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Helper functions</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_minedge_case1</span><span class="params">(node u, graph&amp; W, <span class="keyword">int</span> curr_vertex)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_minedge_case2</span><span class="params">(node u, graph&amp; W, <span class="keyword">int</span> curr_vertex,</span></span></span><br><span class="line"><span class="function"><span class="params">                       <span class="keyword">bool</span>* visited, <span class="keyword">int</span> path_strt_vertex)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_minedge_case3</span><span class="params">(node u, graph&amp; W, <span class="keyword">int</span> curr_vertex,</span></span></span><br><span class="line"><span class="function"><span class="params">                       <span class="keyword">bool</span>* visited, <span class="keyword">int</span> path_strt_vertex)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find_unvisited_vertex</span><span class="params">(node u, <span class="keyword">const</span> <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: travel2.cpp</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"travel2.h"</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iostream&gt; // Provides cout and endl</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;iomanip&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;cassert&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> assignment5_20062408; <span class="comment">// for prioty queue</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> zakarum</span><br><span class="line">&#123;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">travel2</span><span class="params">(<span class="keyword">const</span> <span class="keyword">int</span> n, graph&amp; W, <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; opttour, <span class="keyword">int</span>&amp; minlength)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    priority_queue PQ;</span><br><span class="line">    node u, v;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> start_vertex = <span class="number">1</span>; <span class="comment">// Make first vertex the starting one.</span></span><br><span class="line"></span><br><span class="line">    assert(PQ.is_empty( )); <span class="comment">// Initialize PQ to be empty.</span></span><br><span class="line">    v.level = <span class="number">0</span>;</span><br><span class="line">    v.path.push_back(start_vertex);</span><br><span class="line">    v.bound = bound(v, W, n, start_vertex);</span><br><span class="line">    minlength = W.INFINITE;</span><br><span class="line">    PQ.insert(v);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">while</span> (!PQ.is_empty( ))</span><br><span class="line">    &#123;  </span><br><span class="line">      <span class="comment">//PQ.print_tree("The tree:", 0);</span></span><br><span class="line"></span><br><span class="line">      v = PQ.get_front( ); <span class="comment">// Remove node with best bound.</span></span><br><span class="line">      <span class="keyword">if</span> (v.bound &lt; minlength)</span><br><span class="line">      &#123;</span><br><span class="line">        u.level = v.level + <span class="number">1</span>; <span class="comment">// Set u to a child of v.</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="keyword">bool</span> visited = <span class="literal">false</span>;</span><br><span class="line">          <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr;</span><br><span class="line"></span><br><span class="line">          <span class="comment">// Find i(2 &lt;= i &lt;= n) that is not in v.path</span></span><br><span class="line">          <span class="keyword">for</span> (itr = v.path.begin( ); itr != v.path.end( ); ++itr)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span> (*itr == i)</span><br><span class="line">              visited = <span class="literal">true</span>;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">if</span> (!visited)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="comment">// Copy and Put i at the end of u.path.</span></span><br><span class="line">            u.path = v.path;</span><br><span class="line">            u.path.push_back(i);</span><br><span class="line"></span><br><span class="line">            <span class="comment">// Check if next vertex completes a tour.</span></span><br><span class="line">            <span class="keyword">if</span> (u.level == n<span class="number">-2</span>)</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="comment">// Put index of only vertex not in u.path at the end of u.path.</span></span><br><span class="line">              <span class="keyword">int</span> last_vertex = find_unvisited_vertex(u, n);</span><br><span class="line">              u.path.push_back(last_vertex);</span><br><span class="line"></span><br><span class="line">              <span class="comment">// Put 1 at the end of u.path. (Make first vertex last one)</span></span><br><span class="line">              u.path.push_back(start_vertex);</span><br><span class="line"></span><br><span class="line">              <span class="comment">// Function length computes the length of the tour.</span></span><br><span class="line">              <span class="keyword">int</span> tour_length = length(u, W);</span><br><span class="line">              <span class="keyword">if</span> (tour_length &lt; minlength)</span><br><span class="line">              &#123;</span><br><span class="line">                minlength = tour_length;</span><br><span class="line">                opttour = u.path;</span><br><span class="line">              &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">            &#123;</span><br><span class="line">              u.bound = bound(u, W, n, start_vertex);</span><br><span class="line"></span><br><span class="line">              <span class="keyword">if</span> (u.bound &lt; minlength)</span><br><span class="line">                PQ.insert(u);</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">"["</span> ;</span><br><span class="line">            <span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr = u.path.begin(); itr != u.path.end(); ++itr)</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="built_in">cout</span> &lt;&lt; *itr;    </span><br><span class="line">              <span class="keyword">if</span> (!(itr+<span class="number">1</span> == u.path.end()))</span><br><span class="line">                <span class="built_in">cout</span> &lt;&lt; <span class="string">", "</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt;  <span class="string">"]"</span> &lt;&lt; <span class="string">" Bound = "</span> &lt;&lt; bound(u, W, n, start_vertex);</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">", minlenth = "</span> &lt;&lt; minlength &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"prunning is ... "</span>;</span><br><span class="line">        <span class="built_in">cout</span> &lt;&lt; <span class="string">"["</span> ;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr = v.path.begin(); itr != v.path.end(); ++itr)</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="built_in">cout</span> &lt;&lt; *itr;    </span><br><span class="line">          <span class="keyword">if</span> (!(itr+<span class="number">1</span> == v.path.end()))</span><br><span class="line">            <span class="built_in">cout</span> &lt;&lt; <span class="string">", "</span>;</span><br><span class="line">        &#125;</span><br><span class="line">         <span class="built_in">cout</span> &lt;&lt;  <span class="string">"]"</span> &lt;&lt; <span class="string">" Bound = "</span> &lt;&lt; v.bound &lt;&lt; <span class="string">" &gt;= minlength"</span>  &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Returns the bound for a node.</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">bound</span><span class="params">(node u, graph&amp; W, <span class="keyword">const</span> <span class="keyword">int</span> n, <span class="keyword">int</span> path_strt_vertex)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> minimum;</span><br><span class="line">    <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">bool</span>* visited;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr;</span><br><span class="line"></span><br><span class="line">    visited = <span class="keyword">new</span> <span class="keyword">bool</span>[n]; <span class="comment">// dynamic allocation</span></span><br><span class="line">    --visited; <span class="comment">// pointer offset</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// initialization</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i)</span><br><span class="line">      visited[i] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// marking only visited vertex e.g. [1,2]..</span></span><br><span class="line">    <span class="keyword">for</span> (itr = u.path.begin( ); itr != u.path.end( ); ++itr)</span><br><span class="line">      visited[*itr] = <span class="literal">true</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= n; ++i) <span class="comment">// n is equal to the number of vertices</span></span><br><span class="line">    &#123;</span><br><span class="line">      minimum = W.INFINITE;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> (u.path.capacity( ) == <span class="number">1</span>) <span class="comment">// only one path exists</span></span><br><span class="line">        minimum = find_minedge_case1(u, W, i);</span><br><span class="line">      <span class="keyword">else</span></span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (!visited[i]) <span class="comment">// unvisted vertex_i -&gt; find minimum edge</span></span><br><span class="line">          minimum = find_minedge_case2(u, W, i, visited, path_strt_vertex);</span><br><span class="line">        <span class="keyword">else</span> <span class="comment">// visited vertex_i -&gt; (1 to i-1) determin. edge + find minimum edge</span></span><br><span class="line">          minimum = find_minedge_case3(u, W, i, visited, path_strt_vertex);</span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      answer += minimum;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> [ ] (visited + <span class="number">1</span>); <span class="comment">// deallocation</span></span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Helper function</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">find_minedge_case1</span><span class="params">(node u, graph&amp; W, <span class="keyword">int</span> curr_vertex)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> minimum = W.INFINITE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// CASE1 : Only one vertex exists in this path</span></span><br><span class="line">    <span class="comment">// e.g. path = [1], i = 1 -&gt; minimum = min(v2, v3, v4, v5)</span></span><br><span class="line">    <span class="comment">//      path = [1], i = 2 -&gt; minimum = min(v1, v3, v4, v5)</span></span><br><span class="line">    <span class="comment">//      ...</span></span><br><span class="line">    <span class="comment">//      path = [1], i = 5 -&gt; minimum = min(v1, v2, v3, v4)</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= W.get_size( ); ++j)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (curr_vertex != j &amp;&amp; W.get_edge(curr_vertex, j) &lt; minimum)</span><br><span class="line">        minimum = W.get_edge(curr_vertex, j);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> minimum;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Helper function</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">find_minedge_case2</span><span class="params">(node u, graph&amp; W, <span class="keyword">int</span> curr_vertex,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">bool</span>* visited, <span class="keyword">int</span> path_strt_vertex)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> minimum = W.INFINITE;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// CASE2 : i is one of unvisiteid vertexs.</span></span><br><span class="line">    <span class="comment">// e.g. path = [1, 2], i = 3 -&gt; minimum = min(v1, v4, v5)</span></span><br><span class="line">    <span class="comment">//                     i = 4 -&gt; minimum = min(v1, v3, v5)</span></span><br><span class="line">    <span class="comment">//                     i = 5 -&gt; minimum = min(v1, v3, v4)</span></span><br><span class="line">    <span class="comment">// (j != start_vertex &amp;&amp; visited[j]) is excluded from calculations</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= W.get_size( ); ++j)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (curr_vertex != j &amp;&amp; W.get_edge(curr_vertex, j) &lt; minimum)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (j != path_strt_vertex &amp;&amp; visited[j])</span><br><span class="line">          ; <span class="comment">// do nothing</span></span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">          minimum = W.get_edge(curr_vertex, j);</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> minimum;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">find_minedge_case3</span><span class="params">(node u, graph&amp; W, <span class="keyword">int</span> curr_vertex,</span></span></span><br><span class="line"><span class="function"><span class="params">                         <span class="keyword">bool</span>* visited, <span class="keyword">int</span> path_strt_vertex)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> minimum = W.INFINITE;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">int</span> start_vertex = <span class="number">1</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator curr_itr, next_itr;</span><br><span class="line">    curr_itr = next_itr = u.path.begin( );</span><br><span class="line"></span><br><span class="line">    <span class="comment">// CASE3 : i is one of visited vertex.</span></span><br><span class="line">    <span class="comment">// e.g. path = [1, 2, 3], i = 1 -&gt; minimum = graph.get_edge(1, 2)</span></span><br><span class="line">    <span class="comment">//                        i = 2 -&gt; minimum = graph.get_edge(2, 3)</span></span><br><span class="line">    <span class="comment">//                        i = 3 -&gt; minimum = min(v4, v5)</span></span><br><span class="line">    <span class="comment">// (j == path_strt_vertex || visited[j]) is excluded from calculations</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (curr_itr = u.path.begin( ); curr_itr != u.path.end( ); ++curr_itr)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (*curr_itr == curr_vertex)</span><br><span class="line">      &#123;</span><br><span class="line">        next_itr = curr_itr + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> (next_itr != u.path.end( ))</span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">// path = [1, 2, 3] -&gt; get_edge(1, 2), get_edge(2, 3) (determin. edge)</span></span><br><span class="line">          minimum = W.get_edge(*curr_itr, *next_itr);</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">          <span class="comment">// path = [1, 2, 3], i = 3 -&gt; minimum = min(v4, v5)</span></span><br><span class="line">          <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= W.get_size( ); ++j)</span><br><span class="line">          &#123;</span><br><span class="line">            <span class="keyword">if</span> (curr_vertex != j  &amp;&amp; W.get_edge(curr_vertex, j) &lt; minimum)</span><br><span class="line">            &#123;</span><br><span class="line">              <span class="keyword">if</span> (j == path_strt_vertex || visited[j]) <span class="comment">// Prevention of cycle</span></span><br><span class="line">                ; <span class="comment">// do nothing</span></span><br><span class="line">              <span class="keyword">else</span></span><br><span class="line">                minimum = W.get_edge(curr_vertex, j);</span><br><span class="line">            &#125;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> minimum;  </span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Returns the length of the tour u.path</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">length</span><span class="params">(node u, graph&amp; W)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> answer = <span class="number">0</span>;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr;</span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator end_itr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (itr = u.path.begin( ); itr != u.path.end( ); ++itr)</span><br><span class="line">    &#123;</span><br><span class="line">      end_itr = itr;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">if</span> ((itr + <span class="number">1</span>) == u.path.end( ))</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line"></span><br><span class="line">      answer += W.get_edge(*itr, *(itr+<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    answer += W.get_edge(*end_itr, u.path.front( ));</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> answer;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Helper function</span></span><br><span class="line">  <span class="function"><span class="keyword">int</span> <span class="title">find_unvisited_vertex</span><span class="params">(node u, <span class="keyword">const</span> <span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">  </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> unvisited_vertex;</span><br><span class="line">    <span class="keyword">bool</span>* visited = <span class="keyword">new</span> <span class="keyword">bool</span>[n];</span><br><span class="line">    --visited; <span class="comment">// pointer offset</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// initialization</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">      visited[j] = <span class="literal">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// mark visited vertex</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;::iterator itr = u.path.begin( ); itr != u.path.end( ); ++itr)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;=n ; ++j)</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="keyword">if</span> (*itr == j)</span><br><span class="line">        &#123;</span><br><span class="line">          visited[*itr] = <span class="literal">true</span>;</span><br><span class="line">          <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// find unvisited vertex</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> j = <span class="number">1</span>; j &lt;= n; ++j)</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="keyword">if</span> (visited[j] == <span class="literal">false</span>)</span><br><span class="line">      &#123;</span><br><span class="line">        unvisited_vertex = j;</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">delete</span> [ ](visited+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> unvisited_vertex;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"travel2.h"</span> <span class="comment">// Provides trave2( ) method</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"graph.h"</span>   <span class="comment">// Provides graph</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">(<span class="keyword">int</span> argc, <span class="keyword">char</span>** argv)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  <span class="comment">// Graph initialization</span></span><br><span class="line">  graph example;</span><br><span class="line">  example.set_vertex(<span class="string">"V1"</span>);</span><br><span class="line">  example.set_vertex(<span class="string">"V2"</span>);</span><br><span class="line">  example.set_vertex(<span class="string">"V3"</span>);</span><br><span class="line">  example.set_vertex(<span class="string">"V4"</span>);</span><br><span class="line">  example.set_vertex(<span class="string">"V5"</span>);</span><br><span class="line">  <span class="comment">// from V1 to Vn</span></span><br><span class="line">  example.set_edge(<span class="number">1</span>, <span class="number">2</span>, <span class="number">14</span>);</span><br><span class="line">  example.set_edge(<span class="number">1</span>, <span class="number">3</span>, <span class="number">4</span>);</span><br><span class="line">  example.set_edge(<span class="number">1</span>, <span class="number">4</span>, <span class="number">10</span>);</span><br><span class="line">  example.set_edge(<span class="number">1</span>, <span class="number">5</span>, <span class="number">20</span>);</span><br><span class="line">  <span class="comment">// from V2 to Vn</span></span><br><span class="line">  example.set_edge(<span class="number">2</span>, <span class="number">1</span>, <span class="number">14</span>);</span><br><span class="line">  example.set_edge(<span class="number">2</span>, <span class="number">3</span>, <span class="number">7</span>);</span><br><span class="line">  example.set_edge(<span class="number">2</span>, <span class="number">4</span>, <span class="number">8</span>);</span><br><span class="line">  example.set_edge(<span class="number">2</span>, <span class="number">5</span>, <span class="number">7</span>);</span><br><span class="line">  <span class="comment">// from V3 to Vn</span></span><br><span class="line">  example.set_edge(<span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>);</span><br><span class="line">  example.set_edge(<span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>);</span><br><span class="line">  example.set_edge(<span class="number">3</span>, <span class="number">4</span>, <span class="number">7</span>);</span><br><span class="line">  example.set_edge(<span class="number">3</span>, <span class="number">5</span>, <span class="number">16</span>);</span><br><span class="line">  <span class="comment">// from V4 to Vn</span></span><br><span class="line">  example.set_edge(<span class="number">4</span>, <span class="number">1</span>, <span class="number">11</span>);</span><br><span class="line">  example.set_edge(<span class="number">4</span>, <span class="number">2</span>, <span class="number">7</span>);</span><br><span class="line">  example.set_edge(<span class="number">4</span>, <span class="number">3</span>, <span class="number">9</span>);</span><br><span class="line">  example.set_edge(<span class="number">4</span>, <span class="number">5</span>, <span class="number">2</span>);</span><br><span class="line">  <span class="comment">// from V5 to Vn</span></span><br><span class="line">  example.set_edge(<span class="number">5</span>, <span class="number">1</span>, <span class="number">18</span>);</span><br><span class="line">  example.set_edge(<span class="number">5</span>, <span class="number">2</span>, <span class="number">7</span>);</span><br><span class="line">  example.set_edge(<span class="number">5</span>, <span class="number">3</span>, <span class="number">17</span>);</span><br><span class="line">  example.set_edge(<span class="number">5</span>, <span class="number">4</span>, <span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">  travel2(example.get_size( ), example, tsp, min);</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"minlength: "</span> &lt;&lt; min &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"["</span>;</span><br><span class="line">  <span class="keyword">for</span> (itr = tsp.begin( ); itr != tsp.end( ); ++itr)</span><br><span class="line">    <span class="built_in">cout</span> &lt;&lt; *itr &lt;&lt;<span class="string">", "</span>;</span><br><span class="line">  <span class="built_in">cout</span> &lt;&lt; <span class="string">"]"</span> &lt;&lt; <span class="built_in">endl</span>;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> EXIT_SUCCESS;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+        </div>
+        <footer class="article-footer">
+            
+
+
+
+    <a data-url="http://melomance.github.io/2012/01/02/[AG][BB] The Traveling Salesperson Problem/" data-id="cjvj2j5c4001cd8woprh09qqy" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+<script>
+    (function ($) {
+        $('body').on('click', function() {
+            $('.article-share-box.on').removeClass('on');
+        }).on('click', '.article-share-link', function(e) {
+            e.stopPropagation();
+
+            var $this = $(this),
+                url = $this.attr('data-url'),
+                encodedUrl = encodeURIComponent(url),
+                id = 'article-share-box-' + $this.attr('data-id'),
+                offset = $this.offset(),
+                box;
+
+            if ($('#' + id).length) {
+                box = $('#' + id);
+
+                if (box.hasClass('on')){
+                    box.removeClass('on');
+                    return;
+                }
+            } else {
+                var html = [
+                    '<div id="' + id + '" class="article-share-box">',
+                        '<input class="article-share-input" value="' + url + '">',
+                        '<div class="article-share-links">',
+                            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+                            '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+                            '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"></a>',
+                            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+                        '</div>',
+                    '</div>'
+                ].join('');
+
+              box = $(html);
+
+              $('body').append(box);
+            }
+
+            $('.article-share-box.on').hide();
+
+            box.css({
+                top: offset.top + 25,
+                left: offset.left
+            }).addClass('on');
+
+        }).on('click', '.article-share-box', function (e) {
+            e.stopPropagation();
+        }).on('click', '.article-share-box-input', function () {
+            $(this).select();
+        }).on('click', '.article-share-box-link', function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            window.open(this.href, 'article-share-box-window-' + Date.now(), 'width=500,height=450');
+        });
+    })(jQuery);
+</script>
+
+        </footer>
+    </div>
+</article>
+
+    <section id="comments">
+    
+        
+    <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </div>
+
+    
+    </section>
+
+
+                        </div>
+                    </section>
+                    <aside id="sidebar">
+    <a class="sidebar-toggle" title="Expand Sidebar"><i class="toggle icon"></i></a>
+    <div class="sidebar-top">
+        <p>follow:</p>
+        <ul class="social-links">
+            
+                
+                <li>
+                    <a class="social-tooltip" title="twitter" href="/" target="_blank">
+                        <i class="icon fa fa-twitter"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="facebook" href="/" target="_blank">
+                        <i class="icon fa fa-facebook"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="google-plus" href="/" target="_blank">
+                        <i class="icon fa fa-google-plus"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="github" href="https://github.com/ppoffice/hexo-theme-hueman" target="_blank">
+                        <i class="icon fa fa-github"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="weibo" href="/" target="_blank">
+                        <i class="icon fa fa-weibo"></i>
+                    </a>
+                </li>
+                
+            
+                
+                <li>
+                    <a class="social-tooltip" title="rss" href="/" target="_blank">
+                        <i class="icon fa fa-rss"></i>
+                    </a>
+                </li>
+                
+            
+        </ul>
+    </div>
+    
+        
+<nav id="article-nav">
+    
+        <a href="/2013/08/24/[AC] 기업과 회계/" id="article-nav-newer" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">newer</strong>
+        <p class="article-nav-title">
+        
+            기업과 회계
+        
+        </p>
+        <i class="icon fa fa-chevron-right" id="icon-chevron-right"></i>
+    </a>
+    
+    
+        <a href="/2011/12/27/[AG][BB] 0-1 Knapsack Problem3/" id="article-nav-older" class="article-nav-link-wrap">
+        <strong class="article-nav-caption">older</strong>
+        <p class="article-nav-title">Branch-and-Bound with the 0-1 Knapsack problem(Best-First Search)(0-1 배낭 문제-최고우선탐색)</p>
+        <i class="icon fa fa-chevron-left" id="icon-chevron-left"></i>
+        </a>
+    
+</nav>
+
+    
+    <div class="widgets-container">
+        
+            
+                
+
+            
+                
+    <div class="widget-wrap">
+        <h3 class="widget-title">recents</h3>
+        <div class="widget">
+            <ul id="recent-post" class="">
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/23/[HX] hexo writing/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/23/[HX] hexo writing/" class="title">Hexo 글쓰기</a></p>
+                            <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2018/04/22/[HX] hexo command/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"></p>
+                            <p class="item-title"><a href="/2018/04/22/[HX] hexo command/" class="title">Hexo 명령어</a></p>
+                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
+                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+                    <li>
+                        
+                        <div class="item-thumbnail">
+                            <a href="/2017/11/15/[FX] 신용장 통일규칙/" class="thumbnail">
+    
+    
+        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+    
+    
+</a>
+
+                        </div>
+                        
+                        <div class="item-inner">
+                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
+                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장 통일규칙/" class="title">신용장 통일규칙</a></p>
+                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                        </div>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">categories</h3>
+        <div class="widget">
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">29</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engr/">S/W Engr.</a><span class="category-list-count">7</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">archives</h3>
+        <div class="widget">
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">tags</h3>
+        <div class="widget">
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분기한정법/">분기한정법</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-float">
+        <h3 class="widget-title">tag cloud</h3>
+        <div class="widget tagcloud">
+            <a href="/tags/0-1-배낭-문제/" style="font-size: 12.22px;">0-1 배낭 문제</a> <a href="/tags/hexo/" style="font-size: 11.11px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15.56px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.89px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.44px;">백트래킹</a> <a href="/tags/분기한정법/" style="font-size: 13.33px;">분기한정법</a> <a href="/tags/분할정복법/" style="font-size: 14.44px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 16.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.44px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.11px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.22px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.56px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.78px;">회계기초</a>
+        </div>
+    </div>
+
+
+            
+                
+    <div class="widget-wrap widget-list">
+        <h3 class="widget-title">links</h3>
+        <div class="widget">
+            <ul>
+                
+                    <li>
+                        <a href="https://github.com/">GitHub</a>
+                    </li>
+                
+                    <li>
+                        <a href="http://hexo.io">Hexo</a>
+                    </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+            
+        
+    </div>
+</aside>
+                </div>
+            </div>
+        </div>
+        <footer id="footer">
+    <div class="container">
+        <div class="container-inner">
+            <a id="back-to-top" href="javascript:;"><i class="icon fa fa-angle-up"></i></a>
+            <div class="credit">
+                <h1 class="logo-wrap">
+                    <a href="/" class="logo"></a>
+                </h1>
+                <p>&copy; 2019 MELOMANCE</p>
+                <p>Powered by <a href="//hexo.io/" target="_blank">Hexo</a>. Theme by <a href="//github.com/ppoffice" target="_blank">PPOffice</a></p>
+            </div>
+        </div>
+    </div>
+</footer>
+        
+    
+    <script>
+    var disqus_shortname = 'hexo-theme-hueman';
+    
+    
+    var disqus_url = 'http://melomance.github.io/2012/01/02/[AG][BB] The Traveling Salesperson Problem/';
+    
+    (function() {
+    var dsq = document.createElement('script');
+    dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+    </script>
+
+
+
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+            MathJax.Hub.Config({ tex2jax: { inlineMath: [['$','$'], ['\\(','\\)']] } });
+        </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
+</html>
