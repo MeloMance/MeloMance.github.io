@@ -1843,73 +1843,61 @@ i.icon:before {
   height: 1.6em;
 }
 .highlight {
-  color: #000;
-  background: #ecf4fa;
-}
-.highlight .code .comment,
-.highlight .code .quote {
-  color: #006a00;
+  color: #dcdcdc;
+  background: #2d2d2d;
 }
 .highlight .code .keyword,
 .highlight .code .selector-tag,
-.highlight .code .literal {
-  color: #aa0d91;
+.highlight .code .tag {
+  color: #569cd6;
 }
-.highlight .code .name {
-  color: #008;
+.highlight .code .template-tag {
+  color: #dcdcdc;
+}
+.highlight .code .number {
+  color: #b5cea8;
 }
 .highlight .code .variable,
-.highlight .code .template-variable {
-  color: #660;
+.highlight .code .template-variable,
+.highlight .code .attribute {
+  color: #efdcbc;
 }
-.highlight .code .string {
-  color: #c41a16;
+.highlight .code .string,
+.highlight .code .literal {
+  color: #c3915b;
 }
-.highlight .code .regexp,
-.highlight .code .link {
-  color: #080;
+.highlight .code .subst {
+  color: #8f8f8f;
 }
 .highlight .code .title,
-.highlight .code .tag,
+.highlight .code .name,
+.highlight .code .selector-id,
+.highlight .code .selector-class,
+.highlight .code .section,
+.highlight .code .type {
+  color: #dcdcaa;
+}
 .highlight .code .symbol,
 .highlight .code .bullet,
-.highlight .code .number,
-.highlight .code .meta {
-  color: #1c00cf;
+.highlight .code .link {
+  color: #dca3a3;
 }
-.highlight .code .section,
-.highlight .code .class .title,
-.highlight .code .type,
-.highlight .code .attr,
+.highlight .code .deletion,
 .highlight .code .built_in,
 .highlight .code .builtin-name,
-.highlight .code .params {
-  color: #5c2699;
+.highlight .code .meta {
+  color: #bb86b6;
 }
-.highlight .code .attribute,
-.highlight .code .subst {
-  color: #000;
-}
-.highlight .code .formula {
-  background-color: #eee;
-  font-style: italic;
-}
-.highlight .code .addition {
-  background-color: #baeeba;
-}
-.highlight .code .deletion {
-  background-color: #ffc8bd;
-}
-.highlight .code .selector-id,
-.highlight .code .selector-class {
-  color: #9b703f;
-}
-.highlight .code .doctag,
-.highlight .code .strong {
-  font-weight: bold;
+.highlight .code .addition,
+.highlight .code .comment,
+.highlight .code .quote {
+  color: #6a9e55;
 }
 .highlight .code .emphasis {
   font-style: italic;
+}
+.highlight .code .strong {
+  font-weight: bold;
 }
 @media only screen and (min-width: 960px) {
   .nav-container-inner {
