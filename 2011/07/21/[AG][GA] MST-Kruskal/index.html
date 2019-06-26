@@ -9,19 +9,19 @@
     
         <meta name="keywords" content="알고리즘,탐욕알고리즘,최소신장트리" />
     
-    <meta name="description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
+    <meta name="description" content="We will investigate two different greedy algorithms for minimum spanning trees, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property.  프림 알고리즘 대신 크러스컬 알고리즘을 이용해도 최소">
 <meta name="keywords" content="알고리즘,탐욕알고리즘,최소신장트리">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-크러스컬)">
 <meta property="og:url" content="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/index.html">
 <meta property="og:site_name" content="MELOMANCE">
-<meta property="og:description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
+<meta property="og:description" content="We will investigate two different greedy algorithms for minimum spanning trees, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property.  프림 알고리즘 대신 크러스컬 알고리즘을 이용해도 최소">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://melomance.github.io/images/algo/mst-kruskal_figure1.png">
-<meta property="og:updated_time" content="2019-05-19T04:21:23.080Z">
+<meta property="og:updated_time" content="2019-06-22T04:55:08.778Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Minimum Spanning Trees - Kruskal&#39;s Algorithm(최소신장트리-크러스컬)">
-<meta name="twitter:description" content="We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a">
+<meta name="twitter:description" content="We will investigate two different greedy algorithms for minimum spanning trees, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property.  프림 알고리즘 대신 크러스컬 알고리즘을 이용해도 최소">
 <meta name="twitter:image" content="http://melomance.github.io/images/algo/mst-kruskal_figure1.png">
     
 
@@ -84,7 +84,7 @@
                                     <a class="main-nav-list-link" href="/">Home</a>
                                 </li>
                             
-                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engr/">S/W Engr.</a></li></ul>
+                                        <ul class="main-nav-list"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/">Algorithms</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Database/">Database</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Database/Data-Modeling/">Data Modeling</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Database/Foundation/">Foundation</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Database/SQL/">SQL</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/">Finance</a><ul class="main-nav-list-child"><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Accounting/">Accounting</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Finance/Law/">Law</a></li></ul></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/Network/">Network</a></li><li class="main-nav-list-item"><a class="main-nav-list-link" href="/categories/S-W-Engr/">S/W Engr.</a></li></ul>
                                     
                                 <li class="main-nav-list-item" >
                                     <a class="main-nav-list-link" href="/about/index.html">About</a>
@@ -179,7 +179,7 @@
         
         
         <div class="article-entry" itemprop="articleBody">
-            <p>We will investigate two different greedy algorithms for this problem, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property. Recall that there is no guarantee that a given greedy algorithm always yields an optimal solution. One must prove whether or not this is the case. We will prove that both Prim’s and Kruskal’s algorithms always produce minimum spanning trees.</p>
+            <p>We will investigate two different greedy algorithms for <code>minimum spanning trees</code>, Prim’s algorithm and Kruskal’s algorithm. Each uses a different locally optimal property.</p>
 <blockquote>
 <p>프림 알고리즘 대신 크러스컬 알고리즘을 이용해도 최소신장트리를 구할 수 있다.</p>
 </blockquote>
@@ -193,13 +193,13 @@
 <p><code>Step 6</code> 다음으로 $v_2$정점과 $v_3$정점을 연결해주는 이음선 3이 선택된다. 그러나 $v_2$와 $v_3$의 경우 이미 같은 집합에 포함되어 있다. 같은 집합의 정점들끼리 연결하는 경우에는 순환경로가 생기므로 $v_2$정점과 $v_3$정점을 연결하는 이음선은 버린다.</p>
 <p><code>Step 7</code> 마지막으로 $v_3$정점과 $v_4$정점을 연결하는 이음선이 선택되고, 5개로 출발했던 서로소 집합들이 하나의 집합으로 합쳐졌기 때문에 최소신장트리가 완성된다.</p>
 <p><br></p>
-<h2 id="Kruskal’s-Algorithm"><a href="#Kruskal’s-Algorithm" class="headerlink" title="Kruskal’s Algorithm"></a><span style="color:#21955b">Kruskal’s Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>To write a formal version of Kruskal’s algorithm, we need a disjoint set abstract data type. The disjoint set abstract data type consists of data types index and set pointer, and routines initial, find, merge, and equal.</p>
+<h2 id="Kruskal’s-Algorithm"><a href="#Kruskal’s-Algorithm" class="headerlink" title="Kruskal’s Algorithm"></a><span style="color:#21955b">Kruskal’s Algorithm</span></h2><h3 id="Algorithm-Design"><a href="#Algorithm-Design" class="headerlink" title="Algorithm Design"></a>Algorithm Design</h3><p>To write a formal version of Kruskal’s algorithm, we need a <code>disjoint set</code> abstract data type. The disjoint set abstract data type consists of data types index and set pointer, and routines initial, find, merge, and equal.</p>
 <blockquote>
 <p>크러스컬 알고리즘에서는 서로소 집합(disjoint set)의 자료구조가 사용된다.</p>
 </blockquote>
 <p>Kruskal’s algorithm for the Minimum Spanning Tree problem starts by creating disjoint subsets of V, one for each vertex and containing only that vertex. It then inspects the edges according to nondecreasing weight (ties are broken arbitrarily). If an edge connects two vertices in disjoint subsets, the edge is added and the subsets are merged into one set. This process is repeated until all the subsets are merged into one set. The following is a high-level algorithm for this procedure.</p>
 <blockquote>
-<p>정점들의 개수만큼 서로소 부분집합을 생성하고, 가중치를 기준으로 전체 이음선들을 오름차순으로 정렬한다. 그 다음 오름차순으로 정렬된 이음선들을 하나씩 조사하면서, 해당 이음선이 연결하고 있는 정점들이 서로소 부분집합이면 두 개의 부분집합을 하나로 합친다. 이 과정을 모든 서로소 부분집합들이 하나의 집합으로 합쳐질 때까지 계속 수행한다.</p>
+<p>정점들의 개수 만큼 서로소 부분집합을 생성하고, 가중치를 기준으로 전체 이음선들을 오름차순으로 정렬한다. 그 다음 오름차순으로 정렬된 이음선들을 하나씩 조사하면서, 해당 이음선이 연결하고 있는 정점들이 서로소 부분집합이면 두 개의 부분집합을 하나로 합친다. 이 과정을 모든 서로소 부분집합들이 하나의 집합으로 합쳐질 때까지 계속 수행한다.</p>
 </blockquote>
 <h3 id="Pseudo-Code"><a href="#Pseudo-Code" class="headerlink" title="Pseudo Code"></a>Pseudo Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, set_of_edges E, set_of_edges&amp; F)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">  index i, j;</span><br><span class="line">  set_pointer p, q;  </span><br><span class="line">  edge e;</span><br><span class="line"></span><br><span class="line">  Sort the m edges in E by weight in nondecreasing order;</span><br><span class="line">  F = <span class="string">"empty"</span>;</span><br><span class="line">  initial(n);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">while</span> (number of edges in F is less than n<span class="number">-1</span>)</span><br><span class="line">  &#123;</span><br><span class="line">    e = edges with least weight <span class="keyword">not</span> yet considered;</span><br><span class="line">    i, j = indices of vertices connected by e;</span><br><span class="line">    p = find(i);</span><br><span class="line">    q = find(j);</span><br><span class="line">    <span class="keyword">if</span> (!equal(p,q))</span><br><span class="line">    &#123;</span><br><span class="line">      merge(p,q);</span><br><span class="line">      add e to F;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="Source-Code"><a href="#Source-Code" class="headerlink" title="Source Code"></a>Source Code</h3><figure class="highlight cpp"><table><tr><td class="code"><pre><span class="line"><span class="comment">// File: kruskal.h</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifndef</span> KRUSKAL_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> KRUSKAL_H</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;string&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">"graph.h"</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> data_structures;</span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> algorithms</span><br><span class="line">&#123;</span><br><span class="line">  <span class="class"><span class="keyword">struct</span> <span class="title">edge</span></span></span><br><span class="line"><span class="class">  &#123;</span></span><br><span class="line">    <span class="built_in">std</span>::<span class="built_in">string</span> vertex[<span class="number">2</span>];</span><br><span class="line">    <span class="keyword">int</span> weight;</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> <span class="title">edge</span> <span class="title">edge</span>;</span></span><br><span class="line">  <span class="keyword">typedef</span> edge* set_of_edges;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">kruskal</span><span class="params">(<span class="keyword">int</span> n, <span class="keyword">int</span> m, set_of_edges&amp; E, set_of_edges&amp; F)</span></span>;</span><br><span class="line">  <span class="comment">// Problem: Determine a minimum spanning tree.</span></span><br><span class="line">  <span class="comment">// Inputs: integer n &gt;= 2, positive integer m, and a connected, weighted,</span></span><br><span class="line">  <span class="comment">// undirected graph containing n vertices and m edges. The graph is</span></span><br><span class="line">  <span class="comment">// represented b y a set E that contains the edges in the graph along</span></span><br><span class="line">  <span class="comment">// with their weights.</span></span><br><span class="line">  <span class="comment">// Outputs: F, a set of edges in a minimum spanning tree.</span></span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">make_edgeset</span><span class="params">(<span class="keyword">const</span> graph g, set_of_edges&amp; E, <span class="keyword">int</span>&amp; num_of_edges)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">init_edgeset</span><span class="params">(set_of_edges&amp; F, <span class="keyword">const</span> <span class="keyword">int</span> n)</span></span>;</span><br><span class="line"></span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">mergesort2</span><span class="params">(set_of_edges&amp; data, <span class="keyword">int</span> low, <span class="keyword">int</span> high)</span></span>;</span><br><span class="line">  <span class="function"><span class="keyword">void</span> <span class="title">merge2</span><span class="params">(set_of_edges&amp; data, <span class="keyword">int</span> low, <span class="keyword">int</span> mid, <span class="keyword">int</span> high)</span></span>;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br></pre></td></tr></table></figure>
@@ -242,7 +242,7 @@
 </tbody>
 </table>
 <p><br></p>
-<h2 id="Optimality-Proof"><a href="#Optimality-Proof" class="headerlink" title="Optimality Proof"></a><span style="color:#21955b">Optimality Proof</span></h2><p>We show that the following proposition P is true by induction.</p>
+<h2 id="Optimality-Proof"><a href="#Optimality-Proof" class="headerlink" title="Optimality Proof"></a><span style="color:#21955b">Optimality Proof</span></h2><p>Recall that there is no guarantee that a given greedy algorithm always yields an <code>optimal solution</code>. One must prove whether or not this is the case. We will prove that Kruskal’s algorithms always produce minimum spanning trees. We show that the following <code>proposition P</code> is true by induction.</p>
 <p><code>proposition P</code> If F is the set of edges chosen at any stage of the algorithm, then there is some minimum spanning tree that contains F.</p>
 <blockquote>
 <p>F가 알고리즘의 어느 단계에서 선택된 이음선의 집합이라면 F를 포함하는 최소신장트리가 존재한다.</p>
@@ -257,7 +257,7 @@
 <li>Now assume P is true for some non-final edge set F and let T be a minimum spanning tree that contains F.</li>
 </ul>
 <blockquote>
-<p>이제 P가 공집합이 아닌 이음선 집합 F에 대해서도 참이며, T가 F를 포함하는 최소신장트리라고 가정한다.</p>
+<p>P가 공집합이 아닌 이음선 집합 F에 대해서도 참이며, T가 F를 포함하는 최소신장트리라고 가정한다.</p>
 </blockquote>
 <p>  <code>Case 1</code> If the next chosen edge e is also in T, then P is true for F U {e}.</p>
 <blockquote>
@@ -281,7 +281,7 @@
 
 
 
-    <a data-url="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/" data-id="cjvqogc5t003lt8wodei8gx8d" class="article-share-link"><i class="fa fa-share"></i>Share</a>
+    <a data-url="http://melomance.github.io/2011/07/21/[AG][GA] MST-Kruskal/" data-id="cjwo7079h003ojgwofk1rzqv4" class="article-share-link"><i class="fa fa-share"></i>Share</a>
 <script>
     (function ($) {
         $('body').on('click', function() {
@@ -453,10 +453,10 @@
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/04/23/[HX] hexo writing/" class="thumbnail">
+                            <a href="/2019/06/19/[DB][SQ] SQL 테이블 조인/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 글쓰기" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/rdb/sql_joins_guide_and_yntax.jpg)" alt="표준SQL 테이블 조인" class="thumbnail-image"></span>
     
     
 </a>
@@ -464,19 +464,19 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/04/23/[HX] hexo writing/" class="title">Hexo 글쓰기</a></p>
-                            <p class="item-date"><time datetime="2018-04-22T15:00:00.000Z" itemprop="datePublished">2018-04-23</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Database/">Database</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Database/SQL/">SQL</a></p>
+                            <p class="item-title"><a href="/2019/06/19/[DB][SQ] SQL 테이블 조인/" class="title">표준SQL 테이블 조인</a></p>
+                            <p class="item-date"><time datetime="2019-06-19T14:07:00.000Z" itemprop="datePublished">2019-06-19</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2018/04/22/[HX] hexo command/" class="thumbnail">
+                            <a href="/2019/06/09/[DB][SQ] SQL 데이터정의조작제어/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/github_hexo_blog.png)" alt="Hexo 명령어" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/rdb/sql2.png)" alt="SQL 데이터정의/조작/제어" class="thumbnail-image"></span>
     
     
 </a>
@@ -484,19 +484,19 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"></p>
-                            <p class="item-title"><a href="/2018/04/22/[HX] hexo command/" class="title">Hexo 명령어</a></p>
-                            <p class="item-date"><time datetime="2018-04-21T15:00:00.000Z" itemprop="datePublished">2018-04-22</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Database/">Database</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Database/SQL/">SQL</a></p>
+                            <p class="item-title"><a href="/2019/06/09/[DB][SQ] SQL 데이터정의조작제어/" class="title">SQL 데이터정의/조작/제어</a></p>
+                            <p class="item-date"><time datetime="2019-06-09T14:26:00.000Z" itemprop="datePublished">2019-06-09</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/12/28/[FX] 수출입국내법규/" class="thumbnail">
+                            <a href="/2019/06/06/[DB][SQ] SQL 기본정보/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/forex/forex-law.png)" alt="수출입관련 국내법규" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/rdb/sql2.png)" alt="SQL 기본정보" class="thumbnail-image"></span>
     
     
 </a>
@@ -504,19 +504,19 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
-                            <p class="item-title"><a href="/2017/12/28/[FX] 수출입국내법규/" class="title">수출입관련 국내법규</a></p>
-                            <p class="item-date"><time datetime="2017-12-28T13:27:00.000Z" itemprop="datePublished">2017-12-28</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Database/">Database</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Database/SQL/">SQL</a></p>
+                            <p class="item-title"><a href="/2019/06/06/[DB][SQ] SQL 기본정보/" class="title">SQL 기본정보</a></p>
+                            <p class="item-date"><time datetime="2019-06-06T07:02:00.000Z" itemprop="datePublished">2019-06-06</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/15/[FX] 신용장의-이해/" class="thumbnail">
+                            <a href="/2019/06/01/[DB][DM] 데이터 모델과 성능/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/forex/letter-of-credit.png)" alt="신용장의 이해" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/rdb/denormalization.png)" alt="데이터 모델링과 성능" class="thumbnail-image"></span>
     
     
 </a>
@@ -524,19 +524,19 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
-                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장의-이해/" class="title">신용장의 이해</a></p>
-                            <p class="item-date"><time datetime="2017-11-15T13:47:52.000Z" itemprop="datePublished">2017-11-15</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Database/">Database</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Database/Data-Modeling/">Data Modeling</a></p>
+                            <p class="item-title"><a href="/2019/06/01/[DB][DM] 데이터 모델과 성능/" class="title">데이터 모델링과 성능</a></p>
+                            <p class="item-date"><time datetime="2019-06-01T11:49:00.000Z" itemprop="datePublished">2019-06-01</time></p>
                         </div>
                     </li>
                 
                     <li>
                         
                         <div class="item-thumbnail">
-                            <a href="/2017/11/15/[FX] 신용장 통일규칙/" class="thumbnail">
+                            <a href="/2019/05/25/[DB][DM] 데이터 모델링/" class="thumbnail">
     
     
-        <span style="background-image:url(/images/forex/ucp600.png)" alt="신용장 통일규칙" class="thumbnail-image"></span>
+        <span style="background-image:url(/images/rdb/data_modeling.png)" alt="데이터 모델링의 이해" class="thumbnail-image"></span>
     
     
 </a>
@@ -544,9 +544,9 @@
                         </div>
                         
                         <div class="item-inner">
-                            <p class="item-category"><a class="article-category-link" href="/categories/Finance/">Finance</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a></p>
-                            <p class="item-title"><a href="/2017/11/15/[FX] 신용장 통일규칙/" class="title">신용장 통일규칙</a></p>
-                            <p class="item-date"><time datetime="2017-11-15T13:45:00.000Z" itemprop="datePublished">2017-11-15</time></p>
+                            <p class="item-category"><a class="article-category-link" href="/categories/Database/">Database</a><i class="icon fa fa-angle-right"></i><a class="article-category-link" href="/categories/Database/Data-Modeling/">Data Modeling</a></p>
+                            <p class="item-title"><a href="/2019/05/25/[DB][DM] 데이터 모델링/" class="title">데이터 모델링의 이해</a></p>
+                            <p class="item-date"><time datetime="2019-05-25T12:00:00.000Z" itemprop="datePublished">2019-05-25</time></p>
                         </div>
                     </li>
                 
@@ -559,7 +559,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">categories</h3>
         <div class="widget">
-            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">29</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engr/">S/W Engr.</a><span class="category-list-count">7</span></li></ul>
+            <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/">Algorithms</a><span class="category-list-count">29</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Backtracking/">Backtracking</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Branch-and-Bound/">Branch and Bound</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Divide-and-Conquer/">Divide and Conquer</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Dynamic-Prgrming/">Dynamic Prgrming</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Foundation/">Foundation</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Algorithms/Greedy-Approach/">Greedy Approach</a><span class="category-list-count">6</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/">Database</a><span class="category-list-count">7</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Database/Data-Modeling/">Data Modeling</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/Foundation/">Foundation</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Database/SQL/">SQL</a><span class="category-list-count">3</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/">Finance</a><span class="category-list-count">27</span><ul class="category-list-child"><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Accounting/">Accounting</a><span class="category-list-count">9</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Foreign-Exchange/">Foreign Exchange</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Finance/Law/">Law</a><span class="category-list-count">13</span></li></ul></li><li class="category-list-item"><a class="category-list-link" href="/categories/Network/">Network</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/S-W-Engr/">S/W Engr.</a><span class="category-list-count">7</span></li></ul>
         </div>
     </div>
 
@@ -569,7 +569,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">archives</h3>
         <div class="widget">
-            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
+            <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/06/">June 2019</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/04/">April 2018</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/12/">December 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/11/">November 2017</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">June 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">November 2015</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/10/">October 2015</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">July 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/03/">March 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/02/">February 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">January 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">October 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">September 2014</a><span class="archive-list-count">9</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/08/">August 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/08/">August 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/01/">January 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/12/">December 2011</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/10/">October 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/08/">August 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/07/">July 2011</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/01/">January 2011</a><span class="archive-list-count">15</span></li></ul>
         </div>
     </div>
 
@@ -579,7 +579,7 @@
     <div class="widget-wrap widget-list">
         <h3 class="widget-title">tags</h3>
         <div class="widget">
-            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분기한정법/">분기한정법</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
+            <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/0-1-배낭-문제/">0-1 배낭 문제</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/SQL/">SQL</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/hexo/">hexo</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/네트워크/">네트워크</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/데이터모델링/">데이터모델링</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/데이터베이스/">데이터베이스</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/동적계획법/">동적계획법</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/민상법기초/">민상법기초</a><span class="tag-list-count">13</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/백트래킹/">백트래킹</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분기한정법/">분기한정법</a><span class="tag-list-count">4</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/분할정복법/">분할정복법</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/소프트웨어공학/">소프트웨어공학</a><span class="tag-list-count">7</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/알고리즘/">알고리즘</a><span class="tag-list-count">29</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/외국환/">외국환</a><span class="tag-list-count">5</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최단경로탐색/">최단경로탐색</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/최소신장트리/">최소신장트리</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/탐욕알고리즘/">탐욕알고리즘</a><span class="tag-list-count">6</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/회계기초/">회계기초</a><span class="tag-list-count">9</span></li></ul>
         </div>
     </div>
 
@@ -589,7 +589,7 @@
     <div class="widget-wrap widget-float">
         <h3 class="widget-title">tag cloud</h3>
         <div class="widget tagcloud">
-            <a href="/tags/0-1-배낭-문제/" style="font-size: 12.22px;">0-1 배낭 문제</a> <a href="/tags/hexo/" style="font-size: 11.11px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/동적계획법/" style="font-size: 15.56px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.89px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.44px;">백트래킹</a> <a href="/tags/분기한정법/" style="font-size: 13.33px;">분기한정법</a> <a href="/tags/분할정복법/" style="font-size: 14.44px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 16.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.44px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.11px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.22px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.56px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.78px;">회계기초</a>
+            <a href="/tags/0-1-배낭-문제/" style="font-size: 12.22px;">0-1 배낭 문제</a> <a href="/tags/SQL/" style="font-size: 12.22px;">SQL</a> <a href="/tags/hexo/" style="font-size: 11.11px;">hexo</a> <a href="/tags/네트워크/" style="font-size: 10px;">네트워크</a> <a href="/tags/데이터모델링/" style="font-size: 11.11px;">데이터모델링</a> <a href="/tags/데이터베이스/" style="font-size: 16.67px;">데이터베이스</a> <a href="/tags/동적계획법/" style="font-size: 15.56px;">동적계획법</a> <a href="/tags/민상법기초/" style="font-size: 18.89px;">민상법기초</a> <a href="/tags/백트래킹/" style="font-size: 14.44px;">백트래킹</a> <a href="/tags/분기한정법/" style="font-size: 13.33px;">분기한정법</a> <a href="/tags/분할정복법/" style="font-size: 14.44px;">분할정복법</a> <a href="/tags/소프트웨어공학/" style="font-size: 16.67px;">소프트웨어공학</a> <a href="/tags/알고리즘/" style="font-size: 20px;">알고리즘</a> <a href="/tags/외국환/" style="font-size: 14.44px;">외국환</a> <a href="/tags/최단경로탐색/" style="font-size: 11.11px;">최단경로탐색</a> <a href="/tags/최소신장트리/" style="font-size: 12.22px;">최소신장트리</a> <a href="/tags/탐욕알고리즘/" style="font-size: 15.56px;">탐욕알고리즘</a> <a href="/tags/회계기초/" style="font-size: 17.78px;">회계기초</a>
         </div>
     </div>
 
