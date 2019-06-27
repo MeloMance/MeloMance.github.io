@@ -240,7 +240,7 @@ code {
   padding: 3px 5px;
   font-size: 0.9em;
   border-radius: 2px;
-  font-family: Titillium Web, "Source Code Pro", Consolas, Monaco, Menlo, monospace;
+  font-family: "Noto Sans KR", "Source Code Pro", Consolas, Monaco, Menlo, monospace;
   background-color: #f8f8f8;
 }
 .container {
